@@ -19,8 +19,12 @@
     // httpOnly: true
   }));
 
-  // Setup
-  app.engine('hbs', exphbs({defaultLayout: "main", extname: "hbs"}))
+  // Setup view engine
+  app.engine('hbs', exphbs({
+    defaultLayout: "main",
+    extname: "hbs",
+    helpers: require("./src/helpers/handlebars")
+  }));
   app.set('view engine', 'hbs');
 
   // Establish db connection

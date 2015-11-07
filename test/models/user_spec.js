@@ -60,6 +60,14 @@ describe('User', function() {
       var promise = new User(userFixture.set("email", "not@email").toJS()).save()
       return expect(promise).to.be.rejected;
     });
+
+    it("checks for a unique email address", function() {
+      var promise = new User(userFixture.toJS()).save()
+      .then(function(user) {
+        return new User(userFixture.toJS()).save();
+      })
+      return expect(promise).to.be.rejected;
+    });
   }); // End of describe 'creation'
 
 }); // End of describe 'User'

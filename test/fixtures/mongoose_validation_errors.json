@@ -1,0 +1,46 @@
+{
+  "message": "User validation failed",
+  "name": "ValidationError",
+  "errors": {
+    "email": {
+      "properties": {
+        "type": "required",
+        "message": "Path `{PATH}` is required.",
+        "path": "email",
+        "value": ""
+      },
+      "message": "Path `email` is required.",
+      "name": "ValidatorError",
+      "kind": "required",
+      "path": "email",
+      "value": ""
+    },
+    "last_name": {
+      "properties": {
+        "minlength": 3,
+        "type": "minlength",
+        "message": "Path `{PATH}` (`{VALUE}`) is shorter than the minimum allowed length (3).",
+        "path": "last_name",
+        "value": "b"
+      },
+      "message": "Path `last_name` (`b`) is shorter than the minimum allowed length (3).",
+      "name": "ValidatorError",
+      "kind": "minlength",
+      "path": "last_name",
+      "value": "b"
+    },
+    "first_name": {
+      "properties": {
+        "type": "required",
+        "message": "Path `{PATH}` is required.",
+        "path": "first_name",
+        "value": ""
+      },
+      "message": "Path `first_name` is required.",
+      "name": "ValidatorError",
+      "kind": "required",
+      "path": "first_name",
+      "value": ""
+    }
+  }
+}

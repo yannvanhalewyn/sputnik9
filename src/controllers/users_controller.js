@@ -4,6 +4,7 @@
 
   var User = require('../models/user')
     , bcrypt = require('../helpers/bcrypt-promisified')
+    , formatValidationErrors = require("../helpers/format_mongoose_validation_errors")
 
   var users_controller = {
 
@@ -18,9 +19,17 @@
             password_digest: hash
         });
 
-        newUser.save();
+        newUser.save().then(
 
-        res.send(req.body);
+          function(user) { res.send("Success!"); },
+
+          function(err) {
+            res.render("signup", {
+              values: req.body,
+              errors: formatValidationErrors(err)
+            });
+          }
+        );
       });
     }
   }
