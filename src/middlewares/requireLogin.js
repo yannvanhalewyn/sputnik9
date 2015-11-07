@@ -4,7 +4,7 @@
 
   var requireLogin = function(req, res, next) {
     if (req.user) {
-      next();
+      return next();
     }
     res.render("login", {error: "You must be logged in to view that page."});
   }
