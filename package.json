@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "DB_URL=mongodb://localhost:27017 nodemon ./bin/server"
+    "start": "DB_URL=mongodb://localhost:27017/lars_opdracht nodemon ./bin/server"
   },
   "author": "Yann Vanhalewyn",
   "license": "ISC",
