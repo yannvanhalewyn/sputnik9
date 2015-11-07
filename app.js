@@ -18,29 +18,9 @@
   var db = require('./config/db');
   db.connect();
 
-  app.get('/', function(req, res) {
-    res.render('index', { title: "Hello!", message: "Hello there!" });
-  });
-
-  app.get('/login', function(req, res) {
-    res.render("login");
-  });
-
-  app.post('/login', function(req, res) {
-    res.send(req.body);
-  });
-
-  app.get('/signup', function(req, res) {
-    res.render('signup');
-  });
-
-  app.post('/signup', function(req, res) {
-    res.send(req.body);
-  });
-
-  app.get('/premium', function(req, res) {
-    res.send("The premium space. You are logged in as: " + req.user)
-  });
+  // Setup Routes
+  var routes = require('./config/routes')
+  routes(app);
 
   module.exports = app;
 

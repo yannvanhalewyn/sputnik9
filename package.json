@@ -15,6 +15,7 @@
     "express": "^4.13.3",
     "jade": "^1.11.0",
     "mollie-api-node": "^1.0.4",
-    "mongoose": "^4.2.4"
+    "mongoose": "^4.2.4",
+    "q": "^1.4.1"
   }
 }
