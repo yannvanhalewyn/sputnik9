@@ -2,7 +2,12 @@
 
   "use strict";
 
-  var users_controller = require('../src/controllers/users_controller');
+  // Controllers
+  var users_controller = require('../src/controllers/users_controller')
+    , user_sessions_controller = require('../src/controllers/user_sessions_controller')
+
+  // Middlewares
+  var requireLogin = require('../src/middlewares/requireLogin')
 
   var Routes = function(app) {
 
@@ -22,17 +27,16 @@
     });
 
     // Premium page
-    app.get('/premium', function(req, res) {
+    app.get('/premium', requireLogin, function(req, res) {
       res.send("The premium space. You are logged in as: " + req.user)
     });
 
     // Logging in user (new user session)
-    app.post('/login', function(req, res) {
-      res.send(req.body);
-    });
+    app.post('/login', user_sessions_controller.create);
+    app.get('/logout', user_sessions_controller.destroy);
 
     // Creating a  new user
-    app.post('/signup', users_controller.create);
+    app.post('/users', users_controller.create);
 
   }
 

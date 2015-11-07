@@ -3,7 +3,7 @@ html
     title LARS | New Account
   body
     h1 Create a new account
-    form(method="POST")
+    form(method="POST",action="/users")
       label(for="first_name") First Name
       input#first_name(type="text",name="first_name")
 
@@ -31,6 +31,6 @@ html
 
       input(type="submit", value="Create new account!")
 
-    p Already have an account? 
+    p Already have an account?
       a(href="login") Click here.
 

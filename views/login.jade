@@ -3,9 +3,11 @@ html
     title Login!
   body
 
+    p!= error
+
     h1 Login
 
-    form(method="POST")
+    form(method="POST",action="/login")
 
       label(for="email") Email
       input#email(type="text",name="email")
