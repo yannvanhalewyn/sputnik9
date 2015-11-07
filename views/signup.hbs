@@ -1,0 +1,32 @@
+<h1>Create a new account</h1>
+<form action="/users" method="POST" accept-charset="utf-8">
+
+
+  <label for="first_name">First Name</label>
+  <input type="text" name="first_name" value="John" id="first_name">
+
+  <br/>
+
+  <label for="last_Name">Last Name</label>
+  <input type="text" name="last_name" value="Doe" id="last_name">
+
+  <br/>
+
+  <label for="email">Email</label>
+  <input type="text" name="email" value="j.doe@example.com" id="email">
+
+  <br>
+
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password">
+
+  <br/>
+
+  <label for="password_confirmation">Confirm password</label>
+  <input type="password" name="password_confirmation" id="password_confirmation">
+
+  <p><input type="submit" value="Create account!"></p>
+</form>
+
+<p>Already have an account? <a href="/login">Click here</a></p>
+

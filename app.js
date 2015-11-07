@@ -2,10 +2,11 @@
 
   "use strict";
 
-  var express = require('express');
-  var app = express();
-  var bodyParser = require('body-parser');
-  var session = require("express-session");
+  var express = require('express')
+    , app = express()
+    , bodyParser = require('body-parser')
+    , session = require("express-session")
+    , exphbs = require('express-handlebars')
 
   // Static files
   app.use(express.static('public'));
@@ -19,7 +20,8 @@
   }));
 
   // Setup
-  app.set('view engine', 'jade');
+  app.engine('hbs', exphbs({defaultLayout: "main", extname: "hbs"}))
+  app.set('view engine', 'hbs');
 
   // Establish db connection
   var db = require('./config/db');

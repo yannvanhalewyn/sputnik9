@@ -1,0 +1,22 @@
+{{#if error}}
+  <p>{{error}}</p>
+{{/if}}
+
+<h1>Login to xx</h1>
+
+<form action="/login" method="POST" accept-charset="utf-8">
+
+  <label for="email">Email</label>
+  <input type="text" name="email" value="j.doe@example.com" id="email">
+
+  <br>
+
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password">
+
+
+  <p><input type="submit" value="Sign in!"></p>
+</form>
+
+<p>Don't have an account yet?
+<a href="/signup">Click here.</a></p>

@@ -13,8 +13,8 @@
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
     "express-session": "^1.12.1",
-    "jade": "^1.11.0",
     "mollie-api-node": "^1.0.4",
     "mongoose": "^4.2.4",
     "q": "^1.4.1"
