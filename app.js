@@ -14,6 +14,10 @@
   // Setup
   app.set('view engine', 'jade');
 
+  // Establish db connection
+  var db = require('./config/db');
+  db.connect();
+
   app.get('/', function(req, res) {
     res.render('index', { title: "Hello!", message: "Hello there!" });
   });
