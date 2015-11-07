@@ -15,12 +15,15 @@
     "express": "^4.13.3",
     "express-handlebars": "^2.0.1",
     "express-session": "^1.12.1",
+    "immutable": "^3.7.5",
+    "lodash": "^3.10.1",
     "mollie-api-node": "^1.0.4",
     "mongoose": "^4.2.4",
     "q": "^1.4.1"
   },
   "devDependencies": {
     "chai": "^3.4.0",
+    "chai-as-promised": "^5.1.0",
     "include": "^0.1.2",
     "reqres": "^1.2.2",
     "sinon": "^1.17.2",

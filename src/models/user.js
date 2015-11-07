@@ -5,9 +5,21 @@
   var mongoose = require('mongoose');
 
   var userSchema = mongoose.Schema({
-    first_name: String,
-    last_name: String,
-    email: String,
+    first_name: {
+      type: String,
+      minlength: 3,
+      required: true
+    },
+    last_name: {
+      type: String,
+      minlength: 3,
+      required: true
+    },
+    email: {
+      type: String,
+      match: /^.+@.+\..+$/,
+      required: true
+    },
     password_digest: String
   });
 
