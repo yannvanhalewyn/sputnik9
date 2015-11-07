@@ -4,9 +4,12 @@
 
   var express = require('express');
   var app = express();
+  var bodyParser = require('body-parser');
 
   // Static files
   app.use(express.static('public'));
+  app.use(bodyParser.urlencoded({extended: false}));
+  app.use(bodyParser.json());
 
   // Setup
   app.set('view engine', 'jade');
@@ -16,19 +19,23 @@
   });
 
   app.get('/login', function(req, res) {
-    res.send("A login page");
+    res.render("login");
   });
 
   app.post('/login', function(req, res) {
-    res.send("Posted a login");
+    res.send(req.body);
   });
 
   app.get('/signup', function(req, res) {
-    res.send("A signup page");
+    res.render('signup');
   });
 
   app.post('/signup', function(req, res) {
-    res.send("POST signup");
+    res.send(req.body);
+  });
+
+  app.get('/premium', function(req, res) {
+    res.send("The premium space. You are logged in as: " + req.user)
   });
 
   module.exports = app;
