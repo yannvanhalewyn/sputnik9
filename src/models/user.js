@@ -29,8 +29,7 @@
       unique: true
     },
     confirmation_token: {
-      type: String,
-      unique: true
+      type: String
     },
     token_expiration: {
       type: Date

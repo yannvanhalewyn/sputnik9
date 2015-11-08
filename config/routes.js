@@ -28,6 +28,9 @@
 
     // Premium page
     app.get('/premium', requireLogin, function(req, res) {
+      if (!req.user.verified) {
+        return res.send("Please verify your email address before accessing this sweet content!");
+      }
       res.send("The premium space. You are logged in as: " + req.user)
     });
 
@@ -37,6 +40,8 @@
 
     // Creating a  new user
     app.post('/users', users_controller.create);
+
+    app.get('/verify', users_controller.verify);
 
   }
 

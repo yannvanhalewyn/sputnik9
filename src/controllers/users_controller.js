@@ -5,6 +5,7 @@
   var User = require('../models/user')
     , bcrypt = require('../helpers/bcrypt-promisified')
     , formatValidationErrors = require("../helpers/format_mongoose_validation_errors")
+    , login = require('../helpers/login_user')
 
   var users_controller = {
 
@@ -19,7 +20,10 @@
           password_digest: hash
         }).then(
 
-          function(user) { res.send("Success!"); },
+          function(user) {
+            login(user, req);
+            res.send("Success!");
+          },
 
           function(err) {
             console.log(JSON.stringify(err, null, 2));
@@ -30,8 +34,21 @@
           }
         );
       });
+    },
+
+    verify: function(req, res) {
+      User.verify(req.query.token).then(
+        function(user) {
+          login(user, req);
+          res.send("Successfully verified! Hello " + user.first_name)
+        },
+        function(err) {
+          res.send("Verification failed. " + err)
+        }
+      )
     }
   }
+
 
   module.exports = users_controller;
 

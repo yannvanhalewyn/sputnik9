@@ -4,6 +4,7 @@
 
   var User = require('../models/user')
     , bcrypt = require('../helpers/bcrypt-promisified')
+    , login = require('../helpers/login_user')
 
   var user_sessions_controller = {
 
@@ -18,7 +19,7 @@
 
             // If password is correct, redirect to home page
             if (result) {
-              req.session.user_id = user._id;
+              login(user, req);
               res.redirect("/premium");
 
             // Else reprompt login with error
