@@ -29,10 +29,15 @@
       unique: true
     },
     confirmation_token: {
-      type: String
+      type: String,
+      unique: true
     },
     token_expiration: {
       type: Date
+    },
+    verified: {
+      type: Boolean,
+      default: false
     },
     password_digest: String
   });
@@ -75,6 +80,22 @@
       params.confirmation_token = token.token;
       params.token_expiration = token.expires;
       return new User(params).save();
+    })
+  }
+
+  User.verify = function(token) {
+    return User.find({confirmation_token: token}).then(function(found) {
+
+      if (found.length == 0) throw "No user found with token " + token;
+
+      var user = found[0];
+      if (user.token_expiration.getTime() < Date.now())
+        throw "This token has been expired."
+
+      user.verified = true;
+      user.confirmation_token = null;
+      user.token_expiration = null;
+      return user.save();
     })
   }
 
