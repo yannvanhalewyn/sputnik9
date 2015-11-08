@@ -1,2 +1,17 @@
-- Wireframes for scenarios.
+- Wireframes for scenarios. | new user | user with free account | premium user
 - Will there be free video's?
+- Videos page allways inaccessible or limited accessiblity to free customers?
+- Internationalisation?
+- Subscription payment service? pay.nl vs mollie
+- Authentication? Password or Social or both
+- Video auth tokens! Amazon S3? Cloudfront? vixyvideo.nl? Sproutvideo?
+ex: https://02-lvl3-pdl.vimeocdn.com/01/4338/4/121692572/344183021.mp4?expires=1447017348&token=080a99c72bca53915b5d2
+
+
+
+<video preload="metadata" src="https://06-lvl3-pdl.vimeocdn.com/01/4485/0/22427091/46786905.mp4?expires=1447018772&amp;token=09969ca76e1648baefa70"></video>
+https://i.vimeocdn.com/video/188347452_150x84.jpg
+
+Foo Fighters - Back and forth
+<video preload="" src="https://09-lvl3-pdl.vimeocdn.com/01/650/1/28254004/63208134.mp4?expires=1447018778&amp;token=0c7d76d79b2703a36d230"></video>
+https://i.vimeocdn.com/video/134467981_150x84.jpg
