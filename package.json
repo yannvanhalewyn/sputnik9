@@ -19,6 +19,7 @@
     "lodash": "^3.10.1",
     "mollie-api-node": "^1.0.4",
     "mongoose": "^4.2.4",
+    "nodemailer": "^1.8.0",
     "q": "^1.4.1"
   },
   "devDependencies": {

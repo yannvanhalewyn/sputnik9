@@ -6,6 +6,8 @@
     , bcrypt = require('../helpers/bcrypt-promisified')
     , formatValidationErrors = require("../helpers/format_mongoose_validation_errors")
     , login = require('../helpers/login_user')
+    , mailer = require('../helpers/mailer')
+    , emails = require('../helpers/emails')
 
   var users_controller = {
 
@@ -20,13 +22,15 @@
           password_digest: hash
         }).then(
 
+          // Successfull user creation!
           function(user) {
             login(user, req);
+            mailer.send(emails.emailConfirmation(user))
             res.send("Success!");
           },
 
+          // Erroneous user creation.
           function(err) {
-            console.log(JSON.stringify(err, null, 2));
             res.render("signup", {
               values: req.body,
               errors: formatValidationErrors(err)
