@@ -6,7 +6,8 @@
 
   var MESSAGES = {
     "required": "should not be empty.",
-    "minlength": "is too short."
+    "minlength": "is too short.",
+    "regexp": "is invalid."
   }
 
   var formatMongooseValidationErrors = function(input) {

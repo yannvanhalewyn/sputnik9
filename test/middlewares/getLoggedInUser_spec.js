@@ -34,7 +34,7 @@ describe('getLoggedInUser', function() {
       var USER;
 
       beforeEach(function() {
-        return new User(userFixture).save().then(function(user) {
+        return User.create(userFixture).then(function(user) {
           USER = user;
           req.session = {user_id: user._id}
           return getLoggedInUser(req, res, next);

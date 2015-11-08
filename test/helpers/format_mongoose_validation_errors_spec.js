@@ -35,6 +35,11 @@ describe('format mongoose validation errors', function() {
       expect(res.last_name).not.to.be.undefined;
       expect(res.last_name).to.eql("is too short.");
     });
+
+    it("formats the correct error when a field fails a regex", function() {
+      expect(res.email).to.not.to.be.undefined;
+      expect(res.email).to.eql("is invalid.");
+    });
   }); // End of context 'when it's an actual validator error'
 
 

@@ -12,18 +12,17 @@
 
       bcrypt.hash(req.body.password, 10).then(function(hash) {
 
-        var newUser = new User({
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            email: req.body.email,
-            password_digest: hash
-        });
-
-        newUser.save().then(
+        User.create({
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          email: req.body.email,
+          password_digest: hash
+        }).then(
 
           function(user) { res.send("Success!"); },
 
           function(err) {
+            console.log(JSON.stringify(err, null, 2));
             res.render("signup", {
               values: req.body,
               errors: formatValidationErrors(err)

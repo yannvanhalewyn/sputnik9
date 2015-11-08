@@ -2,12 +2,15 @@
 
   "use strict";
 
-  var mongoose = require('mongoose');
+  var crypto = require('crypto')
+    , Q = require('q')
+    , mongoose = require('mongoose');
 
-  function checkUniqueEmail(email) {
-
-  }
-
+  /*
+   * ======
+   * SCHEMA
+   * ======
+   */
   var userSchema = mongoose.Schema({
     first_name: {
       type: String,
@@ -25,25 +28,55 @@
       required: true,
       unique: true
     },
+    confirmation_token: {
+      type: String
+    },
+    token_expiration: {
+      type: Date
+    },
     password_digest: String
   });
 
 
+  /*
+   * =====
+   * MODEL
+   * =====
+   */
   var User = mongoose.model('User', userSchema);
 
-  // userSchema.pre("save", function(next) {
-  //   User.findOne({email: this.email}).then(
-  //     function(found) {
-  //       if (found) {
-  //         var errormsg = "This email has already been registered";
-  //         this.invalidate("email", errormsg);
-  //         return next(new Error(errormsg));
-  //       }
-  //       next();
-  //     }.bind(this),
-  //     next
-  //   )
-  // })
+  var TOKEN_LENGTH = 48;
+  var EXPIRATION_TIME = 24 * 3600 * 1000;
+
+  /*
+   * =========
+   * Functions
+   * =========
+   */
+
+  // Generate a confirmation token and expiration date
+  function generateConfirmationTokenAndExpiration() {
+
+    var defered = Q.defer();
+
+    crypto.randomBytes(TOKEN_LENGTH / 2, function(err, buf) {
+      if (err) return defered.reject(err);
+      defered.resolve({
+        token: buf.toString('hex'),
+        expires: Date.now() + EXPIRATION_TIME
+      });
+    });
+
+    return defered.promise;
+  }
+
+  User.create = function(params) {
+    return generateConfirmationTokenAndExpiration().then(function(token) {
+      params.confirmation_token = token.token;
+      params.token_expiration = token.expires;
+      return new User(params).save();
+    })
+  }
 
   module.exports = User;
 

@@ -4,16 +4,17 @@
   "errors": {
     "email": {
       "properties": {
-        "type": "required",
-        "message": "Path `{PATH}` is required.",
+        "regexp": {},
+        "type": "regexp",
+        "message": "Path `{PATH}` is invalid ({VALUE}).",
         "path": "email",
-        "value": ""
+        "value": "notemail@foo"
       },
-      "message": "Path `email` is required.",
+      "message": "Path `email` is invalid (notemail@foo).",
       "name": "ValidatorError",
-      "kind": "required",
+      "kind": "regexp",
       "path": "email",
-      "value": ""
+      "value": "notemail@foo"
     },
     "last_name": {
       "properties": {
