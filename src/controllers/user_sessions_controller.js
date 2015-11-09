@@ -15,7 +15,7 @@
         // Login successful
         if (verifiedUser) {
           login(verifiedUser, req);
-          return res.redirect("/premium")
+          return res.redirect("/media")
         }
         // Erroneous login
         req.session.flash = {

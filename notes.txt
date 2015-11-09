@@ -6,6 +6,8 @@
 - Authentication? Password or Social or both
 - Video auth tokens! Amazon S3? Cloudfront? vixyvideo.nl? Sproutvideo?
 ex: https://02-lvl3-pdl.vimeocdn.com/01/4338/4/121692572/344183021.mp4?expires=1447017348&token=080a99c72bca53915b5d2
+- Audio and video organisation? audio section, video section, or mixed? Or do
+  audio files belong to a video page?
 
 
 

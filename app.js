@@ -23,6 +23,7 @@
   // Make eventual flashes available for handlebars templates
   app.use(function(req, res, next) {
     res.locals.flash = req.session.flash;
+    delete req.session.flash;
     next();
   });
 

@@ -42,9 +42,11 @@ describe('requireLogin', function() {
     });
 
     it("redirects to the login page", function() {
-      expect(res.render).to.have.been.calledWith("login", {
-        error: "You must be logged in to view that page."
-      });
+      expect(res.redirect).to.have.been.calledWith("/login");
+    });
+
+    it("set's the flash error message", function() {
+      expect(req.session.flash).to.eql({type: "error", message: "You must be logged in to view that page."})
     });
 
   }); // End of context 'when the req object has no user'
