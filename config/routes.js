@@ -16,14 +16,9 @@
       res.render('index', { title: "Hello!", message: "Hello there!" });
     });
 
-    // Login Page
+    // Login/signup Page
     app.get('/login', function(req, res) {
       res.render("login");
-    });
-
-    // Signup Page
-    app.get('/signup', function(req, res) {
-      res.render('signup');
     });
 
     // Premium page

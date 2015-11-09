@@ -31,7 +31,7 @@
 
           // Erroneous user creation.
           function(err) {
-            res.render("signup", {
+            res.render("login", {
               values: req.body,
               errors: formatValidationErrors(err)
             });
