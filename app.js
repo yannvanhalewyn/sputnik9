@@ -13,11 +13,18 @@
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(bodyParser.json());
   app.use(session({
+    // cookie: { maxAge: 60000 },
+    // store: new session.MemoryStore,
     resave: false, // Or true if future store uses "touch()"
     secret: 'asdfghjkl;qwertyuio3456789kjnbkajs',
-    saveUninitialized: false
-    // httpOnly: true
+    saveUninitialized: true
   }));
+
+  // Make eventual flashes available for handlebars templates
+  app.use(function(req, res, next) {
+    res.locals.flash = req.session.flash;
+    next();
+  });
 
   // Setup view engine
   app.engine('hbs', exphbs({

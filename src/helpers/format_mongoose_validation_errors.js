@@ -24,6 +24,14 @@
     return err;
   }
 
-  module.exports = formatMongooseValidationErrors;
+  var tmpErrorHandler = function(input) {
+    if (input.code == 11000 || input.code == 11001) {
+      return "This email has already been registered."
+    } else {
+      return "Make sure you filled in all fields correctly."
+    }
+  }
+
+  module.exports = tmpErrorHandler;
 
 }())

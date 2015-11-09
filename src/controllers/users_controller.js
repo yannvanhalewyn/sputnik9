@@ -31,10 +31,11 @@
 
           // Erroneous user creation.
           function(err) {
-            res.render("login", {
-              values: req.body,
-              errors: formatValidationErrors(err)
-            });
+            req.session.flash = {
+              type: "error",
+              message: formatValidationErrors(err)
+            }
+            res.redirect("/login");
           }
         );
       });

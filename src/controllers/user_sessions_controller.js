@@ -24,15 +24,21 @@
 
             // Else reprompt login with error
             } else {
-              res.render("login", {error: "Incorrect"});
+              req.session.flash = {
+                type: "error",
+                message: "Email or password was incorrect."
+              };
+              res.redirect("/login");
             }
           });
 
         // If no user with email, reprompt login with error.
         } else {
-          res.render("login", {
-            error: "Email or password was incorrect."
-          });
+          req.session.flash = {
+            type: "error",
+            message: "Email or password was incorrect."
+          };
+          res.redirect("/login");
         }
       })
     },
