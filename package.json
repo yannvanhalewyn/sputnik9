@@ -2,10 +2,10 @@
   "name": "lars_opdracht",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./bin/server",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "DB_URL=mongodb://localhost:27017/lars_opdracht nodemon ./bin/server"
+    "test": "mocha",
+    "start": "node ./bin/server"
   },
   "author": "Yann Vanhalewyn",
   "license": "ISC",

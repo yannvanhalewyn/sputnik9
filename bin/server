@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 var app = require("../app")
 
-var server = app.listen(3000, function() {
+var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var address = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+
+var server = app.listen(port, address, function() {
 
   var host = server.address().address;
   var port = server.address().port;
