@@ -4,9 +4,13 @@
 
   var mongoose = require('mongoose');
 
+  var DB_URL = process.env.OPENSHIFT_MONGODB_DB_URL || "mongodb://localhost:27017/lars_opdracht";
+
   function connect() {
 
-    mongoose.connect(process.env.DB_URL || "mongodb://localhost:27017/lars_opdracht");
+    console.log("Attempting to connect to:", DB_URL);
+
+    mongoose.connect(DB_URL);
 
     var db = mongoose.connection;
 

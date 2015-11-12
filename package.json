@@ -16,6 +16,8 @@
     "express-flash": "0.0.2",
     "express-handlebars": "^2.0.1",
     "express-session": "^1.12.1",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0",
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "mollie-api-node": "^1.0.4",
