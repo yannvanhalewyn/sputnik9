@@ -4,7 +4,7 @@
 
   var mongoose = require('mongoose');
 
-  var DB_URL = process.env.OPENSHIFT_MONGODB_DB_URL || "mongodb://localhost:27017/lars_opdracht";
+  var DB_URL = (process.env.OPENSHIFT_MONGODB_DB_URL || "mongodb://localhost:27017/") + "sputnik9";
 
   function connect() {
 
