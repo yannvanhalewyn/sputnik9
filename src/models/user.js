@@ -38,7 +38,9 @@
       type: Boolean,
       default: false
     },
-    password_digest: String
+    password_digest: String,
+    premium: Boolean,
+    payments: Array
   });
 
 
