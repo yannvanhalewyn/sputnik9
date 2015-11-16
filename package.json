@@ -5,6 +5,7 @@
   "main": "./bin/server",
   "scripts": {
     "test": "mocha",
+    "install": "gulp",
     "start": "node ./bin/server"
   },
   "author": "Yann Vanhalewyn",
@@ -13,11 +14,8 @@
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
-    "express-flash": "0.0.2",
     "express-handlebars": "^2.0.1",
     "express-session": "^1.12.1",
-    "gulp": "^3.9.0",
-    "gulp-sass": "^2.1.0",
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "mollie-api-node": "^1.0.4",
@@ -26,8 +24,11 @@
     "q": "^1.4.1"
   },
   "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
+    "flightplan": "^0.6.7",
     "include": "^0.1.2",
     "reqres": "^1.2.2",
     "sinon": "^1.17.2",
