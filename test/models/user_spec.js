@@ -131,4 +131,14 @@ describe('User', function() {
     }); // End of context 'with an invalid token'
   }); // End of describe 'verification'
 
+  describe('addPayment', function() {
+    it("adds the payment to that user's payments array", function() {
+      return User.create(userFixture.toJS()).then(function(user) {
+        return user.addPayment({_id: "foobar"}).then(function(user) {
+          expect(user.payments.length).to.eq(1);
+          expect(user.payments[0]).to.eql("foobar")
+        })
+      })
+    });
+  }); // End of describe 'addPayment'
 }); // End of describe 'User'

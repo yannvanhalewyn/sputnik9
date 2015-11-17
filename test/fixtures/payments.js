@@ -36,5 +36,12 @@ var requestedPayment = {
   links: { redirectUrl: 'http://localhost:3000/payments/123' }
 }
 
+var creation_request = {
+  amount: 20,
+  description: "Premium content Sputnik9.nl",
+  redirectUrl: "http://www.sputnik9.nl/checkout"
+}
+
 module.exports.createdPayment = createdPayment;
 module.exports.requestedPayment = requestedPayment;
+module.exports.creation_request = creation_request;

@@ -43,6 +43,13 @@
     payments: Array
   });
 
+  userSchema.methods = {
+    addPayment: function(payment) {
+      this.payments.push(payment._id)
+      return this.save();
+    }
+  }
+
 
   /*
    * =====
