@@ -33,7 +33,7 @@ describe('paymentLogic', function() {
       payment_gateway.create = sinon.stub().returns(Q(
         paymentFixture.get("createdPayment").toJS()
       ))
-      return paymentLogic.payForPremium(USER).then(function(payment) {
+      return paymentLogic.payForPremium(USER, "http://www.sputnik9.nl").then(function(payment) {
         var expected = paymentFixture.get("creation_request").toJS()
         expected.metadata = {user_id: USER._id};
         expect(payment_gateway.create).to.have.been.calledWith(expected);

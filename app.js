@@ -7,8 +7,10 @@
     , bodyParser = require('body-parser')
     , session = require("express-session")
     , exphbs = require('express-handlebars')
+    , logger = require('morgan')
 
   // Static files
+  app.use(logger('dev'))
   app.use(express.static('public'));
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(bodyParser.json());
@@ -46,6 +48,12 @@
   // Setup Routes
   var routes = require('./config/routes')
   routes(app);
+
+  // Last error checker
+  app.use(function(err, req, res, next) {
+    console.error("In error middleware: ", err);
+    res.send(err);
+  });
 
   module.exports = app;
 

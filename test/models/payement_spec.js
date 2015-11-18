@@ -12,9 +12,7 @@ var Payment = include('/src/models/payment')
   , paymentFixtures = require('../fixtures/payments')
 
 db.connect();
-afterEach(function() {
-  db.teardown();
-});
+afterEach(db.teardown);
 
 describe('Payment model', function() {
 
@@ -45,6 +43,19 @@ describe('Payment model', function() {
           })
         });
       });
+    });
+
+    it("returns the payment object", function() {
+      return Payment.create({mollie_id: "abcdef", amount: 10, status: 'open'})
+      .then(function(payment) {
+        paymentFixtures.requestedPayment.id = "abcdef";
+        paymentGateway.get = sinon.stub().returns(Q(paymentFixtures.requestedPayment));
+
+        return Payment.syncWithMollie("abcdef").then(function(ret) {
+          expect(ret._id).to.eql(payment._id)
+        })
+      })
+
     });
   }); // End of describe 'syncWithMollie'
 

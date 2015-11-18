@@ -6,6 +6,9 @@
   var users_controller = require('../src/controllers/users_controller')
     , user_sessions_controller = require('../src/controllers/user_sessions_controller')
     , media_controller = require('../src/controllers/media_controller')
+    , payments_controller = require('../src/controllers/payments_controller')
+
+  var paywall = require('../src/middlewares/paywall');
 
   // Middlewares
   var requireLogin = require('../src/middlewares/requireLogin')
@@ -22,6 +25,7 @@
 
     // Login/signup Page
     app.get('/login', function(req, res) {
+      if (req.user) return res.redirect('/media')
       res.render("login");
     });
 
@@ -35,13 +39,21 @@
     // Verifying a user's email
     app.get('/verify', users_controller.verify);
 
-
     // Video's page
     app.get("/media", media_controller.middlewares.index,
             media_controller.index);
     app.get("/media/:id", media_controller.middlewares.index,
             media_controller.show);
 
+    // New payment
+    app.get('/payments/new', payments_controller.middlewares.create,
+            payments_controller.create);
+
+    app.get('/checkout', function(req, res) {
+      res.send("Checkout")
+    });
+
+    app.get('/mollie_webhook', payments_controller.sync)
   }
 
   module.exports = Routes;

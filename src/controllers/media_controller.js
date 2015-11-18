@@ -5,12 +5,14 @@
   var Media = require('../models/media')
     , requireLogin = require('../middlewares/requireLogin')
     , requireVerifiedEmail = require('../middlewares/require_verified_email')
+    , paywall = require('../middlewares/paywall')
+    , handleUnpaidUser = require('../middlewares/handle_unpaid_user')
 
 
   var VideosController = {
 
     middlewares: {
-      index: [requireLogin, requireVerifiedEmail],
+      index: [requireLogin, requireVerifiedEmail, paywall, handleUnpaidUser],
       show: [requireLogin, requireVerifiedEmail]
     },
 

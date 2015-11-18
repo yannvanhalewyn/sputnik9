@@ -24,9 +24,12 @@
     create: function(opts) {
       if (!opts.amount) throw "Amount not supplied int opts";
 
+      console.log("Creating payment for mollie", opts);
+
       var defered = Q.defer();
 
       mollie.payments.create(opts, function(payment) {
+        console.log("Got responde from mollie", payment);
         if (payment.error) defered.reject(payment.error);
         else defered.resolve(payment);
       });

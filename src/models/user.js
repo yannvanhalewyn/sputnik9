@@ -40,7 +40,9 @@
     },
     password_digest: String,
     premium: Boolean,
-    payments: Array
+    payments: [
+      {type: mongoose.Schema.Types.ObjectId, ref: "Payment"}
+    ]
   });
 
   userSchema.methods = {

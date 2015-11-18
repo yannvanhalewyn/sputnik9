@@ -26,7 +26,8 @@
     links: {
       paymentUrl: String,
       redirectUrl: String
-    }
+    },
+    metadata: Object
   })
 
   var Payment = mongoose.model("Payment", paymentSchema);
@@ -42,7 +43,10 @@
 
   Payment.syncWithMollie = function(mollie_id) {
     return paymentGateway.get(mollie_id).then(function(payment) {
-      return Payment.update({mollie_id: mollie_id}, payment)
+      return Payment.findOneAndUpdate({mollie_id: mollie_id}, payment)
+      .then(function(db_payment) {
+        return db_payment;
+      })
     })
   }
 
