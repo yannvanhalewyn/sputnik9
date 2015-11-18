@@ -4,12 +4,10 @@
 
   var include = require('include')
     , Mollie = require('mollie-api-node')
-    , config = include('/config/config')
     , Q = require('q')
 
   var mollie = new Mollie.API.Client;
-  mollie.setApiKey(config.MOLLIE_API_KEY);
-
+  mollie.setApiKey(process.env.MOLLIE_API_KEY);
 
   var paymentGateway = {
     get: function(id) {
