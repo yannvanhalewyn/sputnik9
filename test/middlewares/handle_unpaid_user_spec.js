@@ -8,7 +8,13 @@ var include = require('include')
   , Q = require('q')
 chai.use(sinonChai);
 
-var handle_unpaid_user = include("/src/middlewares/handle_unpaid_user")
+var handleUnpaid = include("/src/middlewares/handle_unpaid_user")
+  , db = require('../util/test_db')
+  , User = include('/src/models/user')
+  , userFixture = require('../fixtures/user')
+  , Payment = include('/src/models/payment')
+before(db.connect);
+afterEach(db.teardown);
 
 describe('handle_unpaid_user middleware', function() {
 
@@ -24,41 +30,54 @@ describe('handle_unpaid_user middleware', function() {
       req.user = {
         payments: []
       }
-      handle_unpaid_user("user is not premium", req, res, null);
+      handleUnpaid("is not premium", req, res, null);
       expect(res.render).to.have.been.calledOnce;
       expect(res.render).to.have.been.calledWith("prompt-payment");
     });
   }); // End of context 'when user has no open payments'
 
   context("when user has open payments", function() {
+    var USER;
     beforeEach(function() {
-      req.user = {
-        payments: ["paymentid1", "paymentid2"]
-      }
+      return User.create(userFixture).then(function(user) {
+        USER = user;
+      })
     });
 
-    it("calls verify payments on user object", function() {
-      req.user.verifyPayments = sinon.stub().returns(Q())
-      handle_unpaid_user("user is not premium", req, res, null);
-      expect(req.user.verifyPayments).to.have.been.called;
-    });
 
-    context("when after verifying payments it appears the user is premium", function() {
-      it("renders the premium page", function(done) {
-        req.user.verifyPayments = sinon.stub().returns(Q(true))
-        handle_unpaid_user("user is not premium", req, res, null);
-        res.on('end', function() {
-          expect(res.render).to.have.been.calledOnce;
-          expect(res.render).to.have.been.calledWith("media");
-          done();
+    it("prompts for payment when user has no cleared payments", function(done) {
+      return Payment.create({status: "open"}).then(function(payment) {
+        return USER.addPayment(payment).then(function(user) {
+          req.user = user;
+          handleUnpaid("error", req, res)
+          res.on('end', function() {
+            expect(res.render).to.have.been.calledOnce;
+            expect(res.render).to.have.been.calledWith("prompt-payment");
+            done();
+          }).catch(done)
         })
       });
-    }); // End of context 'when after verifying payments it appears the user is premium'
+    }); // End of context 'when open payments are unpaid'
+
+    context("when user has paid payments", function() {
+      it("sets the user's premium state to true and renders media", function(done) {
+        return Payment.create({status: "paid"}).then(function(payment) {
+          return USER.addPayment(payment).then(function(user) {
+            req.user = user;
+            handleUnpaid("error", req, res)
+            res.on('end', function() {
+              expect(res.render).to.have.been.calledOnce;
+              expect(res.render).to.have.been.calledWith("media");
+              return User.findById(USER._id).then(function(user) {
+                expect(user.premium).to.eql(true)
+                done();
+              })
+            }).catch(done)
+          })
+        });
+      });
+    }); // End of context 'when user has paid payments'
 
   }); // End of context 'when user has open payments'
-
-  it("", function() {
-
-  });
 
 }); // End of describe 'handle_unpaid_user middleware'
