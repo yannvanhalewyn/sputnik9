@@ -14,7 +14,7 @@ var test_db = require("../util/test_db")
   , User = include('/src/models/user')
   , userFixture = Immutable.fromJS(require('../fixtures/user'));
 
-before(est_db.connect);
+before(test_db.connect);
 afterEach(test_db.teardown);
 
 describe('User', function() {

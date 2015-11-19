@@ -8,6 +8,8 @@
 
   var connect = function() {
 
+    if (mongoose.connection.readyState != 0) return
+
     var defered = Q.defer();
 
     mongoose.connect("mongodb://localhost:27017/test")
@@ -22,7 +24,6 @@
     });
 
     return defered.promise;
-
   }
 
   var teardown = function() {
