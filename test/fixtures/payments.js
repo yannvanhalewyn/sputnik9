@@ -17,7 +17,7 @@ var createdPayment = {
    }
 }
 
-var requestedPayment = {
+var paidPayment = {
   id: 'tr_vZ64usRgrC',
   mode: 'test',
   amount: '3.00',
@@ -36,6 +36,22 @@ var requestedPayment = {
   links: { redirectUrl: 'http://localhost:3000/payments/123' }
 }
 
+var paidPayment_db = {
+  _id : "564abbe3d4ade27d43d4ef3b",
+  amount : 20,
+  description : "Premium content Sputnik9.nl",
+  method : "ideal",
+  status : "paid",
+  metadata : { "user_id" : "564a5f7e89e7872f6daf03f7" },
+  mollie_id : "tr_8VvFb4J34h",
+  links : { "redirectUrl" : "http://localhost:3000/checkout" },
+  __v : 0,
+  details : {
+    consumerName : "T. TEST",
+    consumerAccount : "NL17RABO0213698412", "consumerBic" : "TESTNL99"
+  }
+}
+
 var creation_request = {
   amount: 20,
   description: "Premium content Sputnik9.nl",
@@ -43,5 +59,6 @@ var creation_request = {
 }
 
 module.exports.createdPayment = createdPayment;
-module.exports.requestedPayment = requestedPayment;
+module.exports.paidPayment = paidPayment;
+module.exports.paidPayment_db = paidPayment_db;
 module.exports.creation_request = creation_request;
