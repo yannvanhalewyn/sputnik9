@@ -1,31 +1,36 @@
 {
-  "name": "lars_opdracht",
+  "name": "sputnik9",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./bin/server",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "DB_URL=mongodb://localhost:27017/lars_opdracht nodemon ./bin/server"
+    "test": "mocha",
+    "install": "gulp",
+    "start": "nodemon --require dotenv/config ./bin/server"
   },
   "author": "Yann Vanhalewyn",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
+    "dotenv": "^1.2.0",
     "express": "^4.13.3",
-    "express-flash": "0.0.2",
     "express-handlebars": "^2.0.1",
     "express-session": "^1.12.1",
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "mollie-api-node": "^1.0.4",
     "mongoose": "^4.2.4",
+    "morgan": "^1.6.1",
     "nodemailer": "^1.9.0",
     "q": "^1.4.1"
   },
   "devDependencies": {
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
+    "flightplan": "^0.6.7",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0",
     "include": "^0.1.2",
     "reqres": "^1.2.2",
     "sinon": "^1.17.2",

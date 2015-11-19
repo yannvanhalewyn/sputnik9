@@ -38,8 +38,19 @@
       type: Boolean,
       default: false
     },
-    password_digest: String
+    password_digest: String,
+    premium: Boolean,
+    payments: [
+      {type: mongoose.Schema.Types.ObjectId, ref: "Payment"}
+    ]
   });
+
+  userSchema.methods = {
+    addPayment: function(payment) {
+      this.payments.push(payment._id)
+      return this.save();
+    }
+  }
 
 
   /*

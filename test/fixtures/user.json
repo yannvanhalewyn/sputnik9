@@ -2,5 +2,6 @@
   "first_name": "John",
   "last_name": "Doe",
   "email": "j.d@gmail.com",
-  "password_digest": "$2a$10$fy3wLnBBltGawYZUNh1IWed1V1Hxh76yqyT5nnne3CBsrwfMonMt2"
+  "password_digest": "$2a$10$fy3wLnBBltGawYZUNh1IWed1V1Hxh76yqyT5nnne3CBsrwfMonMt2",
+  "premium": false
 }
