@@ -36,7 +36,7 @@ describe('Payment model', function() {
       });
     });
 
-    it("persists that new info", function() {
+    it("persists that new info correctly", function() {
       return Payment.syncWithMollie("abcdef").then(function() {
         return Payment.findById(PAYMENT_DB._id).then(function(newPayment) {
           expect(newPayment.status).to.eql('paid');

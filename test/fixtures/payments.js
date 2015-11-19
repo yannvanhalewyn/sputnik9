@@ -28,7 +28,7 @@ var paidPayment = {
   paidDatetime: '2015-11-11T15:09:39.0Z',
   cancelledDatetime: undefined,
   expiredDatetime: undefined,
-  metadata: null,
+  metadata: { user_id: "1898abbe890a8e8f90cd1238" },
   details:
    { consumerName: 'T. TEST',
      consumerAccount: 'NL17RABO0213698412',
@@ -52,6 +52,49 @@ var paidPayment_db = {
   }
 }
 
+var refundedPayment = {
+  id: 'tr_vZ64usRgrC',
+  mode: 'test',
+  amount: '3.00',
+  description: 'My first API payment',
+  method: 'ideal',
+  status: 'refunded',
+  createdDatetime: '2015-11-11T15:06:37.0Z',
+  paidDatetime: '2015-11-11T15:09:39.0Z',
+  cancelledDatetime: undefined,
+  expiredDatetime: undefined,
+  metadata: { user_id: "1898abbe890a8e8f90cd1238" },
+  details:
+   { consumerName: 'T. TEST',
+     consumerAccount: 'NL17RABO0213698412',
+     consumerBic: 'TESTNL99' },
+  links: { redirectUrl: 'http://localhost:3000/payments/123' }
+}
+
+var cancelledPayment = {
+  id: 'tr_vZ64usRgrC',
+  mode: 'test',
+  amount: '3.00',
+  description: 'My first API payment',
+  method: 'ideal',
+  status: 'cancelled',
+  createdDatetime: '2015-11-11T15:06:37.0Z',
+  paidDatetime: undefined,
+  cancelledDatetime: '2015-11-11T15:09:39.0Z',
+  expiredDatetime: undefined,
+  metadata: { user_id: "1898abbe890a8e8f90cd1238" },
+  details:
+   { consumerName: 'T. TEST',
+     consumerAccount: 'NL17RABO0213698412',
+     consumerBic: 'TESTNL99' },
+  links: { redirectUrl: 'http://localhost:3000/payments/123' }
+}
+var creation_request = {
+  amount: 20,
+  description: "Premium content Sputnik9.nl",
+  redirectUrl: "http://www.sputnik9.nl/checkout"
+}
+
 var creation_request = {
   amount: 20,
   description: "Premium content Sputnik9.nl",
@@ -60,5 +103,7 @@ var creation_request = {
 
 module.exports.createdPayment = createdPayment;
 module.exports.paidPayment = paidPayment;
+module.exports.refundedPayment = refundedPayment;
+module.exports.cancelledPayment = cancelledPayment;
 module.exports.paidPayment_db = paidPayment_db;
 module.exports.creation_request = creation_request;
