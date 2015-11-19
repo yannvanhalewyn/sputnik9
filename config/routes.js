@@ -49,11 +49,14 @@
     app.get('/payments/new', payments_controller.middlewares.create,
             payments_controller.create);
 
+    // Mollie webhook
+    app.get('/mollie_webhook', payments_controller.sync)
+
+    // Mollie redirect stuff
     app.get('/checkout', function(req, res) {
       res.send("Checkout")
     });
 
-    app.get('/mollie_webhook', payments_controller.sync)
   }
 
   module.exports = Routes;

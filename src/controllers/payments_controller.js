@@ -21,21 +21,11 @@
     },
 
     sync: function(req, res) {
-      Payment.syncWithMollie(req.query.id).then(function(payment) {
-        if (payment.status == "paid") {
-          return User.findOne({payments: payment._id}).then(function(user) {
-            if (user) {
-              user.premium = true;
-              return user.save().then(function() {
-                res.sendStatus(200);
-              })
-            }
-            return res.err("No user found that has paymentid " + payment._id)
-          })
-        } else {
-          res.sendStatus(200);
-        }
-      }).catch(res.send)
+      paymentLogic.resync(req.query.id)
+      .then(
+        res.sendStatus.bind(res, 200),
+        function(err) { res.status(500).send(err) }
+      )
     }
   }
 

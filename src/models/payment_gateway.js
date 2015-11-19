@@ -13,7 +13,9 @@
     get: function(id) {
       var defered = Q.defer();
       mollie.payments.get(id, function(payment) {
+        console.log("Got mollie payment:", payment);
         if (payment.error) defered.reject(payment.error);
+        else if (payment.id != id) defered.reject(errorIdsDontMatch(id, payment.id))
         else defered.resolve(payment);
       });
       return defered.promise;
@@ -37,5 +39,11 @@
   }
 
   module.exports = paymentGateway;
+
+  function errorIdsDontMatch(requested, received) {
+    return "Incorrect Mollie return data. Requested payment id={{req}} and got id={{res}}"
+    .replace("{{req}}", requested)
+    .replace("{{res}}", received)
+  }
 
 }())
