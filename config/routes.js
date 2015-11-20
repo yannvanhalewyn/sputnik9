@@ -53,8 +53,8 @@
     app.get('/mollie_webhook', payments_controller.sync)
 
     // Mollie redirect stuff
-    app.get('/checkout', function(req, res) {
-      res.send("Checkout")
+    app.get('/thankyou', function(req, res) {
+      res.render("thankyou");
     });
 
   }

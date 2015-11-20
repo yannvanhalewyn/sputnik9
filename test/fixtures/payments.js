@@ -98,7 +98,7 @@ var creation_request = {
 var creation_request = {
   amount: 20,
   description: "Premium content Sputnik9.nl",
-  redirectUrl: "http://www.sputnik9.nl/checkout"
+  redirectUrl: "http://sputnik9.nl/thankyou"
 }
 
 module.exports.createdPayment = createdPayment;

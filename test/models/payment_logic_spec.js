@@ -36,7 +36,7 @@ describe('paymentLogic', function() {
 
     it("calls the payment gateway with the correct params", function() {
       paymentGateway.create = mollieCreatedPaymentMock();
-      return paymentLogic.payForPremium(USER, "http://www.sputnik9.nl")
+      return paymentLogic.payForPremium(USER, "sputnik9.nl")
       .then(function(payment) {
         var expected = paymentFixture.get("creation_request").toJS()
         expected.metadata = {user_id: USER._id};
