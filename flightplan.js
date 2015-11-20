@@ -4,6 +4,12 @@ var appName = "nodeapp";
 
 var tmpDir = "~/" + appName + "-" + new Date().getTime();
 
+plan.target('production', {
+  host: '82.196.8.147',
+  username: 'deploy',
+  agent: process.env.SSH_AUTH_SOCK
+})
+
 plan.target('vm', [
   {
     host: '55.55.55.5',
