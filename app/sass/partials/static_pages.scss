@@ -1,0 +1,33 @@
+.thank_you_page {
+
+  h1#thankyou,
+  p {
+    text-align: center;
+  }
+
+  .go_to_media__container {
+    padding-top: 30px;
+    text-align: center;
+  }
+
+  .go_to_media {
+    @include button($BLUE, 1.4);
+  }
+}
+
+.prompt_payment_page {
+
+  padding: 0 20%;
+
+  h1, p {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .payforpremium_container {
+    text-align: center;
+  }
+  .payforpremium {
+    @include button;
+  }
+}

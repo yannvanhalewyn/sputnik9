@@ -15,7 +15,7 @@
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(bodyParser.json());
   app.use(session({
-    // cookie: { maxAge: 60000 },
+    cookie: { httpOnly: true, maxAge: 60000 }, // TODO secure: true makes login fail. why?
     // store: new session.MemoryStore,
     resave: false, // Or true if future store uses "touch()"
     secret: 'asdfghjkl;qwertyuio3456789kjnbkajs',

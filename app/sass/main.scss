@@ -18,6 +18,9 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+button { border: none; &:focus { outline: none; }}
+
 @mixin container {
   padding: 0 40px;
 }
+.container { @include container; }
