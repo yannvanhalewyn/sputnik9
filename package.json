@@ -5,7 +5,7 @@
   "main": "./bin/server",
   "scripts": {
     "test": "mocha",
-    "install": "gulp",
+    "install": "gulp build:production",
     "start": "nodemon --require dotenv/config ./bin/server"
   },
   "author": "Yann Vanhalewyn",

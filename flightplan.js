@@ -22,6 +22,7 @@ plan.local(function(local) {
   local.log("Transfering files.");
   var filesToCopy = local.exec("git ls-files", {silent: true});
   local.transfer(filesToCopy, tmpDir);
+  local.transfer(".env", tmpDir);
 });
 
 plan.remote(function(remote) {

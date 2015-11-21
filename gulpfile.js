@@ -8,6 +8,12 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./public/css'))
 });
 
+gulp.task('sass:form', function() {
+  gulp.src('./app/sass/form.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/css'))
+});
+
 gulp.task('sass:watch', function() {
   gulp.watch("./app/sass/**/*.scss", ['sass']);
 });
@@ -24,3 +30,4 @@ gulp.task('svg:watch', function() {
 
 
 gulp.task('default', ['sass']);
+gulp.task('build:production', ['sass', 'sass:form'])

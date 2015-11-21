@@ -49,10 +49,18 @@
   var routes = require('./config/routes')
   routes(app);
 
+  // Use 404 catcher
+  app.use(function(req, res) {
+    res.render('404');
+  });
+
   // Last error checker
   app.use(function(err, req, res, next) {
-    console.error("In error middleware: ", err);
-    res.send(err);
+    console.error("[ERROR!]", err);
+    var error_msg = "Internal server error."
+    if (typeof err == "string") error_msg = err;
+    else if (err.message) error_msg = err.message;
+    res.render('error', {error: error_msg})
   });
 
   module.exports = app;

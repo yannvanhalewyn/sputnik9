@@ -20,7 +20,7 @@
       if (req.user) {
         return res.redirect("/media")
       }
-      res.render('index', { title: "Hello!", message: "Hello there!" });
+      res.render('home');
     });
 
     // Login/signup Page
