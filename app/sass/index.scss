@@ -1,1 +1,29 @@
-@import "form";
+@import "modules/variables";
+@import "modules/buttons";
+@import "main";
+@import "partials/home";
+@import "partials/navbar";
+@import "partials/thanks";
+
+svg:hover {
+  #lightning {
+    fill: #FDD023;
+    transform: scale(1.1) translate(-10px, 0);
+  }
+  #nine { stroke: $RED; }
+}
+$trans: all .2s ease-in-out;
+svg {
+  height: 60px;
+  width: 60px;
+  margin-left: 20px;
+  path {}
+  #lightning {
+    transition: $trans;
+    transform: scale(1);
+  }
+  #nine {
+    stroke: black;
+    transition: $trans;
+  }
+}

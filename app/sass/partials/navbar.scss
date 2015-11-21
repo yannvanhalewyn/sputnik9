@@ -1,0 +1,71 @@
+$navbar_height: 70px;
+$menu_color: lighten(black, 40%);
+
+.navbar {
+  max-height: $navbar_height;
+  background: white;
+  box-shadow: 0px 2px 1px 0px rgba(black, 0.3);
+
+  // position: fixed;
+  // width: 100%;
+  // top: 0;
+
+  .brand {
+    max-height: $navbar_height;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .logo {
+    height: $navbar_height - 20px;
+    transition: all .3s ease-in-out;
+    &:hover {
+      height: $navbar-height - 20px + 2px;
+    }
+  }
+
+  .navbar-right {
+    float: right;
+    height: $navbar_height;
+  }
+
+  .submenu {
+    display: inline-block;
+  }
+
+  .menu-item {
+    display: inline-block;
+    padding-right: 40px;
+    font-size: 1.2em;
+    color: $menu_color;
+    letter-spacing: 1px;
+  }
+
+  .menu {
+    padding-bottom: 5px;
+    transition: border .1s linear;
+    &:hover { border-bottom: 3px solid $RED; }
+  }
+
+  $login_color: $BLUE;
+  .user-info {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 0;
+  }
+
+  .login {
+    height: 100%;
+    border: 2px solid $login_color;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: $login_color;
+    transition: all .4s ease-in-out;
+    text-transform: uppercase;
+
+    &:hover {
+      background: $login_color;
+      color: white;
+    }
+  }
+}
