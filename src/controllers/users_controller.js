@@ -25,7 +25,7 @@
           // Successfull user creation!
           function(user) {
             login(user, req);
-            mailer.send(emails.emailConfirmation(user))
+            emails.emailConfirmation(user).then(mailer.send, console.error);
             res.render("welcome_new_user")
           },
 
