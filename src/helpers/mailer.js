@@ -4,6 +4,7 @@
 
   var nodemailer = require('nodemailer')
     , smtpTransport = require('nodemailer-smtp-transport')
+    , Logger = require('../lib/logger')
 
   var transporter = nodemailer.createTransport(smtpTransport({
     host: "send.one.com",
@@ -24,11 +25,11 @@
         html: opts.html
       };
 
-      console.log("Will send email: ", mailopts);
-      transporter.sendMail(mailopts, function(err, info) {
-        if (err) return console.error("MAIL error:", err);
-        console.log("Mail sent!", info);
-      })
+      Logger.debug("Will send email: ", mailopts);
+      // transporter.sendMail(mailopts, function(err, info) {
+      //   if (err) return Logger.error("MAIL error:", err);
+      //   Logger.info("Mail sent!", info);
+      // })
     }
   }
 

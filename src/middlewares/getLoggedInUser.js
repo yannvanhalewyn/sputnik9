@@ -9,7 +9,7 @@
       return User.findById(req.session.user_id).then(function(user) {
         req.user = user;
         next();
-      }, console.error);
+      }, next);
     } else {
       req.user = null;
       next();

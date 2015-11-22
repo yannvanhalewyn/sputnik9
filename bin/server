@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var app = require("../app")
+  , Logger = require('../src/lib/logger')
 
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var address = process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
@@ -9,5 +10,5 @@ var server = app.listen(port, address, function() {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log("Express app listening at http://%s:%s", host, port);
+  Logger.info("Express app listening at http://%s:%s", host, port);
 });

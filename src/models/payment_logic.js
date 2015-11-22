@@ -5,6 +5,7 @@
   var paymentGateway = require('./payment_gateway')
     , Payment = require('./payment')
     , User = require('./user')
+    , Logger = require('../lib/logger')
 
   function paymentOptions(user_id, host) {
     return {
@@ -51,7 +52,7 @@
      * @param {string} mollie_id The payment id for Mollie
      */
     resync: function(mollie_id) {
-      console.log("Resyncing Mollie payment: ", mollie_id);
+      Logger.info("Resyncing Mollie payment: ", mollie_id);
       return Payment.syncWithMollie(mollie_id).then(function(payment) {
         return Payment.findOne({mollie_id: payment.id})
         .then(function(payment_db) {

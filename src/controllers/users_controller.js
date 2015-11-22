@@ -8,6 +8,7 @@
     , login = require('../helpers/login_user')
     , mailer = require('../helpers/mailer')
     , emails = require('../helpers/emails')
+    , Logger = require('../lib/logger')
 
   var users_controller = {
 
@@ -25,7 +26,7 @@
           // Successfull user creation!
           function(user) {
             login(user, req);
-            emails.emailConfirmation(user).then(mailer.send, console.error);
+            emails.emailConfirmation(user).then(mailer.send, Logger.error);
             res.render("welcome_new_user")
           },
 

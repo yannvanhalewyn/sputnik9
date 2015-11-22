@@ -6,7 +6,7 @@
   var hbs = exphbs.create();
 
   function verificationUrl(token) {
-    return "http://sputnik9.nl/verify?token=" + token;
+    return "http://dev.sputnik9.nl/verify?token=" + token;
   }
 
   function emailFromTemplate(path_to_template, context, email_opts) {

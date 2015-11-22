@@ -25,7 +25,6 @@
 
     // Login/signup Page
     app.get('/login', function(req, res) {
-      if (req.user) return res.redirect('/media')
       res.render("login", {layout: null});
     });
 
