@@ -22,10 +22,14 @@
     },
 
     sync: function(req, res) {
-      paymentLogic.resync(req.query.id)
+      if (!req.body.id) res.status(500).send("No payment ID was provided.");
+      paymentLogic.resync(req.body.id)
       .then(
         res.sendStatus.bind(res, 200),
-        function(err) { res.status(500).send(err) }
+        function(err) {
+          console.error("ERROR: ", err);
+          res.status(500).send(err)
+        }
       )
     }
   }

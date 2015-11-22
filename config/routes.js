@@ -50,7 +50,7 @@
             payments_controller.create);
 
     // Mollie webhook
-    app.get('/mollie_webhook', payments_controller.sync)
+    app.post('/mollie_webhook', payments_controller.sync)
 
     // Mollie redirect stuff
     app.get('/thankyou', function(req, res) {

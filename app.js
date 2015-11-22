@@ -2,12 +2,15 @@
 
   "use strict";
 
+  if (process.env.NODE_ENV) console.log("Environment: ", process.env.NODE_ENV);
+
   var express = require('express')
     , app = express()
     , bodyParser = require('body-parser')
     , session = require("express-session")
     , exphbs = require('express-handlebars')
     , logger = require('morgan')
+
 
   // Static files
   app.use(logger('dev'))

@@ -1,8 +1,8 @@
-var plan = require('flightplan');
+var plan = require('flightplan')
+  , dateFormat = require('dateformat')
 
 var appName = "nodeapp";
-
-var tmpDir = "~/" + appName + "-" + new Date().getTime();
+var tmpDir = appName + "-" + dateFormat("yyyy-mm-dd_hhuMM");
 
 plan.target('production', {
   host: '82.196.8.147',
