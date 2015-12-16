@@ -2,7 +2,6 @@
 
   "use strict";
 
-
   var express = require('express')
     , app = express()
     , bodyParser = require('body-parser')
@@ -59,7 +58,7 @@
 
   // Use 404 catcher
   app.use(function(req, res) {
-    res.render('404');
+    res.status(404).render('404');
   });
 
   // Last error checker

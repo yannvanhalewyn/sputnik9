@@ -43,6 +43,8 @@
             media_controller.index);
     app.get("/media/:id", media_controller.middlewares.index,
             media_controller.show);
+    app.get("/videos/:file", media_controller.middlewares.stream,
+            media_controller.stream);
 
     // New payment
     app.get('/payments/new', payments_controller.middlewares.create,
