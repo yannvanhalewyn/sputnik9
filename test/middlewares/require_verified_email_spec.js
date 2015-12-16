@@ -18,10 +18,10 @@ describe('require verified email middleware', function() {
   });
 
   context("when no user is set on the req object", function() {
-    it("sends a message", function() {
+    it("renders the 'please verify email' page", function() {
       req.user = {verified: false}
       requireVerifiedEmail(req, res, next);
-      expect(res.send).to.have.been.calledWith("Please verify your email address before accessing this sweet content!");
+      expect(res.render).to.have.been.calledWith('please_verify_email');
     });
 
     it("doesn't call next", function() {
@@ -53,7 +53,7 @@ describe('require verified email middleware', function() {
       });
 
       it("sends a message", function() {
-        expect(res.send).to.have.been.calledWith("Please verify your email address before accessing this sweet content!");
+        expect(res.render).to.have.been.calledWith("please_verify_email");
       });
     }); // End of context 'when the user is not verified'
 

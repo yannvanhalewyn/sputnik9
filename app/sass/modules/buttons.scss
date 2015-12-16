@@ -1,0 +1,18 @@
+@mixin button($color:$BLUE, $size-mult:1) {
+  padding: 15px * $size-mult;
+  background: #123445;
+  background: #4432de;
+  background: $color;
+  color: white;
+  font-size: $size-mult + em;
+  border-radius: 3px;
+
+  transition: all .3s ease;
+
+  &:hover {
+    background: lighten($color, 2%);
+    box-shadow: 2px 3px 5px lighten(black, 50%);
+  }
+}
+
+.btn { @include button; }

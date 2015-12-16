@@ -5,13 +5,13 @@
   var paymentGateway = require('./payment_gateway')
     , Payment = require('./payment')
     , User = require('./user')
+    , Logger = require('../lib/logger')
 
   function paymentOptions(user_id, host) {
     return {
       amount: 20,
       description: "Premium content Sputnik9.nl",
-      redirectUrl: host + "/checkout", // TODO update
-      // redirectUrl: "http://localhost:3000/checkout",
+      redirectUrl: "http://" + host + "/thankyou", // TODO update
       metadata: { user_id: user_id }
     }
   }
@@ -52,6 +52,7 @@
      * @param {string} mollie_id The payment id for Mollie
      */
     resync: function(mollie_id) {
+      Logger.info("Resyncing Mollie payment: ", mollie_id);
       return Payment.syncWithMollie(mollie_id).then(function(payment) {
         return Payment.findOne({mollie_id: payment.id})
         .then(function(payment_db) {

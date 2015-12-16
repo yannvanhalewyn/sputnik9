@@ -1,0 +1,165 @@
+$THEME: "light";
+$transition: 0.35s ease;
+
+@if $THEME == "light" {
+  $navbar_bg: white;
+  $navitems_cl: lighten(black, 40%);
+  $navitems_active_cl: black;
+  $navitems_border_cl: $RED;
+  $login_btn_color: $BLUE;
+  $login_btn_active_color: white;
+  $logo_cl: black;
+  $logo_eyes_cl: black;
+  $logo_body_hover_cl: black;
+  $logo_lightning_hover_cl: #FDD023;
+  $logo_nine_hover_cl: $RED;
+} @else {
+  $navbar_bg: #212121;
+  $navitems_cl: rgba(white, 0.5);
+  $navitems_active_cl: white;
+  $navitems_border_cl: #34495e;
+  $navitems_border_cl: $RED;
+  $login_btn_color: $PURPLE;
+  $login_btn_active_color: white;
+  $logo_cl: rgba(white, .2);
+  $logo_eyes_cl: red;
+  $logo_body_hover_cl: white;
+  $logo_lightning_hover_cl: #FDD023;
+  $logo_nine_hover_cl: $RED;
+}
+
+
+.navbar {
+  background: $navbar_bg;
+  box-shadow: 0px 2px 1px 0px rgba(black, 0.3);
+  display: flex;
+  align-items: center;
+
+  /*
+   * ==========
+   * Brand Logo
+   * ==========
+   */
+  a.brand {
+    flex: 1;
+  }
+
+  /*
+   * ===============
+   * Navigation Menu
+   * ===============
+   */
+  div.navbar-right {
+    flex: 6;
+  }
+
+  @import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+  ul.navigation {
+    font-family: 'Raleway', Arial, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+
+  li.menu-item {
+    display: inline-block;
+    margin: .5em 1.5em;
+  }
+
+  a.menu-link {
+    padding: .3em 0;
+    color: $navitems_cl;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: '';
+      -webkit-transition: all $transition;
+      transition: all $transition;
+      opacity: 0;
+      top: 25%;
+      bottom: 25%;
+      left: 0;
+      right: 0;
+      border-top: 3px solid $navitems_border_cl;
+      border-bottom: 3px solid $navitems_border_cl;
+    }
+
+    &:hover {
+      color: $navitems_active_cl;
+      &:before {
+        opacity: 1;
+        top: 0;
+        bottom: 0;
+      }
+    }
+  }
+
+  /*
+   * ===============
+   * Login/user info
+   * ===============
+   */
+  .user-info {
+    flex: 1;
+  }
+
+  .login {
+    // height: 100%;
+    border: 2px solid $login_btn_color;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: $login_btn_color;
+    transition: all .4s ease-in-out;
+    text-transform: uppercase;
+
+    &:hover {
+      background: $login_btn_color;
+      color: $login_btn_active_color;
+    }
+  }
+
+  /*
+   * ================
+   * ANIMATE THE LOGO
+   * ================
+   */
+
+  $trans: all .2s ease-in-out;
+  svg {
+    max-height: 70px;
+    max-width: 70px;
+    margin: 10px 20px 0;
+
+    #lightning {
+      transition: $trans;
+      transform: scale(1);
+      fill: $logo_cl;
+    }
+    #left-eye, #right-eye { fill: $logo_eyes_cl; }
+    #nine { transition: $trans; stroke: $logo_cl; }
+    #head { stroke: $logo_cl; }
+    #left-leg-bottom,
+    #left-leg-top,
+    #right-leg-bottom,
+    #right-leg-top,
+    #left-foot,
+    #right-foot,
+    #middle-circle,
+    #circle-divider{stroke: $logo_cl;}
+
+    &:hover {
+      #left-leg-bottom, #left-leg-top, #right-leg-bottom, #right-leg-top,
+      #left-foot, #right-foot, #middle-circle, #circle-divider, #head {
+        stroke: $logo_body_hover_cl;
+      }
+      #lightning {
+        fill: $logo_lightning_hover_cl;
+        transform: scale(1.1) translate(-10px, 0);
+      }
+      #nine { stroke: $logo_nine_hover_cl; }
+    }
+  }
+}
+

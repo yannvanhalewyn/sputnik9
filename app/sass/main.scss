@@ -1,0 +1,26 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  color: lighten(black, 10%);
+}
+
+body {
+  margin: 0;
+  background: darken(white, 2%);
+  font-family: 'Open Sans', sans-serif;
+}
+
+button { border: none; &:focus { outline: none; }}
+
+@mixin container {
+  padding: 0 40px;
+}
+.container { @include container; }

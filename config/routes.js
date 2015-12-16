@@ -20,13 +20,12 @@
       if (req.user) {
         return res.redirect("/media")
       }
-      res.render('index', { title: "Hello!", message: "Hello there!" });
+      res.render('home');
     });
 
     // Login/signup Page
     app.get('/login', function(req, res) {
-      if (req.user) return res.redirect('/media')
-      res.render("login");
+      res.render("login", {layout: null});
     });
 
     // Logging in user (new user session)
@@ -44,17 +43,19 @@
             media_controller.index);
     app.get("/media/:id", media_controller.middlewares.index,
             media_controller.show);
+    app.get("/videos/:file", media_controller.middlewares.stream,
+            media_controller.stream);
 
     // New payment
     app.get('/payments/new', payments_controller.middlewares.create,
             payments_controller.create);
 
     // Mollie webhook
-    app.get('/mollie_webhook', payments_controller.sync)
+    app.post('/mollie_webhook', payments_controller.sync)
 
     // Mollie redirect stuff
-    app.get('/checkout', function(req, res) {
-      res.send("Checkout")
+    app.get('/thankyou', function(req, res) {
+      res.render("thankyou");
     });
 
   }

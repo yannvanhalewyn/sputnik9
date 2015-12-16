@@ -14,17 +14,19 @@
     },
 
     create: function(req, res, next) {
+      if (req.user.premium) return res.redirect("/media")
       paymentLogic.payForPremium(req.user, req.headers.host)
       .then(function (payment) {
         res.redirect(payment.links.paymentUrl)
       }).catch(next)
     },
 
-    sync: function(req, res) {
-      paymentLogic.resync(req.query.id)
+    sync: function(req, res, next) {
+      if (!req.body.id) res.status(500).send("No payment ID was provided.");
+      paymentLogic.resync(req.body.id)
       .then(
         res.sendStatus.bind(res, 200),
-        function(err) { res.status(500).send(err) }
+        next
       )
     }
   }

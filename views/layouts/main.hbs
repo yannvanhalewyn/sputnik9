@@ -3,13 +3,52 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Foobar</title>
+    <title>{{@exphbs.view}} | Sputnik9</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css" type="text/css" media="screen" charset="utf-8">
   </head>
   <body>
     {{#if flash}}
       <p class="flash {{flash.type}}">{{flash.message}}</p>
     {{/if}}
 
+    <!-- <div style="height: 0; width: 0; position: absolute; visibility: hidden"> -->
+    <!--   {{> svgstore}} -->
+    <!-- </div> -->
+
+    <header class="navbar">
+      <a class="brand" href="/">
+        {{> svgstore}}
+      </a>
+
+      <div class="navbar-right">
+        <ul class="navigation">
+          <li class="menu-item">
+            <a class="menu-link" href="/">Home</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link" href="/">The Project</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link" href="/media">Premium</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link" href="/contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="user-info">
+        <a class="login" href="/login">Log In!</a>
+      </div>
+    </header>
+
+
+
     {{{body}}}
+
   </body>
 </html>

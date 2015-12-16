@@ -2,22 +2,23 @@
 
   "use strict";
 
-  var mongoose = require('mongoose');
+  var mongoose = require('mongoose')
+    , Logger = require('../src/lib/logger')
 
   var DB_URL = (process.env.OPENSHIFT_MONGODB_DB_URL || "mongodb://localhost:27017/") + "sputnik9";
 
   function connect() {
 
-    console.log("Attempting to connect to:", DB_URL);
+    Logger.info("Attempting to connect to:", DB_URL);
 
     mongoose.connect(DB_URL);
 
     var db = mongoose.connection;
 
-    db.on('error', console.error);
+    db.on('error', Logger.error);
 
     db.once('open', function() {
-      console.log("MongoDB connection established.");
+      Logger.info("MongoDB connection established.");
     });
   }
 

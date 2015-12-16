@@ -2,29 +2,33 @@
 
   "use strict";
 
-  var nodemailer = require('nodemailer');
-  var transporter = nodemailer.createTransport({
-    host: "in-v3.mailjet.com",
-    port: 587,
+  var nodemailer = require('nodemailer')
+    , smtpTransport = require('nodemailer-smtp-transport')
+    , Logger = require('../lib/logger')
+
+  var transporter = nodemailer.createTransport(smtpTransport({
+    host: "send.one.com",
+    secure: true,
+    port: 465,
     auth: {
-      user: "f3f6d64fa6b85fd7098d925564385c8e",
-      pass: "b413ce8d97099cc7c08e3dcb1ea61cb7"
+      user: "noreply@sputnik9.nl",
+      pass: process.env.SMTP_CLIENT_PSWD
     }
-  })
+  }));
 
   var mailer = {
     send: function(opts) {
       var mailopts = {
-        from: "Fred Foo <yann_vanhalewyn@hotmail.com>",
+        from: "Sputnik9 <noreply@sputnik9.nl>",
         to: opts.to,
         subject: opts.subject,
         html: opts.html
       };
 
-      console.log("Will send email: ", mailopts); // Following commented out for testing
+      Logger.debug("Will send email: ", mailopts);
       // transporter.sendMail(mailopts, function(err, info) {
-      //   if (err) return console.log(err);
-      //   console.log("Mail sent!", info);
+      //   if (err) return Logger.error("MAIL error:", err);
+      //   Logger.info("Mail sent!", info);
       // })
     }
   }

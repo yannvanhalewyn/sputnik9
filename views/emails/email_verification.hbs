@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css" media="screen">
+body {
+  font-family: Arial, sans-serif;
+  background: #efefef;
+  padding: 0 10%;
+  text-align: center;
+}
+
+h1 {
+  color: #333333;
+  margin-bottom: 0;
+}
+
+h3 {
+  color: #4d4d4d;
+  margin-top: 10px;
+}
+
+a.btn {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background: #004266;
+  padding: 15px;
+  font-size: 1.3em;
+  border-radius: 3px;
+  -webkit-transition: all .3s ease;
+          transition: all .3s ease;
+  margin: 10px;
+}
+
+a.btn:hover {
+  background: #004970;
+  box-shadow: 2px 3px 5px gray;
+}
+    </style>
+  </head>
+
+  <body>
+    <h1>Hi there, {{name}}!</h1>
+    <h3>Welcome to Sputnik9</h3>
+    <p>Thanks for creating an account on Sputnik9! We are so exciting to share some amazing content with you.</p>
+    <p>We should make sure this is in fact your email address. Please click the following link!</p>
+    <a class="btn" href="{{verify_url}}">Activate Your Account!</a>
+  </body>
+</html>

@@ -8,6 +8,7 @@
     , login = require('../helpers/login_user')
     , mailer = require('../helpers/mailer')
     , emails = require('../helpers/emails')
+    , Logger = require('../lib/logger')
 
   var users_controller = {
 
@@ -25,8 +26,8 @@
           // Successfull user creation!
           function(user) {
             login(user, req);
-            mailer.send(emails.emailConfirmation(user))
-            res.send("Success!");
+            emails.emailConfirmation(user).then(mailer.send, Logger.error);
+            res.render("welcome_new_user")
           },
 
           // Erroneous user creation.
@@ -41,15 +42,14 @@
       });
     },
 
-    verify: function(req, res) {
+    verify: function(req, res, next) {
       User.verify(req.query.token).then(
         function(user) {
           login(user, req);
-          res.send("Successfully verified! Hello " + user.first_name)
+          req.session.flash = {type: "success", message: "Verification successful!"}
+          res.redirect("/media")
         },
-        function(err) {
-          res.send("Verification failed. " + err)
-        }
+        next
       )
     }
   }

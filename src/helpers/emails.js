@@ -2,19 +2,33 @@
 
   "use strict";
 
+  var exphbs = require('express-handlebars');
+  var hbs = exphbs.create();
+
   function verificationUrl(token) {
-    return "http://localhost:3000/verify?token=" + token;
+    return "http://dev.sputnik9.nl/verify?token=" + token;
+  }
+
+  function emailFromTemplate(path_to_template, context, email_opts) {
+    return hbs.render(path_to_template, context, {cached: true})
+    .then(function(html) {
+      email_opts.html = html;
+      email_opts.from = "Sputnik9 <noreply@sputnik9.nl>"
+      return email_opts;
+    });
   }
 
   var emails = {
     emailConfirmation: function(user) {
-      return {
-        to: user.email,
-        subject: "Please activate your account.",
-        html: "<!DOCTYPE html> <html> <head> <style type=\"text/css\" media=\"screen\"> h1 { color: red; } a { background: orange; color: white; padding: 10px; margin: auto; text-decoration: none; } </style> </head> <body> <h1>Hello {{name}}</h1> <p>Please confirm with us that this is in fact your email address.</p> <a href=\"{{link}}\">Activate your account!</a> </body> </html>"
-        .replace("{{link}}", verificationUrl(user.confirmation_token))
-        .replace("{{name}}", user.first_name)
-      }
+      return emailFromTemplate(
+        "views/emails/email_verification.hbs", {
+          name: user.first_name,
+          verify_url: verificationUrl(user.confirmation_token)
+        }, {
+          to: user.email,
+          subject: "Please activate your account.",
+        }
+      );
     }
   }
 

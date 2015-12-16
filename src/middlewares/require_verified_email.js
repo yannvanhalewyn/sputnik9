@@ -4,7 +4,7 @@
 
   var requireVerifiedEmail = function(req, res, next) {
     if (!req.user.verified) {
-      return res.send("Please verify your email address before accessing this sweet content!")
+      return res.render("please_verify_email");
     }
     next();
   }
