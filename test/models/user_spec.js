@@ -79,6 +79,12 @@ describe('User', function() {
         expect(user.verified).to.be.false;
       })
     });
+
+    it("defaults to a non admin user" , function() {
+      return User.create(userFixture.toJS()).then(function(user) {
+        expect(user.admin).to.be.false;
+      })
+    })
   }); // End of describe 'creation'
 
   describe('verification', function() {

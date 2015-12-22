@@ -42,7 +42,11 @@
     premium: Boolean,
     payments: [
       {type: mongoose.Schema.Types.ObjectId, ref: "Payment"}
-    ]
+    ],
+    admin: {
+      type: Boolean,
+      default: false
+    }
   });
 
   userSchema.methods = {

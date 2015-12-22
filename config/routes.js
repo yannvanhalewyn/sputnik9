@@ -4,6 +4,7 @@
 
   // Controllers
   var users_controller = require('../src/controllers/users_controller')
+    , adminController = require('../src/controllers/admin_controller')
     , user_sessions_controller = require('../src/controllers/user_sessions_controller')
     , media_controller = require('../src/controllers/media_controller')
     , payments_controller = require('../src/controllers/payments_controller')
@@ -58,6 +59,8 @@
       res.render("thankyou");
     });
 
+    // Admin panel
+    app.get('/admin', adminController.middlewares.index, adminController.index)
   }
 
   module.exports = Routes;
