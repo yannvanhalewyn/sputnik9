@@ -36,7 +36,7 @@
               type: "error",
               message: formatValidationErrors(err)
             }
-            res.redirect("/login");
+            res.redirect("/");
           }
         );
       });

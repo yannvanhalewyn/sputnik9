@@ -22,7 +22,7 @@
           type: "error",
           message: "Email or password was incorrect."
         }
-        res.redirect("/login")
+        res.redirect("/")
       });
     },
 

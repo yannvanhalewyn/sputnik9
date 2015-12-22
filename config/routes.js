@@ -23,11 +23,6 @@
       res.render('home', {homepage: true});
     });
 
-    // Login/signup Page
-    app.get('/login', function(req, res) {
-      res.render("login", {layout: null});
-    });
-
     // Logging in user (new user session)
     app.post('/login', user_sessions_controller.create);
     app.get('/logout', user_sessions_controller.destroy);
