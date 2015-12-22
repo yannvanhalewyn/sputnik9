@@ -7,3 +7,4 @@ notes.txt
 .env
 .sass-cache/
 logs*
+restricted/videos/
