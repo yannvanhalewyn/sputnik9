@@ -1,0 +1,33 @@
+.prompt_payment_page {
+  h1 { margin-bottom: 40px; }
+  p { margin-bottom: 30px; }
+  .payforpremium {
+    @include button;
+    text-transform: uppercase;
+  }
+}
+
+.verify_email_page {
+  h1 { margin-bottom: 40px; }
+  p { margin-bottom: 30px; }
+  .resend_email_btn {
+    @include button;
+    text-transform: uppercase;
+  }
+}
+
+.thank_you_page {
+  h1 { margin-bottom: 40px; }
+  p { margin-bottom: 10px; }
+}
+
+.premium_page {
+  h1 { margin-bottom: 40px; }
+  p { margin-bottom: 20px; }
+
+  // tmp youtube playlist
+  .iframe_container {
+    margin-bottom: 100px;
+    padding: 5%;
+  }
+}

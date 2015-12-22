@@ -5,50 +5,35 @@
     <meta name="viewport" content="width=device-width">
     <title>{{@exphbs.view}} | Sputnik9</title>
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/index.css" type="text/css" media="screen" charset="utf-8">
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/classie/1.0.1/classie.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="js/modernizr.custom.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
   </head>
   <body>
     {{#if flash}}
       <p class="flash {{flash.type}}">{{flash.message}}</p>
     {{/if}}
 
-    <!-- <div style="height: 0; width: 0; position: absolute; visibility: hidden"> -->
-    <!--   {{> svgstore}} -->
-    <!-- </div> -->
+    <div id="wrap">
+      {{#if homepage}}
+        {{> header }}
+      {{else}}
+        {{> header_premium }}
+      {{/if}}
 
-    <header class="navbar">
-      <a class="brand" href="/">
-        {{> svgstore}}
-      </a>
+      {{{body}}}
+    </div>
 
-      <div class="navbar-right">
-        <ul class="navigation">
-          <li class="menu-item">
-            <a class="menu-link" href="/">Home</a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="/">The Project</a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="/media">Premium</a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="/contact">Contact</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="user-info">
-        <a class="login" href="/login">Log In!</a>
-      </div>
-    </header>
-
-
-
-    {{{body}}}
+    {{> footer}}
 
   </body>
 </html>

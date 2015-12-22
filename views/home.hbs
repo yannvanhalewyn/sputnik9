@@ -1,4 +1,202 @@
-<div class="home_page">
-  <h1>This is the home page!</h1>
-  <p>Somebody will make this pretty.</p>
-</div>
+{{> header }}
+
+<!-- //////////////// PART 1 ////////////////-->
+<section id="intro" class="intro-section">
+  <!-- WELCOME -->
+  <div class="container">
+    <div class="col-md-12">
+      <img src="img/logo.png" alt="" class="img-responsive center-block">
+    </div>
+    <div class="col-md-6 col-md-offset-3 titel">
+      <h3>Are you a Fellow Traveler yet?</h3>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:40px">
+
+    <!-- SIGN UP-->
+    <div class="cole-md-12" style="text-align:center">
+      <div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
+        <button type="button">Pre-order nu!</button>
+        <div class="morph-content">
+          <div>
+            <div class="content-style-form content-style-form-1">
+              <span class="icon icon-close">Close the dialog</span>
+              <h2>Sign Up</h2>
+              <form action="/users" method="POST" accept-charset="utf-8" >
+                <p>
+                  <label>First Name</label>
+                  <input type="text" name="first_name" autocorrect="off" spellcheck="false"/>
+                </p>
+                <p>
+                  <label>Last Name</label>
+                  <input type="text" name="last_name" autocorrect="off" spellcheck="false"/>
+                </p>
+                <p>
+                  <label>Email</label>
+                  <input type="text" name="email" autocorrect="off" spellcheck="false"/>
+                </p>
+                <p>
+                  <label>Password</label>
+                  <input type="password" name="password"/>
+                </p>
+                <p>
+                  <label>Repeat Password</label>
+                  <input type="password" />
+                </p>
+                <p><input type=submit value="Sign Up" /></p>
+                <p style="color:#fafafa; font-size:1em">or</p>
+              </form>
+              <p><button class="fb" style="margin: 0 auto; background-color: rgba(0,0,0,0); color:#fde634; border:solid; border-width:4px">Sign Up with Facebook</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGIN-->
+    <div class="col-md-12" style="text-align:center">
+      <div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
+        <button type="button">Log in</button>
+        <div class="morph-content">
+          <div>
+            <div class="content-style-form content-style-form-1">
+              <span class="icon icon-close">Close the dialog</span>
+              <h2>LOG IN</h2>
+              <form action="/login" method="POST" accept-charset="utf-8">
+                <p>
+                  <label>Email</label>
+                  <input type="text" autocorrect="off" name="email" spellcheck="false"/>
+                </p>
+                <p>
+                  <label>Password</label>
+                  <input type="password" name="password"/>
+                </p>
+                <p><input type="submit" value="Log In" /></p>
+                <p style="color:#fafafa; font-size:1em">or</p>
+              </form>
+              <p><button class="fb" style="margin: 0 auto; background-color: rgba(0,0,0,0); color:#fde634; border:solid; border-width:4px">Login with Facebook</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="serious-request">De helft van het door jou betaalde bedrag doneren wij aan <a href="http://seriousrequest.3fm.nl">Serious Request</a></p>
+
+  </div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>About</h1>
+      </div>
+    </div>
+  </div>
+  <div class="spacer1"></div>
+
+  <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12 text">
+      <p class="col-md-6 yelloww elevator-pitch">Negen maanden lang, elke maand een single uitbrengen met steeds een andere groep muzikanten uit bands zoals The KIK, Afterpartees, Lucas Hamming, Shaking Godspeed, Jungle By Night en Paceshifters. Elke maand gaat een andere groep 2 dagen de studio in om nieuw materiaal te schrijven en op te nemen.</p>
+
+      <div class="col-md-6 padding40" >
+        <div class="progress-wrap progress" data-progress-percent="33">
+          <div class="progress-bar progress"></div>
+        </div>
+        <h1><span class="funded">33% FUNDED!</span></h1>
+      </div>
+    </div>
+    <div class="col-md-12 text" style="height:60px"></div>
+
+    <div class="col-md-12 text">
+      <div class="col-md-6 padding40 center">
+        <img src="img/sputnikyellow.png" width="300px" alt="">
+      </div>
+
+      <p class="col-md-6 sales-pitch">Koop nu voor eenmalig €20 jouw Sputnik 9
+      Premium abonnement! Je krijgt dan toegang tot onze webpagina waar alle
+      muziek, live-video’s en andere exclusieve content op word geplaatst. Wil
+      je meer informatie, of bijvoorbeeld weten welke artiesten er mee gaan
+      doen? Ga dan naar onze <a href="http://www.facebook.com/sputnik9project">
+        Facebook pagina.</a></p>
+
+    </div>
+  </div>
+</section>
+
+<section id="preview" class="container">
+  <h1 class="voorproefje">Hier is alvast een voorproefje </h1>
+  <!-- Facebook Video -->
+  <div id="fb-root"></div><script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script><div class="fb-video" data-allowfullscreen="1" data-href="/sputnik9project/videos/vb.754215701390653/761664763979080/?type=3"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/sputnik9project/videos/761664763979080/"><a href="https://www.facebook.com/sputnik9project/videos/761664763979080/">Sputnik 9 - In My Head</a><p>Live video gemaakt bij één van de tryouts die we hebben gedaan voor dit project, Sputnik 9. Met Rens Ouburg (gitaar en zang) Florian Van Damme (keys) Paul Snoeren (bass) en Lars Spijkervet (drums)Als je ons wilt steunen via onze crowd funding:https://www.voordekunst.nl/projecten/3917-sputnik-9-1Opgenomen GallowayRecordingStudio door Michiel ClaessenMix: AIRmusic / Lars SpijkervetMastering:  Daan KandelaarsVideo:  Wouter van Uden - Who What Whale</p>Posted by <a href="https://www.facebook.com/sputnik9project/">Sputnik 9</a> on Tuesday, November 24, 2015</blockquote></div></div>
+
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">Copyright &copy; Sputnik9 - 2015</p>
+  </div>
+</footer>
+
+
+<script src="js/uiMorphingButton_fixed.js"></script>
+
+<script>
+(function() {
+  var docElem = window.document.documentElement, didScroll, scrollPosition;
+  // trick to prevent scrolling when opening/closing button
+  function noScrollFn() {
+    window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+  }
+  function noScroll() {
+    window.removeEventListener( 'scroll', scrollHandler );
+    window.addEventListener( 'scroll', noScrollFn );
+  }
+  function scrollFn() {
+    window.addEventListener( 'scroll', scrollHandler );
+  }
+  function canScroll() {
+    window.removeEventListener( 'scroll', noScrollFn );
+    scrollFn();
+  }
+  function scrollHandler() {
+    if( !didScroll ) {
+      didScroll = true;
+      setTimeout( function() { scrollPage(); }, 60 );
+    }
+  };
+  function scrollPage() {
+    scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+    didScroll = false;
+  };
+  scrollFn();
+  [].slice.call( document.querySelectorAll( '.morph-button' ) ).forEach( function( bttn ) {
+    new UIMorphingButton( bttn, {
+      closeEl : '.icon-close',
+      onBeforeOpen : function() {
+        // don't allow to scroll
+        noScroll();
+      },
+      onAfterOpen : function() {
+        // can scroll again
+        canScroll();
+      },
+      onBeforeClose : function() {
+        // don't allow to scroll
+        noScroll();
+      },
+      onAfterClose : function() {
+        // can scroll again
+        canScroll();
+      }
+    } );
+  } );
+  [].slice.call( document.querySelectorAll( 'form button' ) ).forEach( function( bttn ) {
+    bttn.addEventListener( 'click', function( ev ) { ev.preventDefault(); } );
+  } );
+})();
+</script>
+
+<!-- Progress bar -->
+<script type="text/javascript" src="js/script.js"></script>

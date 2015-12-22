@@ -20,7 +20,7 @@
       if (req.user) {
         return res.redirect("/media")
       }
-      res.render('home');
+      res.render('home', {homepage: true});
     });
 
     // Login/signup Page
