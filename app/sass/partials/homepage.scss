@@ -13,6 +13,12 @@ button:hover {
   padding: 20px;
 }
 
+p.sales-pitch,
+p.elevator-pitch {
+  padding: 20px 13px;
+  text-align: justify;
+}
+
 .submit .span {
   font-family: $rale;
 }
@@ -24,9 +30,12 @@ button:hover {
   margin: 20px auto;
 }
 
-section#demo {
+section#preview {
   text-align: center;
   padding: 10%;
+  h1.voorproefje {
+    margin-bottom: 50px;
+  }
 }
 
 p.serious-request {
