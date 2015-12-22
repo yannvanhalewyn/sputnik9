@@ -15,14 +15,14 @@
         // Login successful
         if (verifiedUser) {
           login(verifiedUser, req);
-          return res.redirect("/media")
+          return res.redirect("/premium")
         }
         // Erroneous login
         req.session.flash = {
           type: "error",
           message: "Email or password was incorrect."
         }
-        res.redirect("/login")
+        res.redirect("/")
       });
     },
 

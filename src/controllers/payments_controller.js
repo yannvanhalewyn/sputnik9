@@ -14,7 +14,7 @@
     },
 
     create: function(req, res, next) {
-      if (req.user.premium) return res.redirect("/media")
+      if (req.user.premium) return res.redirect("/premium")
       paymentLogic.payForPremium(req.user, req.headers.host)
       .then(function (payment) {
         res.redirect(payment.links.paymentUrl)

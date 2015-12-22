@@ -12,77 +12,11 @@
     </div>
   </div>
 
-  <div class="container" style="margin-top:40px">
-
-    <!-- SIGN UP-->
-    <div class="cole-md-12" style="text-align:center">
-      <div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-        <button type="button">Pre-order nu!</button>
-        <div class="morph-content">
-          <div>
-            <div class="content-style-form content-style-form-1">
-              <span class="icon icon-close">Close the dialog</span>
-              <h2>Sign Up</h2>
-              <form action="/users" method="POST" accept-charset="utf-8" >
-                <p>
-                  <label>First Name</label>
-                  <input type="text" name="first_name" autocorrect="off" spellcheck="false"/>
-                </p>
-                <p>
-                  <label>Last Name</label>
-                  <input type="text" name="last_name" autocorrect="off" spellcheck="false"/>
-                </p>
-                <p>
-                  <label>Email</label>
-                  <input type="text" name="email" autocorrect="off" spellcheck="false"/>
-                </p>
-                <p>
-                  <label>Password</label>
-                  <input type="password" name="password"/>
-                </p>
-                <p>
-                  <label>Repeat Password</label>
-                  <input type="password" />
-                </p>
-                <p><input type=submit value="Sign Up" /></p>
-                <p style="color:#fafafa; font-size:1em">or</p>
-              </form>
-              <p><button class="fb" style="margin: 0 auto; background-color: rgba(0,0,0,0); color:#fde634; border:solid; border-width:4px">Sign Up with Facebook</button></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LOGIN-->
-    <div class="col-md-12" style="text-align:center">
-      <div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-        <button type="button">Log in</button>
-        <div class="morph-content">
-          <div>
-            <div class="content-style-form content-style-form-1">
-              <span class="icon icon-close">Close the dialog</span>
-              <h2>LOG IN</h2>
-              <form action="/login" method="POST" accept-charset="utf-8">
-                <p>
-                  <label>Email</label>
-                  <input type="text" autocorrect="off" name="email" spellcheck="false"/>
-                </p>
-                <p>
-                  <label>Password</label>
-                  <input type="password" name="password"/>
-                </p>
-                <p><input type="submit" value="Log In" /></p>
-                <p style="color:#fafafa; font-size:1em">or</p>
-              </form>
-              <p><button class="fb" style="margin: 0 auto; background-color: rgba(0,0,0,0); color:#fde634; border:solid; border-width:4px">Login with Facebook</button></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p class="serious-request">De helft van het door jou betaalde bedrag doneren wij aan <a href="http://seriousrequest.3fm.nl">Serious Request</a></p>
+  {{#if user }}
+    {{> logged_in }}
+  {{else}}
+    {{> login }}
+  {{/if}}
 
   </div>
 </section>
@@ -132,13 +66,6 @@
   <div id="fb-root"></div><script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script><div class="fb-video" data-allowfullscreen="1" data-href="/sputnik9project/videos/vb.754215701390653/761664763979080/?type=3"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/sputnik9project/videos/761664763979080/"><a href="https://www.facebook.com/sputnik9project/videos/761664763979080/">Sputnik 9 - In My Head</a><p>Live video gemaakt bij één van de tryouts die we hebben gedaan voor dit project, Sputnik 9. Met Rens Ouburg (gitaar en zang) Florian Van Damme (keys) Paul Snoeren (bass) en Lars Spijkervet (drums)Als je ons wilt steunen via onze crowd funding:https://www.voordekunst.nl/projecten/3917-sputnik-9-1Opgenomen GallowayRecordingStudio door Michiel ClaessenMix: AIRmusic / Lars SpijkervetMastering:  Daan KandelaarsVideo:  Wouter van Uden - Who What Whale</p>Posted by <a href="https://www.facebook.com/sputnik9project/">Sputnik 9</a> on Tuesday, November 24, 2015</blockquote></div></div>
 
 </section>
-
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">Copyright &copy; Sputnik9 - 2015</p>
-  </div>
-</footer>
-
 
 <script src="js/uiMorphingButton_fixed.js"></script>
 
