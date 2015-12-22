@@ -39,10 +39,8 @@
     app.get('/verify', users_controller.verify);
 
     // Video's page
-    app.get("/media", media_controller.middlewares.index,
+    app.get("/premium", media_controller.middlewares.index,
             media_controller.index);
-    app.get("/media/:id", media_controller.middlewares.index,
-            media_controller.show);
     app.get("/videos/:file", media_controller.middlewares.stream,
             media_controller.stream);
 

@@ -47,7 +47,7 @@
         function(user) {
           login(user, req);
           req.session.flash = {type: "success", message: "Verification successful!"}
-          res.redirect("/media")
+          res.redirect("/premium")
         },
         next
       )

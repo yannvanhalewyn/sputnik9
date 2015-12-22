@@ -60,14 +60,14 @@ describe('handle_unpaid_user middleware', function() {
     }); // End of context 'when open payments are unpaid'
 
     context("when user has paid payments", function() {
-      it("sets the user's premium state to true and renders media", function(done) {
+      it("sets the user's premium state to true and renders premium", function(done) {
         return Payment.create({status: "paid"}).then(function(payment) {
           return USER.addPayment(payment).then(function(user) {
             req.user = user;
             handleUnpaid("error", req, res)
             res.on('end', function() {
               expect(res.render).to.have.been.calledOnce;
-              expect(res.render).to.have.been.calledWith("media");
+              expect(res.render).to.have.been.calledWith("premium");
               return User.findById(USER._id).then(function(user) {
                 expect(user.premium).to.eql(true)
                 done();
