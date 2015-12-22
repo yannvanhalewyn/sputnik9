@@ -1,0 +1,193 @@
+/* Icons */
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon/icomoon.eot?i64fx9');
+	src:url('../fonts/icomoon/icomoon.eot?#iefixi64fx9') format('embedded-opentype'),
+		url('../fonts/icomoon/icomoon.woff?i64fx9') format('woff'),
+		url('../fonts/icomoon/icomoon.ttf?i64fx9') format('truetype'),
+		url('../fonts/icomoon/icomoon.svg?i64fx9#icomoon') format('svg');
+}
+
+
+
+
+
+
+/* Style for form modal */
+
+/* "LOGIN AND SIGNUP TEXT */
+.content-style-form h2 {
+	margin: 0;
+	padding: 0.4em 0 0.3em;
+	text-align: center;
+	font-family: 'Raleway';
+	font-weight: bold;
+	font-size: 3.5em;
+	color: #fafafa;
+}
+
+/*padding text fields*/
+.content-style-form form {
+	padding: 10px 30px;
+}
+
+.content-style-form form p {
+	margin: 0 0 5px 0;
+	font-size: 0.7em;
+}
+
+/*style labels like name email etc */
+.content-style-form label {
+	display: block;
+	padding: 10px 0 0;
+	color: #fafafa;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+}
+
+/*style input fields*/
+
+.content-style-form input[type="text"],
+.content-style-form input[type="password"] {
+	padding: 10px;
+	width: 100%;
+	border: 2px solid #fde634;
+	background: transparent;
+	color: #fafafa;
+	font-weight: 300;
+	font-size: 2.2em;
+}
+
+
+/* if input field is wrong:
+	
+	.content-style-form input[type="text"],
+	.content-style-form input[type="password"] {
+		color: #f20202;
+		}
+
+
+*/
+
+.content-style-form input[type="text"]:focus,
+.content-style-form input[type="password"]:focus {
+	border-color: #fafafa;
+	color: #fde634;
+}
+
+.content-style-form input:focus {
+	outline: 0;
+}
+
+
+
+
+/*style buttons*/
+
+.content-style-form button:focus{
+	outline-color: #fde634;
+	outline-width: 1px;
+}
+.content-style-form button {
+	display: block;
+	margin-top: 2.5em;
+	padding: 1.5em;
+	width: 100%;
+	border: none;
+	background: #fde634;
+	color: #111;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-family: 'Raleway';
+	font-weight: bold;
+	font-size: 1.25em;
+}
+
+
+/*style close button */
+.content-style-form .icon-close {
+	top: 0;
+	right: 0;
+	color: #111;
+}
+
+.content-style-form .icon-close:hover {
+	color: #e61b16;
+}
+
+
+.icon-close {
+	z-index: 100;
+	display: block;
+	overflow: hidden;
+	width: 3em;
+	height: 3em;
+	text-align: center;
+	line-height: 3;
+	cursor: pointer;
+}
+
+.icon:before {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-transform: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-family: 'icomoon';
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+
+.icon-close::before {
+	content: "\e601";
+}
+
+
+.icon-close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+
+
+
+
+@media screen and (max-width: 770px) {
+	.content-style-overlay {
+		font-size: 75%;
+	}
+
+	.content-style-overlay .icon-close {
+		top: 5px;
+		right: 5px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
