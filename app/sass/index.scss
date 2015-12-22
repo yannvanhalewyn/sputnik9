@@ -5,29 +5,36 @@
 @import "modules/content";
 @import "partials/homepage";
 @import "partials/forms";
+@import "partials/premium";
 
 html {
-  position: relative;
   background: url(../img/bg4.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   min-height: 100%;
-  width: 100%;
   height: 100%;
 }
 
 body {
   background-color: transparent;
   color: $white;
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  width: 100%;
+  min-height: 100%;
   height: 100%;
   font-family: $mont;
 }
 
+#wrap {
+  padding-top: 100px;
+  min-height: 100%;
+  height: auto !important;
+  margin: 0 auto -60px;
+}
+
+p {
+  font-size: 1.3em;
+}
 
 @font-face {
   font-family: 'Montserrat';
@@ -79,13 +86,9 @@ H3 {
 .navbar li { color: $black; }
 
 .footer {
-  position: relative;
-  bottom: 0;
   background-color: rgba(0,0,0,0.2);
-  width: 100%;
-  // /* Set the fixed height of the footer here */
   height: 60px;
-  padding-top: 20px; // Vertically align text
+  padding-top: 15px; // Vertically align text
   text-align: center;
 }
 
@@ -121,7 +124,7 @@ of those sections to manage the look and feel of the site. */
   text-align: center;
 }
 
-.intro-section { @include scroll-section; }
+.intro-section { @include scroll-section; padding-top: 0px; }
 .about-section { @include scroll-section; }
 .services-section { @include scroll-section; }
 .contact-section { @include scroll-section; }
