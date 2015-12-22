@@ -18,7 +18,7 @@
     // Home Page
     app.get('/', function(req, res) {
       if (req.user) {
-        return res.redirect("/media")
+        return res.render("home", {homepage: true, user: req.user});
       }
       res.render('home', {homepage: true});
     });

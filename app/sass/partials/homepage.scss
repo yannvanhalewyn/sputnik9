@@ -13,6 +13,19 @@ button:hover {
   padding: 20px;
 }
 
+.goto_premium {
+  @include button;
+}
+
+.logout_button {
+  @include button;
+}
+
+.or {
+  font-size: 12px;
+  margin: 10px;
+}
+
 p.sales-pitch,
 p.elevator-pitch {
   padding: 20px 13px;
