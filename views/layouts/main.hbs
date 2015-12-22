@@ -16,7 +16,6 @@
     <script src="js/modernizr.custom.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <script type="text/javascript" src="js/script.js"></script>
 
   </head>
   <body>
@@ -24,9 +23,17 @@
       <p class="flash {{flash.type}}">{{flash.message}}</p>
     {{/if}}
 
-    {{> header }}
+    <div id="wrap">
+      {{#if homepage}}
+        {{> header }}
+      {{else}}
+        {{> header_premium }}
+      {{/if}}
 
-    {{{body}}}
+      {{{body}}}
+    </div>
+
+    {{> footer}}
 
   </body>
 </html>
