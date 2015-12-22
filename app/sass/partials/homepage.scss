@@ -19,6 +19,8 @@ p.elevator-pitch {
   text-align: justify;
 }
 
+.funded { @include span; }
+
 .submit .span {
   font-family: $rale;
 }

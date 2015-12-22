@@ -8,7 +8,7 @@
       <img src="img/logo.png" alt="" class="img-responsive center-block">
     </div>
     <div class="col-md-6 col-md-offset-3 titel">
-      <h3>Are you a traveler yet?</h3>
+      <h3>Are you a Fellow Traveler yet?</h3>
     </div>
   </div>
 
@@ -21,16 +21,33 @@
         <div class="morph-content">
           <div>
             <div class="content-style-form content-style-form-1">
-              <span class="icon icon-close span">Close the dialog</span>
+              <span class="icon icon-close">Close the dialog</span>
               <h2>Sign Up</h2>
-              <form>
-                <p><label>Email</label><input type="text" autocorrect="off" spellcheck="false"/></p>
-                <p><label>Password</label><input type="password" /></p>
-                <p><label>Repeat Password</label><input type="password" /></p>
-                <p><button>Sign Up</button></p>
+              <form action="/users" method="POST" accept-charset="utf-8" >
+                <p>
+                  <label>First Name</label>
+                  <input type="text" name="first_name" autocorrect="off" spellcheck="false"/>
+                </p>
+                <p>
+                  <label>Last Name</label>
+                  <input type="text" name="last_name" autocorrect="off" spellcheck="false"/>
+                </p>
+                <p>
+                  <label>Email</label>
+                  <input type="text" name="email" autocorrect="off" spellcheck="false"/>
+                </p>
+                <p>
+                  <label>Password</label>
+                  <input type="password" name="password"/>
+                </p>
+                <p>
+                  <label>Repeat Password</label>
+                  <input type="password" />
+                </p>
+                <p><input type=submit value="Sign Up" /></p>
                 <p style="color:#fafafa; font-size:1em">or</p>
-                <p><button style="margin: 0 auto; background-color: rgba(0,0,0,0); color:#fde634; border:solid; border-width:4px">Sign Up with Facebook</button></p>
               </form>
+              <p><button class="fb" style="margin: 0 auto; background-color: rgba(0,0,0,0); color:#fde634; border:solid; border-width:4px">Sign Up with Facebook</button></p>
             </div>
           </div>
         </div>
@@ -44,15 +61,21 @@
         <div class="morph-content">
           <div>
             <div class="content-style-form content-style-form-1">
-              <span class="icon icon-close span">Close the dialog</span>
+              <span class="icon icon-close">Close the dialog</span>
               <h2>LOG IN</h2>
-              <form>
-                <p><label>Email</label><input type="text" autocorrect="off" spellcheck="false"/></p>
-                <p><label>Password</label><input type="password" /></p>
-                <p><button>Log in</button></p>
+              <form action="/login" method="POST" accept-charset="utf-8">
+                <p>
+                  <label>Email</label>
+                  <input type="text" autocorrect="off" name="email" spellcheck="false"/>
+                </p>
+                <p>
+                  <label>Password</label>
+                  <input type="password" name="password"/>
+                </p>
+                <p><input type="submit" value="Log In" /></p>
                 <p style="color:#fafafa; font-size:1em">or</p>
-                <p><button style="margin: 0 auto; background-color: rgba(0,0,0,0); color:#fde634; border:solid; border-width:4px">Login with Facebook</button></p>
               </form>
+              <p><button class="fb" style="margin: 0 auto; background-color: rgba(0,0,0,0); color:#fde634; border:solid; border-width:4px">Login with Facebook</button></p>
             </div>
           </div>
         </div>
@@ -82,7 +105,7 @@
         <div class="progress-wrap progress" data-progress-percent="33">
           <div class="progress-bar progress"></div>
         </div>
-        <h1><span class="span">33% FUNDED!</span></h1>
+        <h1><span class="funded">33% FUNDED!</span></h1>
       </div>
     </div>
     <div class="col-md-12 text" style="height:60px"></div>

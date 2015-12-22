@@ -63,7 +63,7 @@
 
 
 /* if input field is wrong:
-	
+
 	.content-style-form input[type="text"],
 	.content-style-form input[type="password"] {
 		color: #f20202;
@@ -87,11 +87,15 @@
 
 /*style buttons*/
 
-.content-style-form button:focus{
+// Had to move button out of form
+button.fb { width: 85%; }
+.content-style-form input[type="submit"]:focus,
+.fb:focus {
 	outline-color: #fde634;
 	outline-width: 1px;
 }
-.content-style-form button {
+.content-style-form input[type="submit"],
+.fb {
 	display: block;
 	margin-top: 2.5em;
 	padding: 1.5em;
