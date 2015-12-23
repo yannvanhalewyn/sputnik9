@@ -16,7 +16,7 @@
   font-size: 1.2em;
   font-weight: 700;
   line-height: 60px;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .morph-button.open > button {
@@ -118,7 +118,7 @@
 }
 
 .morph-button-modal .morph-content {
-  overflow: hidden;
+  // overflow: hidden;
   -webkit-transition: opacity 0.3s 0.5s, width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
   transition: opacity 0.3s 0.5s, width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
 }

@@ -12,7 +12,8 @@ chai.use(chaiAsPromised);
 
 var test_db = require("../util/test_db")
   , User = include('/src/models/user')
-  , userFixture = Immutable.fromJS(require('../fixtures/user'));
+  , userFixture = Immutable.fromJS(require('../fixtures/user'))
+  , userFixtureFB = Immutable.fromJS(require('../fixtures/user_fb'));
 
 before(test_db.connect);
 afterEach(test_db.teardown);
@@ -66,17 +67,23 @@ describe('User', function() {
 
     it("creates a random 48 chars hex token for email confirmation with expiration date", function() {
       return User.create(userFixture.toJS()).then(function(user) {
-        var token = user.confirmation_token;
+        var token = user.local_data.confirmation_token;
         var expiration = Date.now() + 24 * 3600 * 1000;
         expect(token).not.to.be.undefined;
         expect(token).to.match(/^[0-9a-f]{48}$/)
-        expect(user.token_expiration).to.be.within(expiration - 1000, expiration + 1000);
+        expect(user.local_data.token_expiration).to.be.within(expiration - 1000, expiration + 1000);
       });
     });
 
     it("sets the verified flag to false", function() {
       return User.create(userFixture.toJS()).then(function(user) {
-        expect(user.verified).to.be.false;
+        expect(user.local_data.verified).to.be.falsey;
+      })
+    });
+
+    it("sets the premium flag to false", function() {
+      return User.create(userFixtureFB.toJS()).then(function(user) {
+        expect(user.premium).to.be.falsey;
       })
     });
   }); // End of describe 'creation'
@@ -88,7 +95,8 @@ describe('User', function() {
         var USER;
         beforeEach(function(done) {
           return User.create(userFixture.toJS()).then(function(user) {
-            return User.verify(user.confirmation_token).then(function(user) {
+            console.log(user.local_data.token_expiration);
+            return User.verify(user.local_data.confirmation_token).then(function(user) {
               USER = user;
               done();
             });
@@ -96,21 +104,21 @@ describe('User', function() {
         });
 
         it("sets the verified flag to true", function() {
-          expect(USER.verified).to.be.true;
+          expect(USER.local_data.verified).to.be.true;
         });
 
         it("destroys the old token and expiration", function() {
-          expect(USER.confirmation_token).to.be.null;
-          expect(USER.token_expiration).to.be.null;
+          expect(USER.local_data.confirmation_token).to.be.null;
+          expect(USER.local_data.token_expiration).to.be.null;
         });
       }); // End of context 'when token is not expired'
 
       context("when token is expired", function() {
         it("returns a rejected promise", function() {
           return User.create(userFixture.toJS()).then(function(user) {
-            user.token_expiration = Date.now() - 2000;
+            user.local_data.token_expiration = Date.now() - 2000;
             return user.save().then(function(response) {
-              var promise = User.verify(user.confirmation_token);
+              var promise = User.verify(user.local_data.confirmation_token);
               return expect(promise).to.be.rejectedWith("This token has been expired.");
             })
           });
@@ -125,6 +133,63 @@ describe('User', function() {
       });
     }); // End of context 'with an invalid token'
   }); // End of describe 'verification'
+
+  describe('facebook_creation', function() {
+    it("works", function() {
+      expect(User.create(userFixtureFB.toJS())).to.be.fulfilled;
+    });
+
+    it("stores the provider name and provider_data", function() {
+      return User.create(userFixtureFB.toJS()).then(function(user) {
+        expect(user.provider).to.eql('facebook');
+        expect(user.fb_data.id).to.eql('123');
+        expect(user.fb_data.accessToken).to.eql('theaccesstoken');
+      })
+    })
+
+    it("Defaults the premium flag to false", function() {
+      return User.create(userFixtureFB.toJS()).then(function(user) {
+        expect(user.premium).to.be.falsey;
+      })
+    });
+
+    describe('findOrCreate', function() {
+      context("when user does't exist with that facebook id", function() {
+        it("persists a new user with that data", function() {
+          return User.findOrCreateByFacebookId('123', userFixtureFB.toJS())
+          .then(function(user) {
+            return User.findById(user._id).then(function(u) {
+              expect(u.fb_data.id).to.eql('123')
+              expect(u.fb_data.accessToken).to.eql('theaccesstoken')
+            })
+          })
+        });
+      }); // End of context 'when user does't exist with that facebook id'
+    }); // End of describe 'findOrCreate'
+
+    context("when a user is found with said facebook id", function() {
+      var found_user;
+      beforeEach(function() {
+        return User.findOrCreateByFacebookId('123', userFixtureFB.toJS())
+        .then(function (user1) {
+          return User.findOrCreateByFacebookId('123', userFixtureFB.toJS())
+          .then(function(user2) {
+            found_user = user2;
+          })
+        })
+      });
+
+      it("doesn't persist a new user", function() {
+        return User.find().then(function(allUsers) {
+          expect(allUsers.length).to.eql(1)
+        })
+      });
+
+      it("finds and returns the correct user", function() {
+        expect(found_user.fb_data.id).to.eql('123')
+      });
+    }); // End of context 'when a user is found with said facebook id'
+  }); // End of describe 'facebook_creation'
 
   describe('addPayment', function() {
     it("adds the payment to that user's payments array", function() {

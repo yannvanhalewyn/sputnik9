@@ -6,8 +6,13 @@
     , bcrypt = require('../helpers/bcrypt-promisified')
     , login = require('../helpers/login_user')
     , verifyUserPassword = require('../helpers/verify_user_password')
+    , passport = require('passport')
 
   var user_sessions_controller = {
+
+    middlewares: {
+      fb_callback: passport.authenticate('facebook', { failureRedirect: '/' })
+    },
 
     create: function(req, res) {
       verifyUserPassword(req.body.email, req.body.password)
@@ -29,6 +34,14 @@
     destroy: function(req, res) {
       req.session.destroy();
       res.redirect("/");
+    },
+
+    // Facebook Auth
+    new_facebook_session: passport.authenticate('facebook', {scope: 'email'}),
+
+    // Successfull FB Auth callback
+    fb_callback: function(req, res) {
+      return res.redirect('/premium')
     }
   }
 

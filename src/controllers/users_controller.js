@@ -20,14 +20,17 @@
           first_name: req.body.first_name,
           last_name: req.body.last_name,
           email: req.body.email,
-          password_digest: hash
+          provider: 'local',
+          local_data: {
+            password_digest: hash
+          }
         }).then(
 
           // Successfull user creation!
           function(user) {
             login(user, req);
             emails.emailConfirmation(user).then(mailer.send, Logger.error);
-            res.render("welcome_new_user")
+            res.redirect('/premium')
           },
 
           // Erroneous user creation.
