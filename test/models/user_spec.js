@@ -152,6 +152,43 @@ describe('User', function() {
         expect(user.premium).to.be.falsey;
       })
     });
+
+    describe('findOrCreate', function() {
+      context("when user does't exist with that facebook id", function() {
+        it("persists a new user with that data", function() {
+          return User.findOrCreateByFacebookId('123', userFixtureFB.toJS())
+          .then(function(user) {
+            return User.findById(user._id).then(function(u) {
+              expect(u.fb_data.id).to.eql('123')
+              expect(u.fb_data.accessToken).to.eql('theaccesstoken')
+            })
+          })
+        });
+      }); // End of context 'when user does't exist with that facebook id'
+    }); // End of describe 'findOrCreate'
+
+    context("when a user is found with said facebook id", function() {
+      var found_user;
+      beforeEach(function() {
+        return User.findOrCreateByFacebookId('123', userFixtureFB.toJS())
+        .then(function (user1) {
+          return User.findOrCreateByFacebookId('123', userFixtureFB.toJS())
+          .then(function(user2) {
+            found_user = user2;
+          })
+        })
+      });
+
+      it("doesn't persist a new user", function() {
+        return User.find().then(function(allUsers) {
+          expect(allUsers.length).to.eql(1)
+        })
+      });
+
+      it("finds and returns the correct user", function() {
+        expect(found_user.fb_data.id).to.eql('123')
+      });
+    }); // End of context 'when a user is found with said facebook id'
   }); // End of describe 'facebook_creation'
 
   describe('addPayment', function() {
