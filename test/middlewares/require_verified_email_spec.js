@@ -19,7 +19,7 @@ describe('require verified email middleware', function() {
 
   context("when no user is set on the req object", function() {
     it("renders the 'please verify email' page", function() {
-      req.user = {verified: false}
+      req.user = {local_data: {verified: false}};
       requireVerifiedEmail(req, res, next);
       expect(res.render).to.have.been.calledWith('please_verify_email');
     });
@@ -36,7 +36,7 @@ describe('require verified email middleware', function() {
 
     context("when the user is verified", function() {
       it("calls next", function() {
-        req.user.verified = true;
+        req.user.local_data = {verified: true};
         requireVerifiedEmail(req, res, next);
         expect(next).to.have.been.called;
       });
@@ -44,7 +44,7 @@ describe('require verified email middleware', function() {
 
     context("when the user is not verified", function() {
       beforeEach(function() {
-        req.user.verified = false;
+        req.user.local_data = {verified: false};
         requireVerifiedEmail(req, res, next);
       });
 

@@ -23,7 +23,7 @@
       return emailFromTemplate(
         "views/emails/email_verification.hbs", {
           name: user.first_name,
-          verify_url: verificationUrl(user.confirmation_token)
+          verify_url: verificationUrl(user.local_data.confirmation_token)
         }, {
           to: user.email,
           subject: "Please activate your account.",

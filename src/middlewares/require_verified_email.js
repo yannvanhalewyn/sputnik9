@@ -3,7 +3,7 @@
   "use strict";
 
   var requireVerifiedEmail = function(req, res, next) {
-    if (!req.user.verified) {
+    if (req.user.local_data && !req.user.local_data.verified) {
       return res.render("please_verify_email");
     }
     next();
