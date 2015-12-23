@@ -21,7 +21,7 @@ describe('verify user password helper', function() {
 
     beforeEach(function(done) {
       bcrypt.hash("password123", 10, function(err, hash) {
-        userFixture.password_digest = hash;
+        userFixture.local_data.password_digest = hash;
         User.create(userFixture).then(function(user) {
           USER = user;
           done();

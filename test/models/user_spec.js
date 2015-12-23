@@ -57,6 +57,13 @@ describe('User', function() {
       return expect(promise).to.be.rejected;
     });
 
+    it("stores the password digest in the local_data object", function() {
+      return User.create(userFixture.toJS()).then(function(user) {
+        expect(user.local_data.password_digest).not.to.be.undefined;
+        expect(user.local_data.password_digest).eq(userFixture.toJS().local_data.password_digest)
+      })
+    });
+
     it.skip("checks for a unique email address", function() {
       var promise = User.create(userFixture.toJS())
       .then(function(user) {
@@ -95,7 +102,6 @@ describe('User', function() {
         var USER;
         beforeEach(function(done) {
           return User.create(userFixture.toJS()).then(function(user) {
-            console.log(user.local_data.token_expiration);
             return User.verify(user.local_data.confirmation_token).then(function(user) {
               USER = user;
               done();

@@ -28,7 +28,6 @@
       required: true,
       unique: true
     },
-    password_digest: String,
     premium: Boolean,
     payments: [
       {type: mongoose.Schema.Types.ObjectId, ref: "Payment"}
@@ -44,7 +43,8 @@
         default: false
       },
       confirmation_token: String,
-      token_expiration: Date
+      token_expiration: Date,
+      password_digest: String
     }
   });
 
@@ -98,10 +98,8 @@
   User.create = function(params) {
     if (params.provider == 'local') {
       return generateConfirmationTokenAndExpiration().then(function(token) {
-        params.local_data = {
-          confirmation_token: token.token,
-          token_expiration: token.expires
-        }
+        params.local_data.confirmation_token = token.token;
+        params.local_data.token_expiration = token.expires;
         return new User(params).save();
       })
     }
