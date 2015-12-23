@@ -39,7 +39,7 @@ describe('paymentLogic', function() {
       return paymentLogic.payForPremium(USER, "sputnik9.nl")
       .then(function(payment) {
         var expected = paymentFixture.get("creation_request").toJS()
-        expected.metadata = {user_id: USER._id, seriousRequest: true};
+        expected.metadata = {user_id: USER._id};
         expect(paymentGateway.create).to.have.been.calledWith(expected);
       })
     });
