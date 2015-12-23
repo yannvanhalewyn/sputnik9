@@ -234,23 +234,22 @@ describe('User', function() {
     }); // End of context 'when in user is unverified'
 
     context("When user is already verified", function() {
-      it("doesn't set a new token and stays verified", function() {
+      it("Throws a NotApplicable exception", function() {
         return User.create(userFixture.toJS()).then((user) => {
           user.local_data = {verified: true, confirmation_token: null};
-          return user.resetConfirmationToken().then((user2) => {
-            expect(user2.local_data.verified).to.be.true;
-            expect(user2.local_data.confirmation_token).to.be.null;
-          })
+          var promise = user.resetConfirmationToken()
+          return expect(promise).to.be
+            .rejectedWith("Confirmation Tokens are not applicable for this user.")
         });
       });
     }); // End of context 'When user is already verified'
 
     context("When user is not authenticated locally", function() {
-      it("doesn't set a new token", function() {
+      it("throws a NotApplicable exception", function() {
         return User.create(userFixtureFB.toJS()).then((user) => {
-          return user.resetConfirmationToken().then((user2) => {
-            expect(user2.local_data.confirmation_token).to.be.undefined;
-          })
+          var promise = user.resetConfirmationToken();
+          return expect(promise).to.be
+            .rejectedWith("Confirmation Tokens are not applicable for this user.")
         });
       });
     }); // End of context 'When user is already verified'

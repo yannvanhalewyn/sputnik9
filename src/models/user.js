@@ -55,7 +55,13 @@
     },
 
     resetConfirmationToken() {
-      if (this.provider != 'local' || this.local_data.verified) return Q(this);
+      if (this.provider != 'local' || this.local_data.verified) {
+        // Return a promise that will reject
+        var defered = Q.defer();
+        defered.reject("Confirmation Tokens are not applicable for this user.");
+        return defered.promise;
+      }
+
       return generateConfirmationTokenAndExpiration().then((token) => {
         this.local_data.confirmation_token = token.token;
         this.local_data.token_expiration = token.expires;
