@@ -6,7 +6,7 @@ var todayFormatted = dateFormat.bind(null, "yyyy-mm-dd_HH-MM-ss");
 var transports = [
   new Winston.transports.File({
     level: 'info',
-    filename: 'logs.json',
+    filename: 'logs/winston.json',
     json: true,
     maxsize: 5242880, // 5Mb
     maxfiles: 5,

@@ -6,5 +6,5 @@ notes.txt
 .vagrant/
 .env
 .sass-cache/
-logs*
+logs/
 restricted/videos/
