@@ -35,6 +35,9 @@
 
     // Verifying a user's email
     app.get('/verify', users_controller.verify);
+    app.get('/resend_verification',
+            users_controller.middlewares.resend_verification,
+            users_controller.resend_verification)
 
     // Video's page
     app.get("/premium", media_controller.middlewares.index,

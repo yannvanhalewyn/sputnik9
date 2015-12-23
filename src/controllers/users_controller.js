@@ -9,8 +9,13 @@
     , mailer = require('../helpers/mailer')
     , emails = require('../helpers/emails')
     , Logger = require('../lib/logger')
+    , requireLogin = require('../middlewares/requireLogin')
 
   var users_controller = {
+
+    middlewares: {
+      resend_verification: [requireLogin]
+    },
 
     create: function(req, res) {
 
@@ -53,6 +58,24 @@
           res.redirect("/premium")
         },
         next
+      )
+    },
+
+    resend_verification: function(req, res) {
+      req.user.resetConfirmationToken().then(
+
+        // Confirmation token has been updated
+        (user) => {
+          emails.emailConfirmation(user).then(mailer.send, Logger.error);
+          req.session.flash = {type: "success", message: "Verification email has been sent!"}
+          res.redirect('/premium')
+        },
+
+        // Confirmation has not been updated (not applicable)
+        (err) => {
+          req.session.flash = {type: "error", message: err}
+          res.redirect('/premium')
+        }
       )
     }
   }
