@@ -17,18 +17,6 @@ describe('require verified email middleware', function() {
     next = sinon.spy();
   });
 
-  context("when no user is set on the req object", function() {
-    it("renders the 'please verify email' page", function() {
-      req.user = {local_data: {verified: false}};
-      requireVerifiedEmail(req, res, next);
-      expect(res.render).to.have.been.calledWith('please_verify_email');
-    });
-
-    it("doesn't call next", function() {
-      expect(next).not.to.have.been.called;
-    });
-  }); // End of context 'when no user is set on the req object'
-
   context("when a user is set on the req object", function() {
     beforeEach(function() {
       req.user = {}
@@ -36,15 +24,23 @@ describe('require verified email middleware', function() {
 
     context("when the user is verified", function() {
       it("calls next", function() {
-        req.user.local_data = {verified: true};
+        req.user = verifiedUser();
         requireVerifiedEmail(req, res, next);
         expect(next).to.have.been.called;
       });
     }); // End of context 'when the user is verified'
 
+    context("when the user is not authenticated via email and pass", function() {
+      it("calls next", function() {
+        req.user = unlocalUser();
+        requireVerifiedEmail(req, res, next);
+        expect(next).to.have.been.called;
+      });
+    }); // End of context 'when the user is not authenticated via email and pass'
+
     context("when the user is not verified", function() {
       beforeEach(function() {
-        req.user.local_data = {verified: false};
+        req.user = unverifiedUser();
         requireVerifiedEmail(req, res, next);
       });
 
@@ -59,3 +55,24 @@ describe('require verified email middleware', function() {
 
   }); // End of context 'when a user is set on the req object'
 }); // End of describe 'require verified email middleware'
+
+function verifiedUser() {
+  return {
+    provider: 'local',
+    local_data: {
+      verified: true
+    }
+  }
+}
+
+function unverifiedUser() {
+  var v = verifiedUser();
+  v.local_data.verified = false;
+  return v;
+}
+
+function unlocalUser() {
+  return {
+    provider: 'facebook'
+  }
+}
