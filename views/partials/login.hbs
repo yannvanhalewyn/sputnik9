@@ -39,7 +39,7 @@
               <label>Repeat Password</label>
               <input type="password" id="password_confirmation" />
               </p>
-              <p><input type=submit value="Sign Up" id="submit_signup" disabled /></p>
+              <p><input type=submit value="Sign Up" id="submit_signup" /></p>
 
             </form>
             <p style="color:#fafafa; font-size:1em">of</p>
@@ -149,7 +149,7 @@ function validateForm() {
   submit_btn.prop('disabled', !valid);
 }
 
-input.pswd_conf.on('blur', function() {
+input.pswd_conf.on('focus', function() {
   input.pswd.on('keyup', validateMatchingPasswords);
   input.pswd_conf.on('keyup', validateMatchingPasswords);
   input.pswd_conf.off('blur');
@@ -173,4 +173,6 @@ input.email.on('blur', function() {
   input.email.off('blur');
   validateEmail();
 })
+
+submit_btn.prop('disabled', true);
 </script>
