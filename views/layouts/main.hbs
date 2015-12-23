@@ -20,7 +20,9 @@
   </head>
   <body id="page-top">
     {{#if flash}}
-      <p class="flash {{flash.type}}">{{flash.message}}</p>
+      <div class="flash_wrap">
+        <p class="flash {{flash.type}}">{{flash.message}}</p>
+      </div>
     {{/if}}
 
     <div id="wrap">
