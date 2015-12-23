@@ -9,7 +9,9 @@ chai.use(sinonChai);
 
 var User = include("src/models/user")
   , userFixture = require("../fixtures/user")
-  , db = include("config/db").connect()
+  , db = require("../util/test_db")
+before(db.connect)
+afterEach(db.teardown)
 
 var getLoggedInUser = include('src/middlewares/getLoggedInUser');
 

@@ -3,8 +3,8 @@
   "use strict";
 
   var requireVerifiedEmail = function(req, res, next) {
-    if (!req.user.verified) {
-      return res.send("Please verify your email address before accessing this sweet content!")
+    if (req.user.provider == 'local' && !req.user.local_data.verified) {
+      return res.render("please_verify_email");
     }
     next();
   }

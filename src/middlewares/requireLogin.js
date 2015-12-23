@@ -8,7 +8,7 @@
       type: "error",
       message: "You must be logged in to view that page."
     }
-    res.redirect("/login");
+    res.redirect("/");
   }
 
   module.exports = requireLogin;

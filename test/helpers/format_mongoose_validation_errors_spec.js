@@ -9,7 +9,7 @@ var include   = require('include')
 var formatValidationErrors = include("/src/helpers/format_mongoose_validation_errors.js");
 errorFixture = require("../fixtures/mongoose_validation_errors")
 
-describe('format mongoose validation errors', function() {
+describe.skip('format mongoose validation errors', function() {
 
   context("when it's a mongo duplication error", function() {
     it("returns an email property with the correct message", function() {

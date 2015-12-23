@@ -3,14 +3,33 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Foobar</title>
-    <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen" charset="utf-8">
+    <title>{{@exphbs.view}} | Sputnik9</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/index.css" type="text/css" media="screen" charset="utf-8">
+
   </head>
-  <body>
+  <body id="page-top">
     {{#if flash}}
-      <p class="flash {{flash.type}}">{{flash.message}}</p>
+      <div class="flash_wrap">
+        <p class="flash {{flash.type}}">{{flash.message}}</p>
+      </div>
     {{/if}}
 
-    {{{body}}}
+    <div id="wrap">
+      {{#if homepage}}
+        {{> header }}
+      {{else}}
+        {{> header_premium }}
+      {{/if}}
+
+      {{{body}}}
+    </div>
+
+    {{> footer}}
+
   </body>
 </html>

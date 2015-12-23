@@ -1,0 +1,37 @@
+@mixin premium_static {
+  text-align: center;
+  h1 { margin-bottom: 40px; }
+  p { margin-bottom: 30px; }
+}
+
+.prompt_payment_page {
+  @include premium_static;
+  .payforpremium {
+    @include button;
+    text-transform: uppercase;
+  }
+}
+
+.verify_email_page {
+  @include premium_static;
+  .resend_email_btn {
+    @include button;
+    text-transform: uppercase;
+  }
+}
+
+.thank_you_page {
+  @include premium_static;
+  p { margin-bottom: 40px; }
+}
+
+.premium_page {
+  @include premium_static;
+  p { margin-bottom: 20px; }
+
+  // tmp youtube playlist
+  .iframe_container {
+    margin-bottom: 100px;
+    padding: 5%;
+  }
+}

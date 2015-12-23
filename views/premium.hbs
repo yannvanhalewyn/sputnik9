@@ -1,0 +1,42 @@
+<div class="premium_page container">
+  <h1>Welkom {{user.first_name}}</h1>
+  <p>
+    Je hebt betaald! Je hebt jouw plekje vooraan in deze ontdekkingsreis zeker gesteld! Zodra het eerste materiaal gemaakt is, krijg je een Sputnik 9 update. Dat materiaal is dan hier terug te vinden!
+  </p>
+  <p>
+    Heb je nog niet gekozen voor de Sputnik 9 update? Doe dat dan hier.
+  </p>
+  <p>
+    Check hier alvast een paar video’s van het project
+  </p>
+
+  <div class="iframe_container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLKk07dZhXGwk0f9b1Jk5XFsC6xlvMFQip" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+// Quick script for fluidifying the youtube iFrame
+var videos = $("iframe"),
+    fluid = $(".iframe_container");
+
+videos.each(function() {
+  $(this)
+    .data('aspectRatio', this.height / this.width)
+    .removeAttr('height')
+    .removeAttr('width');
+});
+
+// When the window is resized
+$(window).resize(function() {
+  var newWidth = fluid.width();
+  // Resize all videos according to their own aspect ratio
+  videos.each(function() {
+    var $el = $(this);
+    $(this)
+      .width(newWidth)
+      .height(newWidth * $el.data('aspectRatio'));
+  });
+// Kick off one resize to fix all videos on page load
+}).resize();
+</script>

@@ -8,8 +8,14 @@
     , login = require('../helpers/login_user')
     , mailer = require('../helpers/mailer')
     , emails = require('../helpers/emails')
+    , Logger = require('../lib/logger')
+    , requireLogin = require('../middlewares/requireLogin')
 
   var users_controller = {
+
+    middlewares: {
+      resend_verification: [requireLogin]
+    },
 
     create: function(req, res) {
 
@@ -19,14 +25,17 @@
           first_name: req.body.first_name,
           last_name: req.body.last_name,
           email: req.body.email,
-          password_digest: hash
+          provider: 'local',
+          local_data: {
+            password_digest: hash
+          }
         }).then(
 
           // Successfull user creation!
           function(user) {
             login(user, req);
-            mailer.send(emails.emailConfirmation(user))
-            res.send("Success!");
+            emails.emailConfirmation(user).then(mailer.send, Logger.error);
+            res.redirect('/premium')
           },
 
           // Erroneous user creation.
@@ -35,20 +44,37 @@
               type: "error",
               message: formatValidationErrors(err)
             }
-            res.redirect("/login");
+            res.redirect("/");
           }
         );
       });
     },
 
-    verify: function(req, res) {
+    verify: function(req, res, next) {
       User.verify(req.query.token).then(
         function(user) {
           login(user, req);
-          res.send("Successfully verified! Hello " + user.first_name)
+          req.session.flash = {type: "success", message: "Verification successful!"}
+          res.redirect("/premium")
         },
-        function(err) {
-          res.send("Verification failed. " + err)
+        next
+      )
+    },
+
+    resend_verification: function(req, res) {
+      req.user.resetConfirmationToken().then(
+
+        // Confirmation token has been updated
+        (user) => {
+          emails.emailConfirmation(user).then(mailer.send, Logger.error);
+          req.session.flash = {type: "success", message: "Verification email has been sent!"}
+          res.redirect('/premium')
+        },
+
+        // Confirmation has not been updated (not applicable)
+        (err) => {
+          req.session.flash = {type: "error", message: err}
+          res.redirect('/premium')
         }
       )
     }
