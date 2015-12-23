@@ -32,6 +32,8 @@ body {
   margin: 0 auto -60px;
 }
 
+a { color: $yelloww; }
+
 p {
   font-size: 1.3em;
 }
@@ -89,7 +91,14 @@ H3 {
   background-color: rgba(0,0,0,0.2);
   height: 60px;
   padding-top: 15px; // Vertically align text
-  text-align: center;
+
+  .copy { text-align:center; }
+  .kvk,
+  .handelsnaam,
+  .email {
+    text-align: center;
+    color: $muted;
+  }
 }
 
 .text {

@@ -105,9 +105,9 @@ var validations = {
   last_name: false
 }
 
-var checkMatchingPasswords = () => input.pswd.val() == input.pswd_conf.val();
-var checkLength = (elem) => elem.val().length >= 2;
-var checkEmail = (email) => /^.+@.+\..+$/.test(email.val());
+var checkMatchingPasswords = function() { return input.pswd.val() == input.pswd_conf.val(); }
+var checkLength = function(elem) { return elem.val().length >= 2; }
+var checkEmail = function(email) { return /^.+@.+\..+$/.test(email.val()); }
 
 function validateMatchingPasswords() {
   var match = checkMatchingPasswords();
@@ -149,26 +149,26 @@ function validateForm() {
   submit_btn.prop('disabled', !valid);
 }
 
-input.pswd_conf.on('blur', () => {
+input.pswd_conf.on('blur', function() {
   input.pswd.on('keyup', validateMatchingPasswords);
   input.pswd_conf.on('keyup', validateMatchingPasswords);
   input.pswd_conf.off('blur');
   validateMatchingPasswords();
 });
 
-input.first_name.on('blur', () => {
+input.first_name.on('blur', function() {
   input.first_name.on('keyup', validateFirstName);
   input.first_name.off('blur');
   validateFirstName();
 })
 
-input.last_name.on('blur', () => {
+input.last_name.on('blur', function() {
   input.last_name.on('keyup', validateLastName);
   input.last_name.off('blur');
   validateLastName();
 })
 
-input.email.on('blur', () => {
+input.email.on('blur', function() {
   input.email.on('keyup', validateEmail);
   input.email.off('blur');
   validateEmail();

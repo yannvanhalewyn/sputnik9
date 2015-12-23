@@ -6,8 +6,6 @@
     , Logger = require('../src/lib/logger')
     , config = require('./config')
 
-  console.log(config);
-
   var DB_URL = config.mongo_url
 
   function connect() {
