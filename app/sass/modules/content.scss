@@ -87,15 +87,11 @@
 
 /*style buttons*/
 
-// Had to move button out of form
-button.fb { width: 85%; }
-.content-style-form input[type="submit"]:focus,
-.fb:focus {
+.content-style-form input[type="submit"]:focus {
 	outline-color: #fde634;
 	outline-width: 1px;
 }
-.content-style-form input[type="submit"],
-.fb {
+.content-style-form input[type="submit"] {
 	display: block;
 	margin-top: 2.5em;
 	padding: 1.5em;
