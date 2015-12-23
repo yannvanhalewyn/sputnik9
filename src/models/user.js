@@ -52,6 +52,15 @@
     addPayment: function(payment) {
       this.payments.push(payment._id)
       return this.save();
+    },
+
+    resetConfirmationToken() {
+      if (this.provider != 'local' || this.local_data.verified) return Q(this);
+      return generateConfirmationTokenAndExpiration().then((token) => {
+        this.local_data.confirmation_token = token.token;
+        this.local_data.token_expiration = token.expires;
+        return this.save();
+      })
     }
   }
 

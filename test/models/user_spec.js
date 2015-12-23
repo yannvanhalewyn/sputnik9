@@ -207,4 +207,53 @@ describe('User', function() {
       })
     });
   }); // End of describe 'addPayment'
+
+  describe('regenerate_verification_token', function() {
+    context("when user is unverified", function() {
+      var OLD_USER, prev_token, prev_expiration, NEW_USER;
+      beforeEach(function() {
+        return User.create(userFixture.toJS()).then(function(user) {
+          OLD_USER = user;
+          prev_token = user.local_data.confirmation_token;
+          prev_expiration = user.local_data.token_expiration;
+          return user.resetConfirmationToken().then(function(user) {
+            NEW_USER = user;
+          })
+        })
+      });
+
+      it("resets the confirmation token", function() {
+        return User.findById(OLD_USER._id).then(function(user) {
+          expect(user.local_data.confirmation_token).not.to.eql(prev_token)
+          expect(user.local_data.token_expiration).not.to.eql(prev_expiration)
+          var tomorrow = Date.now() + 1000 * 3600 * 24;
+          expect(user.local_data.token_expiration.getTime())
+            .to.be.within(tomorrow - 1000, tomorrow + 1000)
+        })
+      });
+    }); // End of context 'when in user is unverified'
+
+    context("When user is already verified", function() {
+      it("doesn't set a new token and stays verified", function() {
+        return User.create(userFixture.toJS()).then((user) => {
+          user.local_data = {verified: true, confirmation_token: null};
+          return user.resetConfirmationToken().then((user2) => {
+            expect(user2.local_data.verified).to.be.true;
+            expect(user2.local_data.confirmation_token).to.be.null;
+          })
+        });
+      });
+    }); // End of context 'When user is already verified'
+
+    context("When user is not authenticated locally", function() {
+      it("doesn't set a new token", function() {
+        return User.create(userFixtureFB.toJS()).then((user) => {
+          return user.resetConfirmationToken().then((user2) => {
+            expect(user2.local_data.confirmation_token).to.be.undefined;
+          })
+        });
+      });
+    }); // End of context 'When user is already verified'
+
+  }); // End of describe 'regenerate_verification_token'
 }); // End of describe 'User'
