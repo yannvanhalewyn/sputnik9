@@ -9,6 +9,7 @@
     , exphbs = require('express-handlebars')
     , expressWinston = require('express-winston')
     , Logger = require('./src/lib/logger')
+    , config = require('./config/config')
 
   if (process.env.NODE_ENV) Logger.info("Environment: ", process.env.NODE_ENV);
 
@@ -20,7 +21,7 @@
     cookie: { httpOnly: true, maxAge: 6000000 }, // TODO secure: true makes login fail. why?
     // store: new session.MemoryStore,
     resave: false, // Or true if future store uses "touch()"
-    secret: 'asdfghjkl;qwertyuio3456789kjnbkajs',
+    secret: config.app_secret,
     saveUninitialized: true
   }));
   app.use(expressWinston.logger({
