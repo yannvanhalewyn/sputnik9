@@ -22,6 +22,7 @@
     },
 
     sync: function(req, res, next) {
+      if (req.query.testByMollie) return res.sendStatus(200); // Mollie tests the webhook
       if (!req.body.id) return res.status(500).send("No payment ID was provided.");
       paymentLogic.resync(req.body.id)
       .then(

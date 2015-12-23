@@ -8,7 +8,7 @@ var release = `${root}/releases/${dateFormat("yyyy-mm-dd_HHuMM")}`;
 var shared  = `${root}/shared`
 
 plan.target('production', {
-  host: '82.196.8.147',
+  host: '146.185.176.122',
   username: 'deploy',
   agent: process.env.SSH_AUTH_SOCK
 })
