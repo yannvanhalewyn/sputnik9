@@ -52,9 +52,9 @@
   var getLoggedInUser = require("./src/middlewares/getLoggedInUser");
   app.use(getLoggedInUser);
 
-  // Setup Routes
-  var routes = require('./config/routes')
-  routes(app);
+  // Setup passport and routes
+  require('./config/passport')(app);
+  require('./config/routes')(app)
 
   // Use 404 catcher
   app.use(function(req, res) {

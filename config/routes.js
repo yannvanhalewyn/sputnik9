@@ -26,6 +26,9 @@
     // Logging in user (new user session)
     app.post('/login', user_sessions_controller.create);
     app.get('/logout', user_sessions_controller.destroy);
+    app.get('/auth/facebook', user_sessions_controller.new_facebook_session);
+    app.get('/auth/facebook/callback', user_sessions_controller.middlewares.fb_callback,
+            user_sessions_controller.fb_callback);
 
     // Creating a  new user
     app.post('/users', users_controller.create);
