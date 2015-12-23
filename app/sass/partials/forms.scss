@@ -1,3 +1,13 @@
 .icon-close {
   @include span;
 }
+
+.nomatch_message {
+  display: none;
+  color: red;
+}
+
+#submit_signup[disabled] {
+  background: darken(grey, 35);
+  color: grey;
+}

@@ -10,27 +10,37 @@
             <span class="icon icon-close">Close the dialog</span>
             <h2>Sign Up</h2>
             <form action="/users" method="POST" accept-charset="utf-8" >
+
               <p>
               <label>First Name</label>
-              <input type="text" name="first_name" autocorrect="off" spellcheck="false"/>
+              <span class="nomatch_message" id="nomatch_first_name">Voornaam is te kort.</span>
+              <input type="text" name="first_name" id="first_name" autocorrect="off" spellcheck="false"/>
               </p>
+
               <p>
               <label>Last Name</label>
-              <input type="text" name="last_name" autocorrect="off" spellcheck="false"/>
+              <span class="nomatch_message" id="nomatch_last_name">Achternaam is te kort.</span>
+              <input type="text" name="last_name" id="last_name" autocorrect="off" spellcheck="false"/>
               </p>
+
               <p>
               <label>Email</label>
-              <input type="text" name="email" autocorrect="off" spellcheck="false"/>
+              <span class="nomatch_message" id="nomatch_email">Email is ongeldig</span>
+              <input type="text" name="email" id="email" autocorrect="off" spellcheck="false"/>
               </p>
+
               <p>
               <label>Password</label>
-              <input type="password" name="password"/>
+              <span class="nomatch_message" id="nomatch_password">Passwords don't match</span>
+              <input type="password" name="password" id="password" />
               </p>
+
               <p>
               <label>Repeat Password</label>
-              <input type="password" />
+              <input type="password" id="password_confirmation" />
               </p>
-              <p><input type=submit value="Sign Up" /></p>
+              <p><input type=submit value="Sign Up" id="submit_signup" disabled /></p>
+
               <p style="color:#fafafa; font-size:1em">or</p>
             </form>
             <p><button class="fb" style="margin: 0 auto; background-color: rgba(0,0,0,0); color:#fde634; border:solid; border-width:4px">Sign Up with Facebook</button></p>
@@ -69,3 +79,98 @@
   </div>
   <p class="serious-request">De helft van het door jou betaalde bedrag doneren wij aan <a href="http://seriousrequest.3fm.nl">Serious Request</a></p>
 </div>
+
+<script>
+var submit_btn = $('#submit_signup');
+
+var input = {
+  pswd: $('#password'),
+  pswd_conf: $('#password_confirmation'),
+  email: $('#email'),
+  first_name: $('#first_name'),
+  last_name: $('#last_name')
+}
+
+var nomatch = {
+  pswd: $('#nomatch_password'),
+  email: $('#nomatch_email'),
+  first_name: $('#nomatch_first_name'),
+  last_name: $('#nomatch_last_name')
+}
+
+var validations = {
+  pswd: false,
+  email: false,
+  first_name: false,
+  last_name: false
+}
+
+var checkMatchingPasswords = () => input.pswd.val() == input.pswd_conf.val();
+var checkLength = (elem) => elem.val().length >= 2;
+var checkEmail = (email) => /^.+@.+\..+$/.test(email.val());
+
+function validateMatchingPasswords() {
+  var match = checkMatchingPasswords();
+  validations.pswd = match;
+  nomatch.pswd.toggle(!match);
+  validateForm();
+}
+
+function validateFirstName() {
+  var valid = checkLength(input.first_name);
+  validations.first_name = valid;
+  nomatch.first_name.toggle(!valid);
+  validateForm();
+}
+
+function validateLastName() {
+  var valid = checkLength(input.last_name);
+  validations.last_name = valid;
+  nomatch.last_name.toggle(!valid);
+  validateForm();
+}
+
+function validateEmail() {
+  var valid = checkEmail(input.email)
+  validations.email = valid;
+  nomatch.email.toggle(!valid);
+  validateForm();
+}
+
+function validateForm() {
+  // Would love to have lodash's "some" here
+  var valid = true;
+  for (i in validations) {
+    if (validations[i] == false) {
+      valid = false;
+      break;
+    }
+  }
+  submit_btn.prop('disabled', !valid);
+}
+
+input.pswd_conf.on('blur', () => {
+  input.pswd.on('keyup', validateMatchingPasswords);
+  input.pswd_conf.on('keyup', validateMatchingPasswords);
+  input.pswd_conf.off('blur');
+  validateMatchingPasswords();
+});
+
+input.first_name.on('blur', () => {
+  input.first_name.on('keyup', validateFirstName);
+  input.first_name.off('blur');
+  validateFirstName();
+})
+
+input.last_name.on('blur', () => {
+  input.last_name.on('keyup', validateLastName);
+  input.last_name.off('blur');
+  validateLastName();
+})
+
+input.email.on('blur', () => {
+  input.email.on('keyup', validateEmail);
+  input.email.off('blur');
+  validateEmail();
+})
+</script>
