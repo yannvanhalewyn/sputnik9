@@ -2,11 +2,12 @@
 
   "use strict";
 
-  var exphbs = require('express-handlebars');
-  var hbs = exphbs.create();
+  var exphbs = require('express-handlebars')
+    , hbs = exphbs.create()
+    , config = require('../../config/config')
 
   function verificationUrl(token) {
-    return "http://dev.sputnik9.nl/verify?token=" + token;
+    return `http://${config.host}/verify?token=${token}`;
   }
 
   function emailFromTemplate(path_to_template, context, email_opts) {
