@@ -7,7 +7,8 @@ var config = {
     facebook: {
       ID: process.env["FB_PRODUCTION_ID"],
       secret: process.env["FB_PRODUCTION_SECRET"]
-    }
+    },
+    mollie_api_key: process.env["MOLLIE_API_KEY"]
   },
 
   "development": {
@@ -17,7 +18,8 @@ var config = {
     facebook: {
       ID: process.env["FB_DEVELOPMENT_ID"],
       secret: process.env["FB_DEVELOPMENT_SECRET"]
-    }
+    },
+    mollie_api_key: process.env["MOLLIE_TEST_API_KEY"]
   }
 
 }
