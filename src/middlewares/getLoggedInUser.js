@@ -8,7 +8,7 @@
   var getLoggedInUser = function(req, res, next) {
     if (req.session.user_id) {
       return User.findById(req.session.user_id).then(function(user) {
-        Logger.info({user: {
+        if (user) Logger.info({user: {
           first_name: user.first_name,
           last_name: user.last_name,
           _id: user._id.toString(),
