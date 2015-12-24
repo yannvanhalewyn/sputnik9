@@ -2,6 +2,7 @@ var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
   , User = require('../src/models/user')
   , config = require('./config')
+  , Logger = require('../src/lib/logger')
 
 module.exports = function(app) {
 
@@ -11,7 +12,16 @@ module.exports = function(app) {
   });
 
   passport.deserializeUser(function(obj, done) {
-    User.findById(obj).then(done.bind(null, null)); // This way the found user obj is 2nd param
+    User.findById(obj).then((user) => {
+      if (user) Logger.info({user: {
+        first_name: user.first_name,
+        last_name: user.last_name,
+        _id: user._id.toString(),
+        fb_id: user.fb_data.id,
+        premium: user.premium ? "true" : "false"
+      }})
+      done(null, user)
+    }, done); // This way the found user obj is 2nd param
   });
 
   // Setup facebook strategy
