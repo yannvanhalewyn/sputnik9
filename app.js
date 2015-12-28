@@ -6,24 +6,38 @@
     , app = express()
     , bodyParser = require('body-parser')
     , session = require("express-session")
+    , MongoStore = require('connect-mongo')(session)
     , exphbs = require('express-handlebars')
     , expressWinston = require('express-winston')
     , Logger = require('./src/lib/logger')
     , config = require('./config/config')
+    , db = require('./config/db')
 
   if (process.env.NODE_ENV) Logger.info("Environment: ", process.env.NODE_ENV);
 
+  // Establish db connection
+  db.connect();
+
   // Static files
   app.use(express.static('public'));
+
+  // Body parser
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(bodyParser.json());
+
+  // Session and persistent session
   app.use(session({
-    cookie: { httpOnly: true, maxAge: 6000000 }, // TODO secure: true makes login fail. why?
-    // store: new session.MemoryStore,
-    resave: false, // Or true if future store uses "touch()"
+    cookie: { httpOnly: true, maxAge: 1000 * 3600 * 24 * 30 }, // TODO secure: true makes login fail. why?
+    store: new MongoStore({
+      mongooseConnection: db.connection,
+      touchAfter: 3600 * 24 // Resave if untouched after minimum a day
+    }),
+    resave: false, // Or true if future store uses "touch()", false with mongo-connect
     secret: config.app_secret,
     saveUninitialized: true
   }));
+
+  // Logger
   app.use(expressWinston.logger({
     transports: Logger.my_transports,
     meta: false,
@@ -44,10 +58,6 @@
     helpers: require("./src/helpers/handlebars")
   }));
   app.set('view engine', 'hbs');
-
-  // Establish db connection
-  var db = require('./config/db');
-  db.connect();
 
   // Custom middlewares
   var getLoggedInUser = require("./src/middlewares/getLoggedInUser");
