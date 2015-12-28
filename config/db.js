@@ -24,5 +24,6 @@
   }
 
   module.exports.connect = connect;
+  module.exports.connection = mongoose.connection;
 
 }())

@@ -59,7 +59,7 @@ describe('getLoggedInUser', function() {
         return getLoggedInUser(req, res, next);
       });
 
-      it("calls next", function() {
+      it("calls next - 2", function() {
         expect(next).to.have.been.called;
       });
 
