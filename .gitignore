@@ -10,3 +10,4 @@ logs/
 restricted/videos/
 letsencrypt/
 foo.js
+ips.txt

@@ -7,7 +7,7 @@
     , config = require('../../config/config')
 
   function verificationUrl(token) {
-    return `http://${config.host}/verify?token=${token}`;
+    return `https://${config.host}/verify?token=${token}`;
   }
 
   function emailFromTemplate(path_to_template, context, email_opts) {
