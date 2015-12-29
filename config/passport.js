@@ -28,7 +28,7 @@ module.exports = function(app) {
   var strategy_config = {
     clientID: config.facebook.ID,
     clientSecret: config.facebook.secret,
-    callbackURL: "http://" + config.host + "/auth/facebook/callback",
+    callbackURL: "https://" + config.host + "/auth/facebook/callback",
     profileFields: ['id', 'email', 'first_name', 'last_name'],
     enableProof: false
   }
