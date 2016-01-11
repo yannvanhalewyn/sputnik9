@@ -2,7 +2,8 @@
 
   "use strict";
 
-  var requireAdmin = require('../middlewares/require_admin');
+  var requireAdmin = require('../middlewares/require_admin')
+    , UnlockCode = require('../models/unlock_code')
 
   var AdminController = {
     middlewares: {
@@ -10,7 +11,9 @@
     },
 
     index: function(req, res) {
-      res.render('admin_panel', {layout: 'admin'})
+      UnlockCode.find().then(codes => {
+        res.render('admin_panel', {layout: 'admin', codes})
+      })
     }
   }
 

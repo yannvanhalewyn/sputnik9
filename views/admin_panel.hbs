@@ -10,4 +10,17 @@
 
     <p><input type="submit" value="Generate →"></p>
   </form>
+
+  <table>
+  {{#each codes}}
+    <tr>
+      <td>{{this.code}}</td>
+      {{#if this.activated_by}}
+        <td>{{this.activated_by}}</td>
+      {{else}}
+        <td>Not Activated</td>
+      {{/if}}
+    </tr>
+  {{/each}}
+  <table>
 </section>
