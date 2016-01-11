@@ -11,3 +11,5 @@ restricted/videos/
 letsencrypt/
 foo.js
 ips.txt
+tmp/*
+!tmp/.keep
