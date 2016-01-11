@@ -3,11 +3,12 @@
   "use strict";
 
   // Controllers
-  var users_controller = require('../src/controllers/users_controller')
-    , adminController = require('../src/controllers/admin_controller')
+  var users_controller         = require('../src/controllers/users_controller')
+    , adminController          = require('../src/controllers/admin_controller')
     , user_sessions_controller = require('../src/controllers/user_sessions_controller')
-    , media_controller = require('../src/controllers/media_controller')
-    , payments_controller = require('../src/controllers/payments_controller')
+    , media_controller         = require('../src/controllers/media_controller')
+    , payments_controller      = require('../src/controllers/payments_controller')
+    , uc_controller            = require('../src/controllers/unlock_codes_controller')
 
   var paywall = require('../src/middlewares/paywall');
 
@@ -60,6 +61,9 @@
 
     // Admin panel
     app.get('/admin', adminController.middlewares.index, adminController.index)
+
+    // Unlock Codes
+    app.post('/unlock_codes', uc_controller.middlewares.post, uc_controller.post)
   }
 
   module.exports = Routes;
