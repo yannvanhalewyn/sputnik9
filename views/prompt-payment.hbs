@@ -1,5 +1,16 @@
 <div class="prompt_payment_page container">
-  <h1>Hallo {{user.first_name}}!</h1>
-  <p>Bedankt voor het aanmaken van jouw account! Om jouw account te activeren, hebben wij een betaling van €20 euro nodig. Dat geld zullen wij gebruiken om ervoor te zorgen dat jij elke maand weer verrast wordt met nieuw materiaal!</p>
-  <a href="/payments/new" class="payforpremium">Koop nu!</a>
+  <section>
+    <h1>Hallo {{user.first_name}}!</h1>
+    <p>Bedankt voor het aanmaken van jouw account! Om jouw account te activeren, hebben wij een betaling van €20 euro nodig. Dat geld zullen wij gebruiken om ervoor te zorgen dat jij elke maand weer verrast wordt met nieuw materiaal!</p>
+    <a href="/payments/new" class="payforpremium">Koop nu!</a>
+  </section>
+
+  <section class="activation-code">
+    <h1>Activatie Code</h1>
+    <p>Heb je een activatie code? Geef deze hier in:</p>
+    <form class="form-inline" action="get-premium" method="get">
+      <input id="code" class="form-control" type="text" name="code">
+      <button type="submit" class="submit-code">Activeer</button>
+    </form>
+  </section>
 </div>
