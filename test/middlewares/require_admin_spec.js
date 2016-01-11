@@ -33,8 +33,13 @@ describe('requireLogin', function() {
         requireAdmin(req, res, next);
       });
 
-      it('redirects to /login', function() {
-        expect(res.redirect).to.have.been.calledWith('/login');
+      it('redirects to home page', function() {
+        expect(res.redirect).to.have.been.calledWith('/');
+      });
+
+      it('sets the flash error message', function() {
+        expect(req.session.flash).to
+          .eql({type: 'error', message: 'You must be an admin to view that page.'})
       });
 
       it('doesn\'t call next', function() {
@@ -56,7 +61,7 @@ describe('requireLogin', function() {
     });
 
     it("redirects to the login page", function() {
-      expect(res.redirect).to.have.been.calledWith("/login");
+      expect(res.redirect).to.have.been.calledWith("/");
     });
 
     it("set's the flash error message", function() {

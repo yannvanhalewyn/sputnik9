@@ -2,12 +2,15 @@
 
   "use strict";
 
-  var requireAdmin= function(req, res, next) {
-    if (req.user && req.user.admin) {
-      return next();
+  var requireAdmin = function(req, res, next) {
+    if (!req.user) {
+      req.session.flash = {type: "error", message: "You must be logged in to view that page."}
+      return res.redirect("/");
+    } else if (!req.user.admin) {
+      req.session.flash = {type: "error", message: "You must be an admin to view that page."}
+      return res.redirect("/");
     }
-    req.session.flash = {type: "error", message: "You must be logged in to view that page."}
-    res.redirect("/login");
+    next();
   }
 
   module.exports = requireAdmin;
