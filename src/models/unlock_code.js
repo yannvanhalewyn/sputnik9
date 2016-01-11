@@ -21,11 +21,20 @@ unlockCodeSchema.methods = {
    * @return {Boolean} Wether of not the unlock code had been used.
    */
   isValid() {
-    return Boolean(this.activated_by)
+    return !Boolean(this.activated_by)
   },
 
 
+  /**
+   * Uses the unlock code for a given user.
+   *
+   * @param {Object} The user object for which the code is to be used.
+   * @return {Promise} A promise that will reject if the unlock code is
+   * already in use. On resolve, it will contain an object with the updated
+   * user and unlock code objects.
+   */
   use(user) {
+    if (!this.isValid()) return Q.reject("This unlock code has already been used.")
     this.activated_by = user._id;
     user.premium = true;
     return Q.all([this.save(), user.save()]).then(result => {
