@@ -30,6 +30,17 @@
           subject: "Please activate your account.",
         }
       );
+    },
+
+    sendUnlockCode(email, code) {
+      return emailFromTemplate(
+        "views/emails/send_unlock_code.hbs", {
+          code: code
+        }, {
+          to: email,
+          subject: "Je hebt een gratis Sputnik9 premium account gekregen!"
+        }
+      )
     }
   }
 

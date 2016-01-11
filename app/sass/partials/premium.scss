@@ -8,7 +8,15 @@
   @include premium_static;
   .payforpremium {
     @include button;
-    text-transform: uppercase;
+  }
+
+  section.activation-code {
+    margin-top: 40px;
+    h1 { margin: 40px 0 10px; }
+    .submit-code {
+      @include button;
+      padding: 5px 10px;
+    }
   }
 }
 
@@ -16,7 +24,6 @@
   @include premium_static;
   .resend_email_btn {
     @include button;
-    text-transform: uppercase;
   }
 }
 

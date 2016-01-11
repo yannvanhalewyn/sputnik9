@@ -19,6 +19,12 @@ describe('UnlockCode', function() {
         expect(uc.code).to.match(/^[0-9a-f]{24}$/)
       })
     });
+
+    it('stores the sent_to if any', function() {
+      return UnlockCode.create('john@doe.nl').then((uc) => {
+        return expect(uc.sent_to).to.eq('john@doe.nl')
+      })
+    });
   }); // End of describe 'creation'
 
   describe('#isValid', function() {

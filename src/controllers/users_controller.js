@@ -9,12 +9,14 @@
     , mailer = require('../helpers/mailer')
     , emails = require('../helpers/emails')
     , Logger = require('../lib/logger')
+    , UnlockCode = require('../models/unlock_code')
     , requireLogin = require('../middlewares/requireLogin')
 
   var users_controller = {
 
     middlewares: {
-      resend_verification: [requireLogin]
+      resend_verification: [requireLogin],
+      use_unlock_code: [requireLogin]
     },
 
     create: function(req, res) {
@@ -77,6 +79,26 @@
           res.redirect('/premium')
         }
       )
+    },
+
+    use_unlock_code: function(req, res) {
+      UnlockCode.findOne({code: req.query.code}).then((uc) => {
+        // Code does not exist
+        if (!uc) {
+          req.session.flash = {type: 'error', message: 'Deze code bestaat niet.'}
+          return res.redirect('/premium')
+        }
+
+        uc.use(req.user).then(response => {
+          // Code is valid and has been used on user
+          req.session.flash = {type: "success", message: 'Deze code klopt! Je bent nu premium.'}
+          res.redirect('/premium')
+        }, err => {
+          // Code was not valid (eg already in use)
+          req.session.flash = {type: 'error', err}
+          res.redirect('/premium')
+        })
+      })
     }
   }
 

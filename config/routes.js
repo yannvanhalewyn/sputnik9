@@ -3,10 +3,12 @@
   "use strict";
 
   // Controllers
-  var users_controller = require('../src/controllers/users_controller')
+  var users_controller         = require('../src/controllers/users_controller')
+    , adminController          = require('../src/controllers/admin_controller')
     , user_sessions_controller = require('../src/controllers/user_sessions_controller')
-    , media_controller = require('../src/controllers/media_controller')
-    , payments_controller = require('../src/controllers/payments_controller')
+    , media_controller         = require('../src/controllers/media_controller')
+    , payments_controller      = require('../src/controllers/payments_controller')
+    , uc_controller            = require('../src/controllers/unlock_codes_controller')
 
   var paywall = require('../src/middlewares/paywall');
 
@@ -38,6 +40,8 @@
     app.get('/resend_verification',
             users_controller.middlewares.resend_verification,
             users_controller.resend_verification)
+    app.get('/get-premium', users_controller.middlewares.use_unlock_code,
+            users_controller.use_unlock_code)
 
     // Video's page
     app.get("/premium", media_controller.middlewares.index,
@@ -57,6 +61,11 @@
       res.render("thankyou");
     });
 
+    // Admin panel
+    app.get('/admin', adminController.middlewares.index, adminController.index)
+
+    // Unlock Codes
+    app.post('/unlock_codes', uc_controller.middlewares.post, uc_controller.post)
   }
 
   module.exports = Routes;

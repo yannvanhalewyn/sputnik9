@@ -1,0 +1,17 @@
+<h1>Admin Panel</h1>
+
+<section class="unlock_codes">
+  <h3>Unlock Codes</h3>
+  <form action="/unlock_codes" method="post" accept-charset="utf-8" class="form-inline">
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input type="text" class="form-control" name="email" placeholder="john@example.com" id="email">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Generate →">
+  </form>
+
+  <div id="admin-react-parent"><img src="img/loading.svg" alt="Loading icon" /></div>
+</section>
+
+<script type="text/json" charset="utf-8" id="unlock_codes">{{{codes}}}</script>
+<script src="js/admin.bundle.js"></script>

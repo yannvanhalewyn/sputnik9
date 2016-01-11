@@ -32,6 +32,10 @@
     payments: [
       {type: mongoose.Schema.Types.ObjectId, ref: "Payment"}
     ],
+    admin: {
+      type: Boolean,
+      default: false
+    },
     provider: String,
     fb_data: {
       id: String,
