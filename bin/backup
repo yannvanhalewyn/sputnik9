@@ -1,0 +1,5 @@
+#!/bin/bash
+
+out=$HOME/mongo_backups/db_back`date +%y-%m-%d_%Hh%M`
+mkdir -p $out
+mongodump --db sputnik9 --out $out

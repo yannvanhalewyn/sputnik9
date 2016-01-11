@@ -13,7 +13,7 @@ var createdPayment = {
   details: null,
   links:
    { paymentUrl: 'https://www.mollie.com/payscreen/pay/vZ64usRgrC',
-     redirectUrl: 'http://localhost:3000/payments/123'
+     redirectUrl: 'https://localhost:3000/thankyou'
    }
 }
 
@@ -33,7 +33,7 @@ var paidPayment = {
    { consumerName: 'T. TEST',
      consumerAccount: 'NL17RABO0213698412',
      consumerBic: 'TESTNL99' },
-  links: { redirectUrl: 'http://localhost:3000/payments/123' }
+  links: { redirectUrl: 'https://localhost:3000/thankyou' }
 }
 
 var paidPayment_db = {
@@ -44,7 +44,7 @@ var paidPayment_db = {
   status : "paid",
   metadata : { "user_id" : "564a5f7e89e7872f6daf03f7" },
   mollie_id : "tr_8VvFb4J34h",
-  links : { "redirectUrl" : "http://localhost:3000/checkout" },
+  links : { "redirectUrl" : "https://localhost:3000/thankyou" },
   __v : 0,
   details : {
     consumerName : "T. TEST",
@@ -68,7 +68,7 @@ var refundedPayment = {
    { consumerName: 'T. TEST',
      consumerAccount: 'NL17RABO0213698412',
      consumerBic: 'TESTNL99' },
-  links: { redirectUrl: 'http://localhost:3000/payments/123' }
+  links: { redirectUrl: 'https://localhost:3000/thankyou' }
 }
 
 var cancelledPayment = {
@@ -87,18 +87,13 @@ var cancelledPayment = {
    { consumerName: 'T. TEST',
      consumerAccount: 'NL17RABO0213698412',
      consumerBic: 'TESTNL99' },
-  links: { redirectUrl: 'http://localhost:3000/payments/123' }
-}
-var creation_request = {
-  amount: 20,
-  description: "Premium content Sputnik9.nl",
-  redirectUrl: "http://www.sputnik9.nl/checkout"
+  links: { redirectUrl: 'https://localhost:3000/thankyou' }
 }
 
 var creation_request = {
   amount: 20,
   description: "Premium content Sputnik9.nl",
-  redirectUrl: "http://sputnik9.nl/thankyou"
+  redirectUrl: "https://sputnik9.nl/thankyou"
 }
 
 module.exports.createdPayment = createdPayment;

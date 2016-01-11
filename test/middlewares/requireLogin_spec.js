@@ -41,8 +41,8 @@ describe('requireLogin', function() {
       expect(next).not.to.have.been.called;
     });
 
-    it("redirects to the login page", function() {
-      expect(res.redirect).to.have.been.calledWith("/login");
+    it("redirects to the home page", function() {
+      expect(res.redirect).to.have.been.calledWith("/");
     });
 
     it("set's the flash error message", function() {

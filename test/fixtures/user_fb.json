@@ -1,0 +1,10 @@
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "j.d@gmail.com",
+  "provider": "facebook",
+  "fb_data": { 
+    "id": "123",
+     "accessToken": "theaccesstoken" 
+  } 
+}

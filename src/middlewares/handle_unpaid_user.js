@@ -16,12 +16,12 @@
     if (req.user.payments.length == 0) return res.render('prompt-payment', {user: req.user});
 
     // If he does, check if any payments we're actually valid. If so, update his
-    // premium status and render the media page
+    // premium status and render the premium page
     User.findById(req.user._id).populate("payments").then(function(user) {
       if (isAnyPaymentGood(user.payments)) {
         user.premium = true;
         user.save()
-        res.render("media")
+        res.render("premium")
       }
       else res.render("prompt-payment")
     })

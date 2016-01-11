@@ -15,9 +15,9 @@
     description: String,
     method: String,
     status: String,
-    createdDateTime: Date,
-    paidDateTime: Date,
-    cancelledDateTime: Date,
+    createdDatetime: Date,
+    paidDatetime: Date,
+    cancelledDatetime: Date,
     details: {
       consumerName: String,
       consumerAccount: String,

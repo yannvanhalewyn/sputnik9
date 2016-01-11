@@ -25,11 +25,11 @@
         html: opts.html
       };
 
-      Logger.debug("Will send email: ", mailopts);
-      // transporter.sendMail(mailopts, function(err, info) {
-      //   if (err) return Logger.error("MAIL error:", err);
-      //   Logger.info("Mail sent!", info);
-      // })
+      Logger.info("Sending email:", mailopts);
+      transporter.sendMail(mailopts, function(err, info) {
+        if (err) return Logger.error("MAIL error:", err);
+        Logger.info("Mail sent!", info);
+      })
     }
   }
 

@@ -11,8 +11,8 @@
     return {
       amount: 20,
       description: "Premium content Sputnik9.nl",
-      redirectUrl: "http://" + host + "/thankyou", // TODO update
-      metadata: { user_id: user_id }
+      redirectUrl: "https://" + host + "/thankyou", // TODO update
+      metadata: { user_id: user_id}
     }
   }
 

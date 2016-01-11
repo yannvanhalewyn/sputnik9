@@ -4,8 +4,9 @@
 
   var mongoose = require('mongoose')
     , Logger = require('../src/lib/logger')
+    , config = require('./config')
 
-  var DB_URL = (process.env.OPENSHIFT_MONGODB_DB_URL || "mongodb://localhost:27017/") + "sputnik9";
+  var DB_URL = config.mongo_url
 
   function connect() {
 
@@ -23,5 +24,6 @@
   }
 
   module.exports.connect = connect;
+  module.exports.connection = mongoose.connection;
 
 }())

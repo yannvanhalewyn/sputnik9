@@ -28,14 +28,7 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave 
 
 # install gulp and gulp-sass for building
 log "Installing gulp"
-sudo npm install gulp gulp-sass -g
-
-# install mongodb.
-# Website says install mongodb-org, but doesn't work.
-# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-# echo "deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
-# sudo apt-get update
-# sudo apt-get install -y mongodb
+sudo npm install gulp -g
 
 # UBUNTU 14
 log "Installing mongo"
@@ -43,8 +36,3 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
 sudo apt-get update
 sudo apt-get install -y mongodb-org
-
-# when error about user local!
-# => $ vim /etc/default/locale
-# LC_ALL=en_US.UTF-8
-# LANG=en_US.UTF-8

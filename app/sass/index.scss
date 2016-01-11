@@ -1,7 +1,165 @@
 @import "modules/variables";
-@import "modules/buttons";
-@import "main";
-@import "partials/home";
-@import "partials/navbar";
-@import "partials/static_pages";
-@import "partials/404505"
+@import "modules/span";
+@import "modules/button";
+@import "modules/component";
+@import "modules/content";
+@import "partials/homepage";
+@import "partials/flash";
+@import "partials/forms";
+@import "partials/premium";
+
+html {
+  background: url(../img/bg4.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: transparent;
+  color: $white;
+  min-height: 100%;
+  height: 100%;
+  font-family: $mont;
+}
+
+#wrap {
+  padding-top: 100px;
+  min-height: 100%;
+  height: auto !important;
+  margin: 0 auto -60px;
+}
+
+a { color: $yelloww; }
+
+p {
+  font-size: 1.3em;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v6/zhcz-_WihjSQC0oHJ9TCYL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Raleway Light'), local('Raleway-Light'), url(https://fonts.gstatic.com/s/raleway/v9/-_Ctzj9b56b8RgXW8FArib3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Raleway Bold'), local('Raleway-Bold'), url(https://fonts.gstatic.com/s/raleway/v9/JbtMzqLaYbbbCL9X6EvaI73hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
+
+
+H3 {
+	text-align: center;
+}
+
+.titel {
+	margin-top: 90px;
+}
+
+.submit {
+	background-color: $yelloww;
+	padding: 10px 20px 10px 20px;
+	font-weight: bolder;
+	font-size: 20pt;
+	color: #111;
+}
+
+.account {
+	margin-top: 50px;
+	text-align: center;
+}
+
+.navbar {
+   background-color: rgba(0,0,0,0.2);
+   border-color: transparent;
+}
+
+.navbar li { color: $black; }
+
+.footer {
+  background-color: rgba(0,0,0,0.2);
+  height: 60px;
+  padding-top: 15px; // Vertically align text
+
+  .copy { text-align:center; }
+  .kvk,
+  .handelsnaam,
+  .email {
+    text-align: center;
+    color: $muted;
+  }
+}
+
+.text {
+	text-align:left;
+	font-size: 18px;
+	text-shadow: 2px 2px 2px $black;
+}
+
+.yelloww {
+	background-color: $yelloww;
+	color: $black;
+	text-shadow: none;
+}
+
+
+
+
+
+
+
+/*
+PAGE SCROLL (SECTIONS ETC)
+
+Demo Sections - You can use these as guides or delete them - the scroller will work with any sort of height, fixed, undefined, or percentage based.
+The padding is very important to make sure the scrollspy picks up the right area when scrolled to. Adjust the margin and padding of sections and children
+of those sections to manage the look and feel of the site. */
+
+// Goed voorbeeld voor mixins!
+@mixin scroll-section {
+  padding-top: 80px;
+  text-align: center;
+}
+
+.intro-section { @include scroll-section; padding-top: 0px; }
+.about-section { @include scroll-section; }
+.services-section { @include scroll-section; }
+.contact-section { @include scroll-section; }
+
+/*
+PROGRESS BAR VOOR DE KUNST */
+
+
+
+.progress {
+  width: 100%;
+  height: 50px;
+}
+.progress-wrap {
+  background: #fde634;
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative;}
+  .progress-wrap .progress-bar {
+    background:#333;
+    left: 0;
+    position: absolute;
+    top: 0;
+
+}
+
+
+
+
