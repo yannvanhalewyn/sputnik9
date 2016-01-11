@@ -12,8 +12,7 @@
 
     index: function(req, res) {
       UnlockCode.find().populate('activated_by').then(codes => {
-        console.log(codes);
-        res.render('admin_panel', {layout: 'admin', codes})
+        res.render('admin_panel', {layout: 'admin', codes: JSON.stringify(codes)})
       })
     }
   }
