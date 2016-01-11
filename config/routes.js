@@ -40,6 +40,8 @@
     app.get('/resend_verification',
             users_controller.middlewares.resend_verification,
             users_controller.resend_verification)
+    app.get('/get-premium', users_controller.middlewares.use_unlock_code,
+            users_controller.use_unlock_code)
 
     // Video's page
     app.get("/premium", media_controller.middlewares.index,
