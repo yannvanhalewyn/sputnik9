@@ -9,7 +9,7 @@ module.exports = {
   },
 
   post(req, res) {
-    UnlockCode.create().then(uc => {
+    UnlockCode.create(req.body.email).then(uc => {
       emails.sendUnlockCode(req.body.email, uc.code).then(mailer.send)
       res.redirect('/admin')
     })
