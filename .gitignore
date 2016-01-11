@@ -8,3 +8,8 @@ notes.txt
 .sass-cache/
 logs/
 restricted/videos/
+letsencrypt/
+foo.js
+ips.txt
+tmp/*
+!tmp/.keep

@@ -7,7 +7,7 @@
     , config = require('../../config/config')
 
   function verificationUrl(token) {
-    return `http://${config.host}/verify?token=${token}`;
+    return `https://${config.host}/verify?token=${token}`;
   }
 
   function emailFromTemplate(path_to_template, context, email_opts) {
@@ -30,6 +30,17 @@
           subject: "Please activate your account.",
         }
       );
+    },
+
+    sendUnlockCode(email, code) {
+      return emailFromTemplate(
+        "views/emails/send_unlock_code.hbs", {
+          code: code
+        }, {
+          to: email,
+          subject: "Je hebt een gratis Sputnik9 premium account gekregen!"
+        }
+      )
     }
   }
 

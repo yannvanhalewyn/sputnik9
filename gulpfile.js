@@ -4,9 +4,16 @@ var gulp       = require('gulp')
   , livereload = require('gulp-livereload')
   , concat     = require('gulp-concat')
   , uglify     = require('gulp-uglify')
+  , browserify = require('browserify')
+  , babelify   = require('babelify')
+  , source     = require('vinyl-source-stream')
 
 gulp.task('sass', function() {
   gulp.src('./app/sass/index.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/css'))
+    .pipe(livereload())
+  gulp.src('./app/sass/admin.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./public/css'))
     .pipe(livereload())
@@ -38,6 +45,21 @@ gulp.task('js', function() {
 gulp.task('js:watch', function() {
   livereload.listen();
   return gulp.watch(jsFiles, ['js'])
+})
+
+var entry = 'app/js/admin/index.jsx'
+
+gulp.task('bundle', function() {
+  browserify(entry)
+    .transform(babelify, {presets: ['es2015', 'react']})
+    .bundle()
+    .on('error', (e) => console.log(e.toString()))
+    .pipe(source('admin.bundle.js'))
+    .pipe(gulp.dest('public/js'))
+})
+
+gulp.task('bundle:watch', () => {
+  gulp.watch('app/js/admin/**/*.jsx', ['bundle'])
 })
 
 gulp.task('default', ['sass']);

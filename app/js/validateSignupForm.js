@@ -10,6 +10,7 @@ var input = {
 
 var nomatch = {
   pswd: $('#nomatch_password'),
+  pswd_length: $('#nomatch_password_length'),
   email: $('#nomatch_email'),
   first_name: $('#nomatch_first_name'),
   last_name: $('#nomatch_last_name')
@@ -17,6 +18,7 @@ var nomatch = {
 
 var validations = {
   pswd: false,
+  pswd_length: false,
   email: false,
   first_name: false,
   last_name: false
@@ -30,6 +32,13 @@ function validateMatchingPasswords() {
   var match = checkMatchingPasswords();
   validations.pswd = match;
   nomatch.pswd.toggle(!match);
+  validateForm();
+}
+
+function validatePasswordLength() {
+  var match = input.pswd.val().length > 6;
+  validations.pswd_length = match;
+  nomatch.pswd_length.toggle(!match);
   validateForm();
 }
 
@@ -65,6 +74,12 @@ function validateForm() {
   }
   submit_btn.prop('disabled', !valid);
 }
+
+input.pswd.on('blur', function() {
+  input.pswd.on('keyup', validatePasswordLength);
+  input.pswd.off('blur');
+  validatePasswordLength();
+})
 
 input.pswd_conf.on('focus', function() {
   input.pswd.on('keyup', validateMatchingPasswords);

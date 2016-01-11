@@ -7,6 +7,7 @@
     , paymentLogic = require('../models/payment_logic')
     , Payment = require('../models/payment')
     , User = require('../models/user')
+    , Logger = require('../lib/logger')
 
   var payments_controller = {
     middlewares: {
@@ -23,6 +24,7 @@
 
     sync: function(req, res, next) {
       if (req.query.testByMollie) return res.sendStatus(200); // Mollie tests the webhook
+      Logger.info("Mollie sync body", {body: req.body})
       if (!req.body.id) return res.status(500).send("No payment ID was provided.");
       paymentLogic.resync(req.body.id)
       .then(
