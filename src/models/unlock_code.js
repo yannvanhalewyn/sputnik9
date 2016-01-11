@@ -11,6 +11,7 @@ var unlockCodeSchema = mongoose.Schema({
     minLength: 24,
     maxLength: 24
   },
+  sent_to: String,
   activated_by: mongoose.Schema.Types.ObjectId
 })
 
@@ -28,7 +29,7 @@ unlockCodeSchema.methods = {
   /**
    * Uses the unlock code for a given user.
    *
-   * @param {Object} The user object for which the code is to be used.
+   * @param {Object} user The user object for which the code is to be used.
    * @return {Promise} A promise that will reject if the unlock code is
    * already in use. On resolve, it will contain an object with the updated
    * user and unlock code objects.
@@ -47,16 +48,18 @@ var UnlockCode = mongoose.model('UnlockCode', unlockCodeSchema)
 
 /**
  * Creates a new unlock code with a random 24bit hash code
+ * @param {String} optionalRecipient and optional recipient of the code to be
+ * stored for later reference only.
  * @return {Promise} A promise for the created unlock code object
  */
-UnlockCode.create = () => {
+UnlockCode.create = (optionalRecipient) => {
 
   var defered = Q.defer();
 
   crypto.randomBytes(CODE_LENGTH / 2, (err, buff) => {
     if (err) return defered.reject(err);
-    return new UnlockCode({code: buff.toString('hex')}).save()
-      .then(defered.resolve, defered.reject)
+    return new UnlockCode({code: buff.toString('hex'), sent_to: optionalRecipient})
+      .save().then(defered.resolve, defered.reject)
   })
 
   return defered.promise;
