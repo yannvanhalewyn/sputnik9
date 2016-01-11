@@ -3,6 +3,8 @@ var requireAdmin = require('../middlewares/require_admin')
   , mailer = require('../helpers/mailer')
   , emails = require('../helpers/emails')
 
+var isValidEmail = (email) => /^.+@.+\..+$/.test(email)
+
 module.exports = {
   middlewares: {
     post: [requireAdmin]
@@ -10,7 +12,8 @@ module.exports = {
 
   post(req, res) {
     UnlockCode.create(req.body.email).then(uc => {
-      emails.sendUnlockCode(req.body.email, uc.code).then(mailer.send)
+      if (isValidEmail(req.body.email))
+        emails.sendUnlockCode(req.body.email, uc.code).then(mailer.send)
       res.redirect('/admin')
     })
   }
