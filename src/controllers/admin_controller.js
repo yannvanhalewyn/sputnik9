@@ -10,7 +10,7 @@
     },
 
     index: function(req, res) {
-      res.send("Admin panel")
+      res.render('admin_panel', {layout: 'admin'})
     }
   }
 
