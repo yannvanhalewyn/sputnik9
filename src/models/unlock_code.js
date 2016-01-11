@@ -10,8 +10,15 @@ var unlockCodeSchema = mongoose.Schema({
     required: true,
     minLength: 24,
     maxLength: 24
-  }
+  },
+  activated_by: mongoose.Schema.Types.ObjectId
 })
+
+unlockCodeSchema.methods = {
+  isValid() {
+    return Boolean(this.activated_by)
+  }
+}
 
 var UnlockCode = mongoose.model('UnlockCode', unlockCodeSchema)
 
