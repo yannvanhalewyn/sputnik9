@@ -1,9 +1,10 @@
-var include   = require('include')
-  , chai      = require('chai')
-  , expect = chai.expect
+var include    = require('include')
+  , chai       = require('chai')
+  , expect     = chai.expect
   , UnlockCode = include('src/models/unlock_code')
-  , Factory = require('../factories/factory')
-  , db = require('../util/test_db')
+  , User       = include('src/models/user')
+  , Factory    = require('../factories/factory')
+  , db         = require('../util/test_db')
 
 before(db.connect)
 afterEach(db.teardown)
@@ -31,5 +32,29 @@ describe('UnlockCode', function() {
       })
     });
   }); // End of describe '#valid?'
+
+  describe('#use', function() {
+    context("when the code has not been used yet", function() {
+      var USER, UC;
+      before(function() {
+        return Factory('unlock_code').then(uc => {
+          return Factory('user').then(user => {
+            return uc.use(user).then(result => {
+              UC = result.unlock_code;
+              USER = result.user;
+            })
+          })
+        })
+      });
+
+      it("stores the user's _id as activated_by field", function() {
+        expect(UC.activated_by).to.eql(USER._id)
+      });
+
+      it("sets the user as premium", function() {
+        expect(USER.premium).to.be.true;
+      });
+    }); // End of context 'when the code has not been used yet'
+  }); // End of describe '#use'
 
 }); // End of describe 'UnlockCode'

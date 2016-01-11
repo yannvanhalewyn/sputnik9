@@ -15,8 +15,22 @@ var unlockCodeSchema = mongoose.Schema({
 })
 
 unlockCodeSchema.methods = {
+
+  /**
+   * Checks if the unlock code has been used.
+   * @return {Boolean} Wether of not the unlock code had been used.
+   */
   isValid() {
     return Boolean(this.activated_by)
+  },
+
+
+  use(user) {
+    this.activated_by = user._id;
+    user.premium = true;
+    return Q.all([this.save(), user.save()]).then(result => {
+      return {unlock_code: result[0], user: result[1]}
+    })
   }
 }
 
