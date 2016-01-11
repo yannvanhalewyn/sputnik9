@@ -12,7 +12,10 @@ var unlockCodeSchema = mongoose.Schema({
     maxLength: 24
   },
   sent_to: String,
-  activated_by: mongoose.Schema.Types.ObjectId
+  activated_by: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 unlockCodeSchema.methods = {
