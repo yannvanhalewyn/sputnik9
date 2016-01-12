@@ -27,7 +27,7 @@
           verify_url: verificationUrl(user.local_data.confirmation_token)
         }, {
           to: user.email,
-          subject: "Please activate your account.",
+          subject: "Bevestig je e-mail adres!",
         }
       );
     },
@@ -38,7 +38,7 @@
           code: code
         }, {
           to: email,
-          subject: "Je hebt een gratis Sputnik9 premium account gekregen!"
+          subject: "Premium activatiecode."
         }
       )
     }
