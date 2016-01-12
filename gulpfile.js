@@ -7,6 +7,7 @@ var gulp       = require('gulp')
   , browserify = require('browserify')
   , babelify   = require('babelify')
   , source     = require('vinyl-source-stream')
+  , buffer     = require('vinyl-buffer')
 
 gulp.task('sass', function() {
   gulp.src('./app/sass/index.scss')
@@ -55,6 +56,8 @@ gulp.task('bundle', function() {
     .bundle()
     .on('error', (e) => console.log(e.toString()))
     .pipe(source('admin.bundle.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest('public/js'))
 })
 
@@ -63,4 +66,4 @@ gulp.task('bundle:watch', () => {
 })
 
 gulp.task('default', ['sass']);
-gulp.task('build:production', ['sass', 'js'])
+gulp.task('build:production', ['sass', 'js', 'bundle'])

@@ -95,7 +95,7 @@
           res.redirect('/premium')
         }, err => {
           // Code was not valid (eg already in use)
-          req.session.flash = {type: 'error', err}
+          req.session.flash = {type: 'error', message: 'Deze code is al eens gebruikt.'}
           res.redirect('/premium')
         })
       })
