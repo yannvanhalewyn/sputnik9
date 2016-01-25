@@ -1,24 +1,21 @@
 html {
-  position: relative;
   background: url(../img/bg4.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   min-height: 100%;
-  width: 100%;
   height: 100%;
 }
 
 body {
   background-color: transparent;
   color: $white;
-  font-family: $mont;
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  width: 100%;
+  min-height: 100%;
   height: 100%;
+  font-family: $mont;
 }
+
 
 button {
   background: none;
@@ -34,7 +31,7 @@ ul {
 
 .navbar {
   background-color: rgba(black, 0.2);
-  border-color: transparent;
+  border: none;
 }
 
 #wrap {
