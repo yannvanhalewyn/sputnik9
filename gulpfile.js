@@ -11,7 +11,8 @@ var gulp         = require('gulp')
   , buffer       = require('vinyl-buffer')
 
 gulp.task('sass', function() {
-  gulp.src(['./app/sass/home.scss', './app/sass/premium.scss', './app/sass/admin.scss'])
+  gulp.src(['./app/sass/home.scss',  './app/sass/premium.scss',
+            './app/sass/admin.scss', './app/sass/static.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({browsers: ["> 1%"]}))
     .pipe(gulp.dest('./public/css'))
