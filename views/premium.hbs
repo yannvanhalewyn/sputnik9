@@ -1,11 +1,14 @@
 <link rel="stylesheet" type="text/css" href="css/premium.css">
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/howler/1.1.28/howler.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.min.js"></script>
 
 <!--lightbox-->
 <link href="//rawgithub.com/ashleydw/lightbox/master/dist/ekko-lightbox.css" rel="stylesheet">
 <link href="//rawgithub.com/ashleydw/lightbox/gh-pages/css/dark.css" rel="stylesheet">
 
 <!-- Audio Player -->
-<div class="audio-player">
+<div class="audio-player" id="react-audio-player">
   <div class="tracklist" id="tracklist">
     <div class="track">
       <img class="playicon" src="img/musicplay.png" alt="">
@@ -114,8 +117,7 @@
   <!-- Video -->
   <div class="video-wrap">
     <video width="100%" style="padding:0px; margin:0px" controls>
-      <source src="mov_bbb.mp4" type="video/mp4">
-      <source src="mov_bbb.ogg" type="video/ogg">
+      <source src="https://web.vboxx.nl/1/files/4981/entry1-januari/get-by.mp4?view=1" type="video/mp4">
       Your browser does not support HTML5 video.
     </video>
   </div>
@@ -214,3 +216,5 @@ $(document).ready(function ($) {
   });
 });
 </script>
+
+<script type="text/javascript" src="js/premium.bundle.js">
