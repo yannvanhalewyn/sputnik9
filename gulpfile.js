@@ -1,14 +1,12 @@
-var gulp         = require('gulp')
-  , sass         = require('gulp-sass')
-  , rename       = require('gulp-rename')
-  , livereload   = require('gulp-livereload')
-  , concat       = require('gulp-concat')
-  , uglify       = require('gulp-uglify')
-  , autoprefixer = require('gulp-autoprefixer')
-  , browserify   = require('browserify')
-  , babelify     = require('babelify')
-  , source       = require('vinyl-source-stream')
-  , buffer       = require('vinyl-buffer')
+var gulp          = require('gulp')
+  , sass          = require('gulp-sass')
+  , livereload    = require('gulp-livereload')
+  , concat        = require('gulp-concat')
+  , uglify        = require('gulp-uglify')
+  , autoprefixer  = require('gulp-autoprefixer')
+  , webpack       = require('webpack')
+  , webpackConfig = require('./webpack.config')
+  , gutil         = require('gulp-util')
 
 gulp.task('sass', function() {
   gulp.src(['./app/sass/home.scss',  './app/sass/premium.scss',
@@ -47,21 +45,12 @@ gulp.task('js:watch', function() {
   return gulp.watch(jsFiles, ['js'])
 })
 
-var entry = 'app/js/admin/index.jsx'
-
-gulp.task('bundle', function() {
-  browserify(entry)
-    .transform(babelify, {presets: ['es2015', 'react']})
-    .bundle()
-    .on('error', (e) => console.log(e.toString()))
-    .pipe(source('admin.bundle.js'))
-    .pipe(buffer())
-    .pipe(uglify())
-    .pipe(gulp.dest('public/js'))
-})
-
-gulp.task('bundle:watch', () => {
-  gulp.watch('app/js/admin/**/*.jsx', ['bundle'])
+gulp.task('bundle', function(done) {
+  webpack(webpackConfig).run(function(err, stats) {
+    if (err) throw new gutil.PluginError("webpack", err)
+    gutil.log("[webpack]", stats.toString({colors: true}));
+    done();
+  })
 })
 
 gulp.task('default', ['sass']);
