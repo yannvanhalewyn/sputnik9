@@ -28,3 +28,11 @@
 .morph-content {
   overflow: scroll;
 }
+
+.notify_group {
+  text-align: left;
+  .notify_text {
+    font-size: 1.2em;
+    display: inline-block;
+  }
+}

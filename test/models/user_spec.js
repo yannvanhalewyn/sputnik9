@@ -99,6 +99,12 @@ describe('User', function() {
         expect(user.admin).to.be.false;
       })
     })
+
+    it('defaults to be notified by email', function() {
+      return User.create(userFixture.toJS()).then((user) => {
+        expect(user.receive_emails).to.be.true;
+      })
+    });
   }); // End of describe 'creation'
 
   describe('verification', function() {
