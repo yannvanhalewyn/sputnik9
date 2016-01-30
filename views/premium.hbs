@@ -1,42 +1,119 @@
-<div class="premium_page container">
-  <h1>Welkom {{user.first_name}}</h1>
-  <p>
-    Je hebt betaald! Je hebt jouw plekje vooraan in deze ontdekkingsreis zeker gesteld! Zodra het eerste materiaal gemaakt is, krijg je een Sputnik 9 update. Dat materiaal is dan hier terug te vinden!
-  </p>
-  <p>
-    Heb je nog niet gekozen voor de Sputnik 9 update? Doe dat dan hier.
-  </p>
-  <p>
-    Check hier alvast een paar video’s van het project
-  </p>
+<link rel="stylesheet" type="text/css" href="css/premium.css">
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/howler/1.1.28/howler.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.min.js"></script>
 
-  <div class="iframe_container">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLKk07dZhXGwk0f9b1Jk5XFsC6xlvMFQip" frameborder="0" allowfullscreen></iframe>
+<!--lightbox-->
+<link href="//rawgithub.com/ashleydw/lightbox/master/dist/ekko-lightbox.css" rel="stylesheet">
+<link href="//rawgithub.com/ashleydw/lightbox/gh-pages/css/dark.css" rel="stylesheet">
+
+<!-- Audio Player -->
+<div id="react-audio-player" class='audio-player'>
+  <img src='img/spinner.svg' class='loading-audio-player' alt=""/>
+</div>
+
+
+<!-- Main body -->
+<div class="main">
+
+  <!-- Title -->
+  <div class="main-heading">
+    <img class="bolts-left" src="img/scroll-bolts-left.png" alt="">
+    <h1 class="title">Titel of the song</h1>
+    <img class="bolts-right" src="img/scroll-bolts-right.png" alt="">
+  </div>
+
+  <!-- Video -->
+  <div class="video-wrap">
+    <video width="100%" style="padding:0px; margin:0px" controls>
+      <source src="https://web.vboxx.nl/1/files/4981/entry1-januari/get-by.mp4?view=1" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+  </div>
+
+  <!-- Performers -->
+  <ul class="performers">
+    <li class="performer">
+      <img src="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10346595_971050402911822_6559808222999638738_n.jpg?oh=c81b12e28399e377cca26fbb7bc899e4&oe=574A0862" class="thumb" />
+      <div class="info">
+        <span class="name">Marlon Penn</span>
+        <span class="instrument">Vocals, Keys</span>
+      </div>
+    </li>
+
+    <li class="performer">
+      <img src="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/1513689_1022153341140311_6345408113874570723_n.jpg?oh=16c1ea0520cea667515175f8ee7bc88c&oe=57374F47" class="thumb" />
+      <div class="info">
+        <span class="name">Leon Sibum</span>
+        <span class="instrument">Guitar</span>
+      </div>
+    </li>
+
+    <li class="performer">
+      <img src="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/10991133_10204129504813889_2274057964256073067_n.jpg?oh=bf843cd153e4dd9703f2bec62e74c57c&oe=5703A40E" class="thumb" />
+      <div class="info">
+        <span class="name">Alex van Damme</span>
+        <span class="instrument">Bassguitar</span>
+      </div>
+    </li>
+
+    <li class="performer">
+      <img src="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/11870675_1006874912677910_1941578624337538824_n.jpg?oh=1a3c45d0c95d7f593efd5a7ceb444565&oe=57374B85" class="thumb" />
+      <div class="info">
+        <span class="name">Lars Spijkervet</span>
+        <span class="instrument">Drums</span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="blog">
+    <h3 class="title">Titel</h3>
+
+    <p class="body">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
+    qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae conse</p>
+  </div>
+
+  <div class="gallery">
+    <div class="thumb col-xs-6 col-md-3">
+      <a href="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/10991133_10204129504813889_2274057964256073067_n.jpg?oh=bf843cd153e4dd9703f2bec62e74c57c&oe=5703A40E" data-toggle="lightbox" data-gallery="multiimages" data-title="">
+        <img src="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/10991133_10204129504813889_2274057964256073067_n.jpg?oh=bf843cd153e4dd9703f2bec62e74c57c&oe=5703A40E" class="img-responsive">
+      </a>
+    </div>
+
+    <div class="thumb col-xs-6 col-md-3">
+      <a href="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/10991133_10204129504813889_2274057964256073067_n.jpg?oh=bf843cd153e4dd9703f2bec62e74c57c&oe=5703A40E" data-toggle="lightbox" data-gallery="multiimages" data-title="">
+        <img src="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/10991133_10204129504813889_2274057964256073067_n.jpg?oh=bf843cd153e4dd9703f2bec62e74c57c&oe=5703A40E" class="img-responsive">
+      </a>
+    </div>
+
+    <div class="thumb col-xs-6 col-md-3">
+      <a href="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/10991133_10204129504813889_2274057964256073067_n.jpg?oh=bf843cd153e4dd9703f2bec62e74c57c&oe=5703A40E" data-toggle="lightbox" data-gallery="multiimages" data-title="">
+        <img src="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/10991133_10204129504813889_2274057964256073067_n.jpg?oh=bf843cd153e4dd9703f2bec62e74c57c&oe=5703A40E" class="img-responsive">
+      </a>
+    </div>
+
+    <div class="thumb col-xs-6 col-md-3">
+      <a href="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/10991133_10204129504813889_2274057964256073067_n.jpg?oh=bf843cd153e4dd9703f2bec62e74c57c&oe=5703A40E" data-toggle="lightbox" data-gallery="multiimages" data-title="">
+        <img src="https://scontent-ams2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/10991133_10204129504813889_2274057964256073067_n.jpg?oh=bf843cd153e4dd9703f2bec62e74c57c&oe=5703A40E" class="img-responsive">
+      </a>
+    </div>
   </div>
 </div>
 
-<script>
-// Quick script for fluidifying the youtube iFrame
-var videos = $("iframe"),
-    fluid = $(".iframe_container");
 
-videos.each(function() {
-  $(this)
-    .data('aspectRatio', this.height / this.width)
-    .removeAttr('height')
-    .removeAttr('width');
-});
+<script src="js/vendor/ekko-lightbox.js"></script>
 
-// When the window is resized
-$(window).resize(function() {
-  var newWidth = fluid.width();
-  // Resize all videos according to their own aspect ratio
-  videos.each(function() {
-    var $el = $(this);
-    $(this)
-      .width(newWidth)
-      .height(newWidth * $el.data('aspectRatio'));
+<!-- Toggling lightbox -->
+<script type="text/javascript">
+$(document).ready(function ($) {
+  // delegate calls to data-toggle="lightbox"
+  $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+    event.preventDefault();
+    return $(this).ekkoLightbox({
+      always_show_close: true
+    });
   });
-// Kick off one resize to fix all videos on page load
-}).resize();
+});
 </script>
+
+<script type="text/javascript" src="js/premium.bundle.js">

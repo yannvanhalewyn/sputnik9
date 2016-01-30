@@ -1,0 +1,113 @@
+@import "modules/variables";
+@import "modules/yellowblock";
+@import "modules/queries";
+@import "partials/general";
+@import "partials/audio-player";
+@import "partials/footer";
+
+$section-spacing: 80px;
+
+.main {
+  padding: 0 15px;
+  display: inline-block;
+}
+
+
+.main-heading {
+  text-align: center;
+  margin-bottom: 40px;
+
+  .bolts-left,
+  .bolts-right {
+    position: relative;
+    bottom: 8px;
+  }
+  .title {
+    color: $yelloww;
+    font-size: 1.5em;
+    display: inline-block;
+  }
+}
+
+// Video
+.video-wrap {
+  margin-bottom: 30px;
+  text-align: center;
+  video {
+    @include yellowblock;
+    max-width: 1000px;
+  }
+}
+
+// Performers
+.performers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  color: #fafafa;
+  margin-bottom: $section-spacing;
+
+  // For wrapping only (when too many performers in a row)
+  .performer {
+    width: 170px;
+    margin-bottom: 25px;
+  }
+
+  .thumb {
+    max-width: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(white, 0.1);
+  }
+
+  .name {
+    display: block;
+    margin: 15px 0 5px;
+    font-size: 1.2em;
+  }
+
+  .instrument { color: darken(white, 20); }
+}
+
+// Blog
+.blog {
+  @include yellowblock;
+  text-shadow: 2px 2px 7px #222;
+  margin-bottom: $section-spacing;
+
+  .title { color: $yelloww; }
+  .body {
+    text-align: justify;
+    margin-top: 10px;
+    padding: 0 20px;
+  }
+}
+
+// Photos
+.gallery {
+  .thumb {
+    margin-bottom: 30px;
+    img {
+      @include yellowblock;
+    }
+  }
+}
+
+@include laptop {
+  .main {
+    margin-left: $audio-player-width;
+    padding: 0 40px;
+    margin-bottom: 100px;
+  }
+
+  .main-heading {
+    text-align: left;
+    .title {
+      font-size: 1.8em;
+    }
+  }
+}
+
+.footer {
+  .kvk { color: transparent; }
+}
