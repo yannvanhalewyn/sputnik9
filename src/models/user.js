@@ -29,6 +29,10 @@
       unique: true
     },
     premium: Boolean,
+    receive_emails: {
+      type: Boolean,
+      default: true
+    },
     payments: [
       {type: mongoose.Schema.Types.ObjectId, ref: "Payment"}
     ],
