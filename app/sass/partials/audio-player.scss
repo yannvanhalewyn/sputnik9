@@ -94,12 +94,24 @@
 
   .transport {
     padding: 0 10px;
+    $vertical-spacing: 10px;
 
-    .volume { margin-bottom: 10px; }
+    .volume { margin-bottom: $vertical-spacing; }
     .navigation {
       display: flex;
       justify-content: space-around;
+      margin-bottom: $vertical-spacing;
     }
+    .musicprogress-outer {
+      height: 10px;
+      border: 1px solid darken(white, 60);
+      margin-bottom: $vertical-spacing;
+      .musicprogress-inner {
+        height: 100%;
+        background: $yelloww;
+      }
+    }
+    .playback-time { text-align: center; }
   }
 }
 
@@ -115,19 +127,6 @@ progress[value] {
   height: 1px;
   width: 100%;
   color: #fde634;
-}
-
-progress[value]::-webkit-progress-bar {
-  background-color: rgba(0,0,0,0);
-  border-radius: 2px;
-}
-
-progress[value]::-webkit-progress-value {
-  background-color: #fde634;
-}
-
-progress[value]::-moz-progress-bar {
-    background-color: #fde634;
 }
 
 input[type=range] {
