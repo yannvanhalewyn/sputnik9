@@ -21,13 +21,13 @@
       </div>
     {{/if}}
 
-    <div id="wrap">
-      {{#if homepage}}
-        {{> header }}
-      {{else}}
-        {{> header_premium }}
-      {{/if}}
+    {{#if homepage}}
+      {{> header }}
+    {{else}}
+      {{> header_premium }}
+    {{/if}}
 
+    <div id="wrap">
       {{{body}}}
     </div>
 
