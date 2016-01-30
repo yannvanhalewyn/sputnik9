@@ -27,6 +27,7 @@
           first_name: req.body.first_name,
           last_name: req.body.last_name,
           email: req.body.email,
+          receive_emails: Boolean(req.body.receive_emails),
           provider: 'local',
           local_data: {
             password_digest: hash
