@@ -5,7 +5,8 @@ var input = {
   pswd_conf: $('#password_confirmation'),
   email: $('#email'),
   first_name: $('#first_name'),
-  last_name: $('#last_name')
+  last_name: $('#last_name'),
+  terms_and_conditions: $('#accept_terms')
 }
 
 var nomatch = {
@@ -13,7 +14,8 @@ var nomatch = {
   pswd_length: $('#nomatch_password_length'),
   email: $('#nomatch_email'),
   first_name: $('#nomatch_first_name'),
-  last_name: $('#nomatch_last_name')
+  last_name: $('#nomatch_last_name'),
+  terms_and_conditions: $('#accept_terms')
 }
 
 var validations = {
@@ -64,6 +66,9 @@ function validateEmail() {
 }
 
 function validateForm() {
+  if (!input.terms_and_conditions[0].checked)
+    return submit_btn.prop('disabled', true)
+
   // Would love to have lodash's "some" here
   var valid = true;
   for (i in validations) {
@@ -105,5 +110,7 @@ input.email.on('blur', function() {
   input.email.off('blur');
   validateEmail();
 })
+
+input.terms_and_conditions.on('change', validateForm);
 
 submit_btn.prop('disabled', true);
