@@ -2,6 +2,12 @@
 .audio-player { display: none; }
 
 @include laptop {
+  // The spinner when loading
+  .loading-audio-player {
+    margin-left: $audio-player-width / 4;
+    width: $audio-player-width / 2;
+  }
+
   // Audio Player
   .audio-player {
     display: block;
@@ -14,7 +20,6 @@
       position: fixed;
       bottom: 20px;
       width: $audio-player-width;
-      border-top: 1px solid rgba(255,255,255,0.4);
     }
   }
 
