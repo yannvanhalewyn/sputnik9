@@ -7,6 +7,7 @@ var include   = require('include')
   , reqres    = require('reqres')
   , Q         = require('q')
   , Immutable = require('immutable')
+  , Factory = require('../factories/factory')
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
 
@@ -267,4 +268,24 @@ describe('User', function() {
     }); // End of context 'When user is already verified'
 
   }); // End of describe 'regenerate_verification_token'
+
+  describe('.notifiable', function() {
+
+    beforeEach(function() {
+      return Q.all([
+        Factory('user', { email: 'user1@example.com', receive_emails: true }),
+        Factory('user', { email: 'user2@example.com', receive_emails: false }),
+        Factory('user', { email: 'user3@example.com', receive_emails: true }),
+      ])
+    });
+
+    it('returns an array of all users that want to receive email notifications', function() {
+      return User.notifiable().then((users) => {
+        expect(users.length).to.eql(2)
+        expect(users.map((u) => u.email)).to.eql(
+          ['user1@example.com', 'user3@example.com']
+        )
+      })
+    });
+  }); // End of describe '.notifiable'
 }); // End of describe 'User'
