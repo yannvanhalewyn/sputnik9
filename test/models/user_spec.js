@@ -1,13 +1,13 @@
-var include   = require('include')
-  , chai      = require('chai')
-  , sinonChai = require('sinon-chai')
+var include        = require('include')
+  , chai           = require('chai')
+  , sinonChai      = require('sinon-chai')
   , chaiAsPromised = require('chai-as-promised')
-  , expect    = chai.expect
-  , sinon     = require('sinon')
-  , reqres    = require('reqres')
-  , Q         = require('q')
-  , Immutable = require('immutable')
-  , Factory = require('../factories/factory')
+  , expect         = chai.expect
+  , sinon          = require('sinon')
+  , reqres         = require('reqres')
+  , Q              = require('q')
+  , Immutable      = require('immutable')
+  , Factory        = require('../factories/factory')
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
 
