@@ -44,7 +44,7 @@ fs.readFile(params.filename, 'utf-8', (err, data) => {
   process.env['NODE_ENV'] = 'production'
   mailer.send({
     to: params.to,
-    subject: 'Sputnik9 test email',
+    subject: 'Sputnik 9 test email',
     html: data
   }).then(() => console.log('Email sent!'), opt_out);
 })
