@@ -52,7 +52,7 @@
           unsubscribe_url: unsubscribe_url(user)
         }, {
           to: user.email,
-          subject: 'Sputnik9 heeft nieuwe content geplaatst!'
+          subject: 'Er is nieuwe Sputnik9 content!'
         }
       )
     }
