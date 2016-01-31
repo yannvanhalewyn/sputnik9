@@ -22,7 +22,7 @@
   var mailer = {
     send: function(opts) {
       var mailopts = {
-        from: "Sputnik9 <noreply@sputnik9.nl>",
+        from: "Sputnik 9 <noreply@sputnik9.nl>",
         to: opts.to,
         subject: opts.subject,
         html: opts.html
