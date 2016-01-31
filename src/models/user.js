@@ -171,9 +171,7 @@
     })
   }
 
-  User.notifiable = () => {
-    return User.find({receive_emails: true})
-  }
+  User.notifiable = () => User.find({receive_emails: true})
 
   module.exports = User;
 
