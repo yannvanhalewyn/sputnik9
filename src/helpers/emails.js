@@ -10,6 +10,8 @@
     return `https://${config.host}/verify?token=${token}`;
   }
 
+  var unsubscribe_url = (user) => `https://${config.host}/unsubscribe?u=${user._id}`
+
   function emailFromTemplate(path_to_template, context, email_opts) {
     return hbs.render(path_to_template, context, {cached: true})
     .then(function(html) {
@@ -39,6 +41,18 @@
         }, {
           to: email,
           subject: "Premium activatiecode."
+        }
+      )
+    },
+
+    new_content(user, content) {
+      return emailFromTemplate(
+        `views/emails/notifications/${content}.hbs`, {
+          name: user.first_name,
+          unsubscribe_url: unsubscribe_url(user)
+        }, {
+          to: user.email,
+          subject: 'Sputnik9 heeft nieuwe content geplaatst!'
         }
       )
     }
