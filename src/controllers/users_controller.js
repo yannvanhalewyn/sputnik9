@@ -38,7 +38,7 @@
           // Successfull user creation!
           function(user) {
             login(user, req);
-            emails.emailConfirmation(user).then(mailer.send, Logger.error);
+            emails.emailConfirmation(user).then(mailer.send).catch(Logger.error)
             res.redirect('/premium')
           },
 
@@ -70,9 +70,20 @@
 
         // Confirmation token has been updated
         (user) => {
-          emails.emailConfirmation(user).then(mailer.send, Logger.error);
-          req.session.flash = {type: "success", message: "Verification email has been sent!"}
-          res.redirect('/premium')
+          emails.emailConfirmation(user).then(mailer.send).then(
+
+            // Email was sent successfully
+            () => {
+            req.session.flash = {type: 'success', message: 'Email bevestiging werd verstuurd!'}
+            res.redirect('/premium')
+          },
+
+            // Email was not sent successfully
+            (err) => {
+              req.session.flash = {type: 'error', message: 'Email bevestiging kon niet worden verstuurd.'}
+              res.redirect('/premium')
+            }
+          )
         },
 
         // Confirmation has not been updated (not applicable)
