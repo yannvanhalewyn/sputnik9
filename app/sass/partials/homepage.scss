@@ -4,12 +4,10 @@
   padding: 20px;
 }
 
-.goto_premium {
-  @include button;
-}
-
+.goto_premium,
 .logout_button {
   @include button;
+  width: 300px;
 }
 
 .or {
