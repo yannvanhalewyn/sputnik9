@@ -42,6 +42,7 @@
             users_controller.resend_verification)
     app.get('/get-premium', users_controller.middlewares.use_unlock_code,
             users_controller.use_unlock_code)
+    app.get('/unsubscribe', users_controller.unsubscribe)
 
     // Video's page
     app.get("/premium", media_controller.middlewares.index,
