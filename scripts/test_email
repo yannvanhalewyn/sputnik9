@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+/*
+ * This script is intended to send a live email in order to verify the styling and
+ * format.
+ *
+ * Usage:
+ *   scripts/test_email [filename] --to [recipient]
+ *
+ * Example:
+ *   scripts/test_email views/emails/email.hbs --to me@example.com
+ */
+
+require('dotenv/config')
+var _      = require('lodash');
+var fs     = require('fs');
+var mailer = require('../src/lib/mailer');
+
+// Parse arguments
+var args = process.argv.slice(2)
+var params = { filename: args[0] }
+
+_.each(args, (val, idx) => {
+  if (val == '--to') params.to = args[idx + 1]
+})
+
+// Helper functions
+var valid_email = (email) => /^.+@.+\..+$/.test(email);
+
+var opt_out = (msg) => {
+  console.error(msg);
+  console.log('\nUsage:\n\tscripts/test_email [filename] --to [recipient]');
+  console.log('\nExample:\n\tscripts/test_email views/emails/email.hbs --to me@example.com');
+  process.exit(1);
+}
+
+// Check param validity
+if (!params.to) opt_out('No recipient email was received')
+if (!valid_email(params.to)) opt_out(`${params.to} is not a valid email.`)
+
+// Read the file and send it
+fs.readFile(params.filename, 'utf-8', (err, data) => {
+  if (err) opt_out(`Could not read file ${params.filename}`)
+  process.env['NODE_ENV'] = 'production'
+  mailer.send({
+    to: params.to,
+    subject: 'Sputnik9 test email',
+    html: data
+  }).then(() => console.log('Email sent!'), opt_out);
+})
