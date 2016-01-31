@@ -1,6 +1,6 @@
 var requireAdmin = require('../middlewares/require_admin')
   , UnlockCode = require('../models/unlock_code')
-  , mailer = require('../helpers/mailer')
+  , mailer = require('../lib/mailer')
   , emails = require('../helpers/emails')
 
 var isValidEmail = (email) => /^.+@.+\..+$/.test(email)

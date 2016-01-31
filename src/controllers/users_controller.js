@@ -6,7 +6,7 @@
     , bcrypt                 = require('../helpers/bcrypt-promisified')
     , formatValidationErrors = require("../helpers/format_mongoose_validation_errors")
     , login                  = require('../helpers/login_user')
-    , mailer                 = require('../helpers/mailer')
+    , mailer                 = require('../lib/mailer')
     , emails                 = require('../helpers/emails')
     , Logger                 = require('../lib/logger')
     , UnlockCode             = require('../models/unlock_code')

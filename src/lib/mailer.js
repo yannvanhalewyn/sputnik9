@@ -6,6 +6,7 @@
     , smtpTransport = require('nodemailer-smtp-transport')
     , Logger = require('../lib/logger')
     , fs = require('fs')
+    , _ = require('lodash')
 
   var transporter = nodemailer.createTransport(smtpTransport({
     host: "send.one.com",
