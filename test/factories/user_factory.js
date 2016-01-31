@@ -3,8 +3,8 @@ var User = require('../../src/models/user')
   , _ = require('lodash')
 
 module.exports = {
-  default() {
-    return User.create(userFixture)
+  default(params) {
+    return User.create(_.merge({}, userFixture, params))
   },
 
   subscribed() {

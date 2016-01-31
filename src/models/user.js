@@ -171,6 +171,8 @@
     })
   }
 
+  User.notifiable = () => User.find({receive_emails: true})
+
   module.exports = User;
 
 }())
