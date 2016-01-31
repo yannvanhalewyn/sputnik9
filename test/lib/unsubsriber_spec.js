@@ -56,4 +56,11 @@ describe('unsubscriber', function() {
         .eventually.be.rejectedWith('Ongeldige gebruikers ID.')
     });
   }); // End of context 'when the user id doesnt exists'
+
+  context('when an invalid user id was given', function() {
+    it('rejects the promise with a error', function() {
+      return expect(unsubscribe('invalid')).to
+        .eventually.be.rejectedWith('Ongeldige gebruikers ID.')
+    });
+  }); // End of context 'when an invalid user id was given'
 }); // End of describe 'unsubscriber'

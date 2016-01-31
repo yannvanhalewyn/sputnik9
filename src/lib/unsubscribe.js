@@ -20,5 +20,5 @@ module.exports = (user_id) => {
 
     user.receive_emails = false;
     return user.save();
-  })
+  }, (err) => Q.reject('Ongeldige gebruikers ID.'))
 }
