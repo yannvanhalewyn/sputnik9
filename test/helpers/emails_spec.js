@@ -10,7 +10,7 @@ describe('emails', function() {
     it("returns an object with the correct values", function(done) {
       emails.emailConfirmation(userFixture).then(function(output) {
         expect(output.to).to.eql("j.d@gmail.com");
-        expect(output.subject).to.eql("Please activate your account.");
+        expect(output.subject).to.eql("Bevestig je e-mail adres!");
         expect(output.html).not.to.be.undefined; // TODO
         done();
       }).catch(done);
