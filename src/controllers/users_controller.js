@@ -2,15 +2,16 @@
 
   "use strict";
 
-  var User = require('../models/user')
-    , bcrypt = require('../helpers/bcrypt-promisified')
+  var User                   = require('../models/user')
+    , bcrypt                 = require('../helpers/bcrypt-promisified')
     , formatValidationErrors = require("../helpers/format_mongoose_validation_errors")
-    , login = require('../helpers/login_user')
-    , mailer = require('../helpers/mailer')
-    , emails = require('../helpers/emails')
-    , Logger = require('../lib/logger')
-    , UnlockCode = require('../models/unlock_code')
-    , requireLogin = require('../middlewares/requireLogin')
+    , login                  = require('../helpers/login_user')
+    , mailer                 = require('../helpers/mailer')
+    , emails                 = require('../helpers/emails')
+    , Logger                 = require('../lib/logger')
+    , UnlockCode             = require('../models/unlock_code')
+    , requireLogin           = require('../middlewares/requireLogin')
+    , unsubscribe            = require('../lib/unsubscribe')
 
   var users_controller = {
 
@@ -100,6 +101,13 @@
           res.redirect('/premium')
         })
       })
+    },
+
+    unsubscribe(req, res) {
+      unsubscribe(req.query.u).then(
+        () => res.render('unsubscribed'),
+        (err) => res.render('unsubscribed', {error: err})
+      )
     }
   }
 
