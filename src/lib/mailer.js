@@ -45,7 +45,8 @@
   var fakeSendEmail = email => {
     var fileName = `tmp/${email.to}-${Date.now()}.html`
     return Q.nfcall(fs.writeFile, fileName, email.html).then(() => {
-      return require('child_process').exec(`open ${fileName}`)
+      require('child_process').exec(`open ${fileName}`)
+      return `DEV: email written to ${fileName}`
     })
   }
 
