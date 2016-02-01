@@ -6,7 +6,7 @@
 @import "partials/flash";
 @import "partials/footer";
 
-$section-spacing: 80px;
+$section-spacing: 120px;
 
 .main {
   padding: 0 15px;
@@ -85,24 +85,37 @@ $section-spacing: 80px;
   .bodytext {
     text-align: justify;
   }
-  .contribution {
-    padding: 0px;
-    font-size: 0.8em;
-    color: #cccccc;
-  }
-  span {
-    color: $yelloww;
-  }
 }
 
 // Photos
 .gallery {
   display: inline-block;
+  margin-bottom: $section-spacing;
   .thumb {
     margin-bottom: 30px;
     img {
       @include yellowblock;
     }
+  }
+}
+
+// Contributors
+.contributors {
+  @include yellowblock;
+  text-shadow: 2px 2px 7px #222;
+  margin-bottom: $section-spacing;
+
+  .title { color: $yelloww; }
+  .body {
+    margin-top: 10px;
+    padding: 0 40px;
+    color: #cccccc;
+    font-size: 0.8em;
+  }
+
+  
+  span {
+    color: $yelloww;
   }
 }
 
