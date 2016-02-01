@@ -33,7 +33,6 @@ class Body extends React.Component {
   }
 
   _renderEntry(entry, idx) {
-    console.log(entry.activated_by);
     return <Entry idx={idx + 1} code={entry.code} to={entry.sent_to} activator={entry.activated_by} />
   }
 }
