@@ -65,6 +65,7 @@
     // Admin panel
     app.get('/admin', adminController.middlewares.index, adminController.index)
     app.get('/admin/users', adminController.middlewares.users, adminController.users)
+    app.get('/admin/users.csv', adminController.middlewares.users, adminController.usersCSV)
 
     // Unlock Codes
     app.post('/unlock_codes', uc_controller.middlewares.post, uc_controller.post)
