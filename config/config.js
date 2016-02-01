@@ -8,7 +8,9 @@ var config = {
       ID: process.env["FB_PRODUCTION_ID"],
       secret: process.env["FB_PRODUCTION_SECRET"]
     },
-    mollie_api_key: process.env["MOLLIE_API_KEY"]
+    mollie_api_key: process.env["MOLLIE_API_KEY"],
+    cloudinary_api_key: process.env['CLOUDINARY_API_KEY'],
+    cloudinary_api_secret: process.env['CLOUDINARY_API_SECRET']
   },
 
   "development": {
@@ -19,7 +21,9 @@ var config = {
       ID: process.env["FB_DEVELOPMENT_ID"],
       secret: process.env["FB_DEVELOPMENT_SECRET"]
     },
-    mollie_api_key: process.env["MOLLIE_TEST_API_KEY"]
+    mollie_api_key: process.env["MOLLIE_TEST_API_KEY"],
+    cloudinary_api_key: process.env['CLOUDINARY_API_KEY'],
+    cloudinary_api_secret: process.env['CLOUDINARY_API_SECRET']
   }
 
 }
