@@ -34,8 +34,8 @@ $section-spacing: 120px;
 .video-wrap {
   margin-bottom: 30px;
   text-align: center;
-  iframe { 
-    @include yellowblock; 
+  iframe {
+    @include yellowblock;
     width: 100%;
     max-width: 1000px;
   }
@@ -113,7 +113,7 @@ $section-spacing: 120px;
     font-size: 0.8em;
   }
 
-  
+
   span {
     color: $yelloww;
   }
