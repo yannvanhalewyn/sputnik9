@@ -28,18 +28,17 @@
           verify_url: verificationUrl(user.local_data.confirmation_token)
         }, {
           to: user.email,
-          subject: "Bevestig je e-mail adres!",
+          subject: 'Sputnik 9 Premium - Bevestig je e-mail adres!'
         }
       );
     },
 
     sendUnlockCode(email, code) {
       return emailFromTemplate(
-        "views/emails/send_unlock_code.hbs", {
-          code: code
-        }, {
+        "views/emails/send_unlock_code.hbs", { code: code },
+        {
           to: email,
-          subject: "Premium activatiecode."
+          subject: 'Sputnik 9 Premium activatiecode'
         }
       )
     },
@@ -52,6 +51,16 @@
         }, {
           to: user.email,
           subject: 'Er is nieuwe Sputnik 9 content!'
+        }
+      )
+    },
+
+    payment_confirmed(user) {
+      return emailFromTemplate(
+        'views/emails/payment_confirmation.hbs', { name: user.first_name },
+        {
+          to: user.email,
+          subject: 'Betaling ontvangen'
         }
       )
     }
