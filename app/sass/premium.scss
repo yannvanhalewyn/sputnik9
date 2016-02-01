@@ -79,14 +79,25 @@ $section-spacing: 80px;
 
   .title { color: $yelloww; }
   .body {
-    text-align: justify;
     margin-top: 10px;
     padding: 0 40px;
+  }
+  .bodytext {
+    text-align: justify;
+  }
+  .contribution {
+    padding: 0px;
+    font-size: 0.8em;
+    color: #cccccc;
+  }
+  span {
+    color: $yelloww;
   }
 }
 
 // Photos
 .gallery {
+  display: inline-block;
   .thumb {
     margin-bottom: 30px;
     img {
