@@ -113,8 +113,8 @@ describe('User', function() {
 
       context("when token is not expired", function() {
         var USER;
-        beforeEach(function(done) {
-          return User.create(userFixture.toJS()).then(function(user) {
+        beforeEach(done => {
+          return Factory('user').then(user => {
             return User.verify(user.local_data.confirmation_token).then(function(user) {
               USER = user;
               done();
@@ -276,9 +276,9 @@ describe('User', function() {
 
   }); // End of describe 'regenerate_verification_token'
 
-  describe('.notifiable', function() {
+  describe('.notifiable', () => {
 
-    beforeEach(function() {
+    beforeEach(() => {
       return Q.all([
         Factory('user', { email: 'user1@example.com', receive_emails: true }),
         Factory('user', { email: 'user2@example.com', receive_emails: false }),
