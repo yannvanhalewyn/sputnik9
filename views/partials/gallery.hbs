@@ -7,6 +7,12 @@
 
   <!-- Hidden Images -->
   {{#each images.hidden as |image|}}
-    <div data-toggle="lightbox" data-gallery="sputnik9" data-remote="{{cl_lightbox_url image}}"></div>
+    <div
+       data-width="1000"
+       data-toggle="lightbox"
+       data-gallery="sputnik9"
+       data-remote="{{cl_lightbox_url image}}"
+       data-type='image'>
+    </div>
   {{/each}}
 </div>
