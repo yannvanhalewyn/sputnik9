@@ -3,12 +3,12 @@
   "use strict";
 
   // Controllers
-  var users_controller         = require('../src/controllers/users_controller')
-    , user_sessions_controller = require('../src/controllers/user_sessions_controller')
+  var user_sessions_controller = require('../src/controllers/user_sessions_controller')
     , media_controller         = require('../src/controllers/media_controller')
     , payments_controller      = require('../src/controllers/payments_controller')
     , uc_controller            = require('../src/controllers/unlock_codes_controller')
     , admin_router             = require('../src/routers/admin_router')
+    , users_router             = require('../src/routers/users_router')
 
   var paywall = require('../src/middlewares/paywall');
 
@@ -16,6 +16,13 @@
   var requireLogin = require('../src/middlewares/requireLogin')
 
   var Routes = function(app) {
+
+    // Temporary support for old routes
+    app.use((req, res, next) => {
+      if (/^\/get-premium/.test(req.url))
+        req.url = `/users${req.url}`
+      next();
+    })
 
     // Home Page
     app.get('/', function(req, res) {
@@ -32,17 +39,8 @@
     app.get('/auth/facebook/callback', user_sessions_controller.middlewares.fb_callback,
             user_sessions_controller.fb_callback);
 
-    // Creating a  new user
-    app.post('/users', users_controller.create);
-
-    // Verifying a user's email
-    app.get('/verify', users_controller.verify);
-    app.get('/resend_verification',
-            users_controller.middlewares.resend_verification,
-            users_controller.resend_verification)
-    app.get('/get-premium', users_controller.middlewares.use_unlock_code,
-            users_controller.use_unlock_code)
-    app.get('/unsubscribe', users_controller.unsubscribe)
+    // User routes
+    app.use('/users', users_router);
 
     // Video's page
     app.get("/premium", media_controller.middlewares.index,
