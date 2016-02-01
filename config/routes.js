@@ -10,27 +10,14 @@
     , admin_router             = require('../src/routers/admin_router')
     , users_router             = require('../src/routers/users_router')
 
-  var paywall = require('../src/middlewares/paywall');
-
   // Middlewares
   var requireLogin = require('../src/middlewares/requireLogin')
+  var paywall = require('../src/middlewares/paywall');
 
   var Routes = function(app) {
 
-    // Temporary support for old routes
-    app.use((req, res, next) => {
-      if (/^\/get-premium/.test(req.url))
-        req.url = `/users${req.url}`
-      next();
-    })
-
     // Home Page
-    app.get('/', function(req, res) {
-      if (req.user) {
-        return res.render("home", {homepage: true, user: req.user});
-      }
-      res.render('home', {homepage: true});
-    });
+    app.get('/', (req, res) => res.render('home', { homepage: true, user: req.user }) )
 
     // Logging in user (new user session)
     app.post('/login', user_sessions_controller.create);
@@ -54,9 +41,7 @@
     app.post('/mollie_webhook', payments_controller.sync)
 
     // Mollie redirect stuff
-    app.get('/thankyou', function(req, res) {
-      res.render("thankyou");
-    });
+    app.get('/thankyou', (req, res) => res.render('thankyou'));
 
     // Admin panel
     app.use('/admin', admin_router)

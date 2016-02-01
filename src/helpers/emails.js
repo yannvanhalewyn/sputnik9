@@ -7,10 +7,10 @@
     , config = require('../../config/config')
 
   function verificationUrl(token) {
-    return `https://${config.host}/verify?token=${token}`;
+    return `https://${config.host}/users/verify?token=${token}`;
   }
 
-  var unsubscribe_url = (user) => `https://${config.host}/unsubscribe?u=${user._id}`
+  var unsubscribe_url = (user) => `https://${config.host}/users/unsubscribe?u=${user._id}`
 
   function emailFromTemplate(path_to_template, context, email_opts) {
     return hbs.render(path_to_template, context, {cached: true})
