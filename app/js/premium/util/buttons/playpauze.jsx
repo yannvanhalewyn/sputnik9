@@ -1,7 +1,7 @@
 import React from 'react'
 
-const playImg = 'img/musicplay.png'
-const pauzeImg = 'img/musicpause.png'
+const playImg = '/img/musicplay.png'
+const pauzeImg = '/img/musicpause.png'
 
 export default class PlayPauze extends React.Component {
   render() {
