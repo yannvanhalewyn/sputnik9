@@ -1,0 +1,26 @@
+<h2>Users</h2>
+<a href='/admin/users.csv' class="btn btn-primary download-csv">Download CSV</a>
+<table class="table users-table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Notifications</th>
+      <th>Provider</th>
+      <th>Premium</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr class='table-success'>
+      <td>{{first_name}}</td>
+      <td>{{last_name}}</td>
+      <td>{{email}}</td>
+      <td class='checkmark'>{{{checkmark receive_emails}}}</td>
+      <td>{{provider}}</td>
+      <td class='checkmark'>{{{checkmark premium}}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
