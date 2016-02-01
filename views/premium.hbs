@@ -73,12 +73,8 @@
   </div>
 
   <div class="gallery">
-    {{#each images}}
-      <div class="thumb col-xs-6 col-md-3">
-        <a href="{{cl_lightbox_url this}}" data-toggle="lightbox" data-gallery="multiimages" data-title="">
-          {{{cl_thumb_tag this}}}
-        </a>
-      </div>
+    {{#each images as |image|}}
+      {{> gallery-image id=image}}
     {{/each}}
   </div>
 </div>
