@@ -35,11 +35,8 @@
 
     sendUnlockCode(email, code) {
       return emailFromTemplate(
-        "views/emails/send_unlock_code.hbs", { code: code },
-        {
-          to: email,
-          subject: 'Sputnik 9 Premium activatiecode'
-        }
+        "views/emails/send_unlock_code.hbs", { code },
+        { to: email, subject: 'Sputnik 9 Premium activatiecode' }
       )
     },
 
