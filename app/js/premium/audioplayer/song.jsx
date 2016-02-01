@@ -3,7 +3,7 @@ import React from 'react';
 export default class Song extends React.Component {
   render() {
     var classes = `track ${this.props.active ? "active" : ""}`
-    var icon = this.props.loading ? 'img/spinner.svg' : 'img/musicplay.png'
+    var icon = this.props.loading ? '/img/spinner.svg' : '/img/musicplay.png'
     var style = { width: this.props.loading ? '13px' : '10px' }
 
     return (
