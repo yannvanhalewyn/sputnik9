@@ -14,9 +14,8 @@
 
   function emailFromTemplate(path_to_template, context, email_opts) {
     return hbs.render(path_to_template, context, {cached: true})
-    .then(function(html) {
+    .then(html => {
       email_opts.html = html;
-      email_opts.from = "Sputnik9 <noreply@sputnik9.nl>"
       return email_opts;
     });
   }
@@ -52,7 +51,7 @@
           unsubscribe_url: unsubscribe_url(user)
         }, {
           to: user.email,
-          subject: 'Er is nieuwe Sputnik9 content!'
+          subject: 'Er is nieuwe Sputnik 9 content!'
         }
       )
     }
