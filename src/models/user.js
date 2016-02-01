@@ -153,9 +153,10 @@
    * user was found with said token.
    */
   User.verify = function(token) {
+    if (!token) return Q.reject('Geen token gegeven.')
     return User.find({"local_data.confirmation_token": token}).then(function(found) {
 
-      if (found.length == 0) throw "No user found with token " + token;
+      if (found.length == 0) throw `No user found with token ${token}`
 
       var user = found[0];
       if (user.local_data.token_expiration.getTime() < Date.now())

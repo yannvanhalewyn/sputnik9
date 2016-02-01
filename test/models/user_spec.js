@@ -151,6 +151,13 @@ describe('User', function() {
         return expect(promise).to.be.rejectedWith("No user found with token WRONG");
       });
     }); // End of context 'with an invalid token'
+
+    context('with no token', () => {
+      it('returns a rejected promise', () => {
+        return expect(User.verify()).to.eventually
+          .be.rejectedWith('Geen token gegeven.')
+      });
+    }); // End of context 'with no token'
   }); // End of describe 'verification'
 
   describe('facebook_creation', function() {
