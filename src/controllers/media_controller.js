@@ -4,8 +4,19 @@ var express = require('express')
   , paywall = require('../middlewares/paywall')
   , handleUnpaidUser = require('../middlewares/handle_unpaid_user')
   , cloudinary = require('../lib/cloudinary')
+  , Q = require('q')
+
+const SHOWN_URI = 'entry_1/'
+const HIDDEN_URI = 'entry_1_hidden/'
 
 var img_ids;
+
+var fetchIds = () => {
+  if (img_ids) return Q(img_ids)
+  return cloudinary.fetchIdsForMultiple([SHOWN_URI, HIDDEN_URI]).then(results => {
+    return img_ids = { shown: results[SHOWN_URI], hidden: results[HIDDEN_URI] }
+  })
+}
 
 var VideosController = {
   middlewares: {
@@ -13,15 +24,7 @@ var VideosController = {
   },
 
   index: (req, res) => {
-    if (!img_ids) {
-      cloudinary.fetchIdsForMultiple(['entry_1/', 'entry_1_hidden/'])
-        .then(results => {
-          img_ids = { shown: results['entry_1/'], hidden: results['entry_1_hidden/'] }
-          res.render('premium', { images: img_ids })
-        })
-    } else {
-      return res.render('premium', { images: img_ids })
-    }
+    fetchIds().then(ids => res.render('premium', { images: ids }))
   }
 }
 
