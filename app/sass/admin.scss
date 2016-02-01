@@ -27,5 +27,19 @@ form {
   .checkmark {
     color: #485;
     padding-left: 40px;
+    text-align: center;
   }
+
+  th.notifications,
+  th.premium { text-align: center; }
+}
+
+.thead-inverse th {
+  color: white;
+  background: #373a3c;
+}
+
+.table {
+  font-size: 16px;
+  td, th { padding: 12px !important; }
 }
