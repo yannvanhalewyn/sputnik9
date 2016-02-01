@@ -13,7 +13,7 @@
       users: [requireAdmin]
     },
 
-    index: function(req, res) {
+    index: (req, res) => {
       UnlockCode.find().populate('activated_by').then(codes => {
         res.render('admin/home', {layout: 'admin', codes: JSON.stringify(codes)})
       })
