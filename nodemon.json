@@ -1,0 +1,4 @@
+{
+  "ignore": ["app/", "README", "views/", "test/", "public/js", "public/css"],
+  "env": { "NODE_ENV": "development" }
+}

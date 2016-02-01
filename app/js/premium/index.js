@@ -1,18 +1,13 @@
 import { render } from 'react-dom';
 import AudioPlayer from './audioplayer/audio-player.jsx';
 import Songs from './audioplayer/songs';
+import * as resize from './resize';
 
 render(
   <AudioPlayer songs={Songs}/>,
   document.getElementById('react-audio-player')
 )
 
-// Resizing the tracklist
-var resizeTracklist = () => {
-  var topPadding = 150;
-  var height = $(window).height() - $(".controller").height() - topPadding;
-  $("#tracklist").css("height", height);
-};
-
-resizeTracklist();
-window.onresize = resizeTracklist;
+$(window).on('resize', resize.video)
+         .on('resize', resize.tracklist)
+         .resize();
