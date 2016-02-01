@@ -46,10 +46,7 @@
       accessToken: String
     },
     local_data: {
-      verified: {
-        type: Boolean,
-        default: false
-      },
+      verified: Boolean,
       confirmation_token: String,
       token_expiration: Date,
       password_digest: String

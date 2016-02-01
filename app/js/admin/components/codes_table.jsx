@@ -39,7 +39,7 @@ class Body extends React.Component {
 
 class Entry extends React.Component {
   render() {
-    return <tr className={this.props.activator ? "table-success" : ""}>
+    return <tr className={this.props.activator ? "success" : ""}>
       <td>{this.props.idx}</td>
       <td><code>{this.props.code}</code></td>
       <td>{this.props.to}</td>

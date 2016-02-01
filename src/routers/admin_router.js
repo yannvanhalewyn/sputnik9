@@ -1,5 +1,4 @@
-var express = require('express')
-  , router = express.Router()
+var router = require('express').Router()
   , controller = require('../controllers/admin_controller')
 
 router.get('/', controller.middlewares.index, controller.index)
