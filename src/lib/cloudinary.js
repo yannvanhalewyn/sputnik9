@@ -10,7 +10,7 @@ cloudinary.config({
 })
 
 var fetchIdsFor = directory => {
-  return cloudinary.v2.api.resources({prefix: directory, type: 'upload'})
+  return cloudinary.v2.api.resources({prefix: directory, type: 'upload', max_results: 50})
     .then(result => _.map(result.resources, r => r.public_id))
 }
 
