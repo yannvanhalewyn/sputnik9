@@ -14,10 +14,11 @@ var VideosController = {
 
   index: (req, res) => {
     if (!img_ids) {
-      cloudinary.fetchIdsFor('entry_1').then(ids => {
-        img_ids = ids
-        res.render('premium', { images: img_ids })
-      })
+      cloudinary.fetchIdsForMultiple(['entry_1/', 'entry_1_hidden/'])
+        .then(results => {
+          img_ids = { shown: results['entry_1/'], hidden: results['entry_1_hidden/'] }
+          res.render('premium', { images: img_ids })
+        })
     } else {
       return res.render('premium', { images: img_ids })
     }

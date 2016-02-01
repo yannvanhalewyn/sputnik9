@@ -73,8 +73,14 @@
   </div>
 
   <div class="gallery">
-    {{#each images as |image|}}
+    {{#each images.shown as |image|}}
       {{> gallery-image id=image}}
+    {{/each}}
+    {{#each images.hidden as |image|}}
+      <div data-toggle="lightbox" data-gallery="hiddenimages"
+                                  data-remote="{{cl_lightbox_url}}"
+                                  data-title="{{image}}">
+      </div>
     {{/each}}
   </div>
 </div>
