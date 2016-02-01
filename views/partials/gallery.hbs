@@ -1,0 +1,12 @@
+<!-- Gallery -->
+<div class="gallery">
+  <!-- Shown Images -->
+  {{#each images.shown as |image|}}
+    {{> gallery-image id=image}}
+  {{/each}}
+
+  <!-- Hidden Images -->
+  {{#each images.hidden as |image|}}
+    <div data-toggle="lightbox" data-gallery="sputnik9" data-remote="{{cl_lightbox_url image}}"></div>
+  {{/each}}
+</div>
