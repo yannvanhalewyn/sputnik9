@@ -1,6 +1,5 @@
 body {
   background: #fbfbfb;
-  padding-top: 50px;
 }
 
 h1 {
@@ -13,4 +12,15 @@ h3 {
 
 form {
   margin-bottom: 20px;
+}
+.navbar-brand {
+  padding-top: 7px;
+  img { height: 40px; }
+}
+
+.users-table {
+  .checkmark {
+    color: #485;
+    padding-left: 40px;
+  }
 }
