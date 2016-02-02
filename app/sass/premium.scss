@@ -156,8 +156,10 @@ $section-spacing: 120px;
   }
   .name {
     text-align: center;
+    color: $yelloww;
   }
   .about {
+    text-align: justify;
     font-size: 0.8em;
     margin-top: 20px;
   }
