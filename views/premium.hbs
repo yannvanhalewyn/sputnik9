@@ -19,13 +19,26 @@
   <!-- Title -->
   <div class="main-heading">
     <img class="bolts-left" src="/img/scroll-bolts-left.png" alt="">
-    <h1 class="title">Titel of the song</h1>
+    <h1 class="title">Entry One</h1>
     <img class="bolts-right" src="/img/scroll-bolts-right.png" alt="">
+  </div>
+
+  <div class="videotitle">
+    <h3 class="title">Video's:</h3>
   </div>
 
   <!-- Video -->
   <div class="video-wrap">
-    <iframe src="https://player.vimeo.com/video/153681118"
+    <div class="titleholder">
+      <h3 data-togglefor='get-by' class="videotitle active">Get By</h3>
+      <h3 data-togglefor='oea' class="videotitle">O E A</h3>
+    </div>
+
+    <iframe id='get-by' src="https://player.vimeo.com/video/153681118"
+      frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+
+    <iframe id='oea' style='display: none' src="https://player.vimeo.com/video/153741821"
       frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
   </div>
@@ -76,6 +89,7 @@
   {{> gallery images=images }}
 
 
+
   <div class="contributors">
     <h3 class="title">Contributors</h3>
       <div class="body">
@@ -101,6 +115,8 @@
       </div>
   </div>
 </div>
+
+
 
 
 <script src="/js/vendor/ekko-lightbox.js"></script>
