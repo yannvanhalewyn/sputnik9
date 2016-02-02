@@ -1,14 +1,18 @@
 .footer {
   background-color: rgba(0,0,0,0.2);
-  height: 60px;
+  height: auto;
   padding-top: 15px; // Vertically align text
-
+  padding-bottom: 15px;
   .copy { text-align:center; }
-  .kvk,
-  .handelsnaam,
-  .email {
+  .middle,
+  .left,
+  .right {
     text-align: center;
     color: $muted;
+    a {color:$muted;}
+  }
+  .container {
+    padding-left:200px;
   }
 }
 
