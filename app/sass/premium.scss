@@ -137,6 +137,34 @@ $section-spacing: 120px;
   }
 }
 
+//artists
+.artists {
+  @include yellowblock;
+  text-shadow: 2px 2px 7px #222;
+  margin-bottom: $section-spacing;
+  display: inline-block;
+  width: 100%;
+  .title { color: $yelloww;}
+  .body {
+    margin-top: 10px;
+    padding: 0 40px;
+  }
+  .thumb {
+    max-width: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(white, 0.1);
+  }
+  .name {
+    text-align: center;
+    color: $yelloww;
+  }
+  .about {
+    text-align: justify;
+    font-size: 0.8em;
+    margin-top: 20px;
+  }
+}
+
 //lyrics
 .lyrics {
   @include yellowblock;
@@ -161,7 +189,7 @@ $section-spacing: 120px;
   .body {
     margin-top: 10px;
     padding: 0 40px;
-    color: #cccccc;
+    color: #dddddd;
     font-size: 0.8em;
   }
 
