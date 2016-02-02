@@ -46,7 +46,7 @@
 
 
 .about {
-  width:60%;
+  width:100%;
   margin: 0 auto;
   margin-top: 40px;
   text-align: justify;
@@ -70,6 +70,12 @@
   }
   li:before {
     content: "• ";
-    color: $yelloww; /* or whatever color you prefer */
+    color: $yelloww;
+  }
+}
+
+@include tablet {
+  .about {
+    width:60%;
   }
 }
