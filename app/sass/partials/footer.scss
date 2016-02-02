@@ -1,9 +1,14 @@
 .footer {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
   background-color: rgba(0,0,0,0.2);
   height: auto;
   padding-top: 15px; // Vertically align text
   padding-bottom: 15px;
-  .copy { text-align:center; }
+
   .middle,
   .left,
   .right {
