@@ -46,6 +46,10 @@ describe('emails', function() {
       it('contains the correct code', () => {
         expect(output.html).to.include('code123')
       });
+
+      it('links to the homepage', () => {
+        expect(output.html).to.include('https://www.sputnik9.nl/')
+      });
     }); // End of describe 'contents'
   }); // End of describe 'confirmation email'
 

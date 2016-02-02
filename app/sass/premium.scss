@@ -191,6 +191,12 @@ $section-spacing: 120px;
     font-size: 0.8em;
   }
   span { color: $yelloww; }
+  margin-bottom: $section-spacing;
+}
+
+.signature {
+  margin-top: 30px;
+  font-size: 1.1em;
 }
 
 @include tablet {
