@@ -31,12 +31,10 @@ $section-spacing: 120px;
 }
 
 // Video
-
-.videotitle { 
+.videotitle {
   text-shadow: 2px 2px 7px #222;
-  .title { 
+  .title {
     color: $yelloww;
-
   }
   .songs {
     color: #888888;
@@ -212,9 +210,8 @@ $section-spacing: 120px;
       font-size: 1.8em;
     }
   }
-}
 
-.footer {
-  .kvk { color: transparent; }
+  .footer {
+    padding-left: 150px;
+  }
 }
-

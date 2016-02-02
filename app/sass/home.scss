@@ -3,6 +3,7 @@
 @import "modules/button";
 @import "modules/component";
 @import "modules/content";
+@import "modules/queries";
 @import "partials/general";
 @import "partials/homepage";
 @import "partials/flash";
@@ -42,25 +43,39 @@
 }
 
 .intro-section { @include scroll-section; padding-top: 0px; }
-.about-section { @include scroll-section; }
-.services-section { @include scroll-section; }
-.contact-section { @include scroll-section; }
 
-.progress {
-  width: 100%;
-  height: 50px;
+
+.about {
+  width:100%;
+  margin: 0 auto;
+  margin-top: 40px;
+  text-align: justify;
+  margin-bottom: 70px;
+  span{color:$yelloww;}
+
+  p {font-size: 1em;}
+  h3 {
+    text-align: center;
+    margin-top: 30px;
+    color: $yelloww;}
+  ul {
+    list-style: none;
+    font-size: 1.2em;
+    padding:0;
+    margin:0;
+    text-align: left;
+    }
+  li {
+    padding-left: 1em;
+  }
+  li:before {
+    content: "• ";
+    color: $yelloww;
+  }
 }
 
-.progress-wrap {
-  background: #fde634;
-  margin: 20px 0;
-  overflow: hidden;
-  position: relative;
-}
-
-.progress-wrap .progress-bar {
-  background:#333;
-  left: 0;
-  position: absolute;
-  top: 0;
+@include tablet {
+  .about {
+    width:60%;
+  }
 }

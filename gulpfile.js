@@ -23,11 +23,9 @@ gulp.task('sass:watch', function() {
 });
 
 var jsFiles = [
-  './app/js/vendor/jquery.easing.min.js',
   './app/js/vendor/modernizr.custom.js',
   './app/js/vendor/classie.min.js',
   './app/js/vendor/uiMorphingButton_fixed.js',
-  './app/js/progressbar.js',
   './app/js/validateSignupForm.js',
   './app/js/morphbuttonsNoscroll.js'
 ]
