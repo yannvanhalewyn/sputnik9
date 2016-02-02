@@ -99,6 +99,20 @@ $section-spacing: 120px;
   }
 }
 
+//lyrics
+.lyrics {
+  @include yellowblock;
+  text-shadow: 2px 2px 7px #222;
+  margin-bottom: $section-spacing;
+  display: inline-block;
+  width: 100%;
+  .title { color:$yelloww;}
+  .body {
+    margin-top: 10px;
+    padding: 0 40px;
+  }
+}
+
 // Contributors
 .contributors {
   @include yellowblock;
