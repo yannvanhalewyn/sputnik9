@@ -1,0 +1,20 @@
+.footer {
+
+  background-color: rgba(0,0,0,0.2);
+  height: auto;
+  padding: 15px 0;
+
+  .middle,
+  .left,
+  .right {
+    text-align: center;
+    color: $muted;
+    a {color:$muted;}
+  }
+
+  @include laptop {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}

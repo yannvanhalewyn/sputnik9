@@ -10,7 +10,10 @@
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/index.css" type="text/css" media="screen" charset="utf-8">
+    <!-- TODO not all pages require home.css -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Raleway:300' rel='stylesheet' type='text/css'>
+
+    {{> favicons-meta }}
 
   </head>
   <body id="page-top">
@@ -20,13 +23,13 @@
       </div>
     {{/if}}
 
-    <div id="wrap">
-      {{#if homepage}}
-        {{> header }}
-      {{else}}
-        {{> header_premium }}
-      {{/if}}
+    {{#if homepage}}
+      {{> header }}
+    {{else}}
+      {{> header_premium }}
+    {{/if}}
 
+    <div id="wrap">
       {{{body}}}
     </div>
 

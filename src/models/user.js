@@ -29,6 +29,10 @@
       unique: true
     },
     premium: Boolean,
+    receive_emails: {
+      type: Boolean,
+      default: true
+    },
     payments: [
       {type: mongoose.Schema.Types.ObjectId, ref: "Payment"}
     ],
@@ -42,10 +46,7 @@
       accessToken: String
     },
     local_data: {
-      verified: {
-        type: Boolean,
-        default: false
-      },
+      verified: Boolean,
       confirmation_token: String,
       token_expiration: Date,
       password_digest: String
@@ -152,9 +153,10 @@
    * user was found with said token.
    */
   User.verify = function(token) {
+    if (!token) return Q.reject('Geen token gegeven.')
     return User.find({"local_data.confirmation_token": token}).then(function(found) {
 
-      if (found.length == 0) throw "No user found with token " + token;
+      if (found.length == 0) throw `No user found with token ${token}`
 
       var user = found[0];
       if (user.local_data.token_expiration.getTime() < Date.now())
@@ -166,6 +168,8 @@
       return user.save();
     })
   }
+
+  User.notifiable = () => User.find({receive_emails: true})
 
   module.exports = User;
 

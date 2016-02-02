@@ -1,3 +1,11 @@
+@import "modules/variables";
+@import "modules/button";
+@import "modules/queries";
+@import "modules/span";
+@import "partials/general";
+@import "partials/flash";
+@import "partials/footer";
+
 @mixin premium_static {
   text-align: center;
   h1 { margin-bottom: 40px; }
@@ -22,23 +30,11 @@
 
 .verify_email_page {
   @include premium_static;
-  .resend_email_btn {
-    @include button;
-  }
+  .resend_email_btn { @include button; }
 }
 
 .thank_you_page {
   @include premium_static;
   p { margin-bottom: 40px; }
-}
-
-.premium_page {
-  @include premium_static;
-  p { margin-bottom: 20px; }
-
-  // tmp youtube playlist
-  .iframe_container {
-    margin-bottom: 100px;
-    padding: 5%;
-  }
+  a.goto_premium { @include button; }
 }

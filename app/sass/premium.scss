@@ -1,0 +1,228 @@
+@import "modules/variables";
+@import "modules/yellowblock";
+@import "modules/queries";
+@import "partials/general";
+@import "partials/audio-player";
+@import "partials/flash";
+@import "partials/footer";
+
+$section-spacing: 120px;
+
+.main {
+  padding: 0 15px;
+  display: inline-block;
+}
+
+
+.main-heading {
+  text-align: center;
+  margin-bottom: 40px;
+
+  .bolts-left,
+  .bolts-right {
+    position: relative;
+    bottom: 8px;
+  }
+  .title {
+    color: $yelloww;
+    font-size: 1.5em;
+    display: inline-block;
+  }
+}
+
+// Video
+.videotitle {
+  text-shadow: 2px 2px 7px #222;
+  .title {
+    color: $yelloww;
+  }
+  .songs {
+    color: #888888;
+    display: inline-block;
+    margin-left: 40px;
+    font-size: 1.2em;
+  }
+  .songs:hover{
+    color:$yelloww;
+    cursor: pointer;
+  }
+  .active {
+    color: $yelloww;
+  }
+}
+
+.video-wrap {
+  margin-bottom: 30px;
+  text-align: center;
+  .titleholder {
+    text-align: left;
+    width:100%;
+    max-width: 1000px;
+    margin: 0 auto;}
+  .videotitle {
+    color: #888888;
+    display: inline-block;
+    font-size: 1.5em;
+    margin-right: 40px;
+  }
+  .videotitle:hover {
+    color: $yelloww;
+    cursor: pointer;
+  }
+  .active { color: $yelloww; }
+  iframe {
+    @include yellowblock;
+    width: 100%;
+    max-width: 1000px;
+  }
+}
+
+// Performers
+.performers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  color: #fafafa;
+  margin-bottom: $section-spacing;
+
+  // For wrapping only (when too many performers in a row)
+  .performer {
+    width: 170px;
+    margin-bottom: 25px;
+  }
+
+  .thumb {
+    max-width: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(white, 0.1);
+  }
+
+  .name {
+    display: block;
+    margin: 15px 0 5px;
+    font-size: 1.2em;
+  }
+
+  .instrument { color: darken(white, 20); }
+}
+
+// Blog
+.blog {
+  @include yellowblock;
+  text-shadow: 2px 2px 7px #222;
+  margin-bottom: $section-spacing;
+
+  .title { color: $yelloww; }
+  .body {
+    margin-top: 10px;
+    padding: 0;
+  }
+  .bodytext {
+    text-align: justify;
+  }
+}
+
+// Photos
+.gallery {
+  display: inline-block;
+  margin-bottom: $section-spacing;
+  .thumb {
+    margin-bottom: 30px;
+    img {
+      @include yellowblock;
+    }
+  }
+}
+
+//artists
+.artists {
+  @include yellowblock;
+  text-shadow: 2px 2px 7px #222;
+  margin-bottom: $section-spacing;
+  display: inline-block;
+  width: 100%;
+  .title { color: $yelloww;}
+  .body {
+    margin-top: 10px;
+    padding: 0;
+  }
+  .thumb {
+    max-width: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(white, 0.1);
+  }
+  .name {
+    text-align: center;
+    color: $yelloww;
+  }
+  .about {
+    text-align: justify;
+    font-size: 0.8em;
+    margin-top: 20px;
+  }
+}
+
+//lyrics
+.lyrics {
+  @include yellowblock;
+  text-shadow: 2px 2px 7px #222;
+  margin-bottom: $section-spacing;
+  display: inline-block;
+  width: 100%;
+  .title { color:$yelloww;}
+  .body {
+    margin-top: 10px;
+    padding: 0;
+  }
+}
+
+// Contributors
+.contributors {
+  @include yellowblock;
+  text-shadow: 2px 2px 7px #222;
+  margin-bottom: $section-spacing;
+
+  .title { color: $yelloww; }
+  .body {
+    margin-top: 10px;
+    padding: 0;
+    color: #dddddd;
+    font-size: 0.8em;
+  }
+  span { color: $yelloww; }
+  margin-bottom: $section-spacing;
+}
+
+.signature {
+  margin-top: 30px;
+  font-size: 1.1em;
+}
+
+@include tablet {
+  .blog .body,
+  .artists .body,
+  .lyrics .body,
+  .contributors .body {
+    padding: 0 40px;
+  }
+}
+
+@include laptop {
+  .main {
+    margin-left: $audio-player-width;
+    padding: 0 40px;
+    margin-bottom: 100px;
+  }
+
+  .main-heading {
+    text-align: left;
+    .title {
+      font-size: 1.8em;
+    }
+  }
+
+  .footer {
+    padding-left: 150px;
+  }
+}

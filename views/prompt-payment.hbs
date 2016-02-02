@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/static.css" />
+
 <div class="prompt_payment_page container">
   <section>
     <h1>Hallo {{user.first_name}}!</h1>
@@ -8,7 +10,7 @@
   <section class="activation-code">
     <h1>Activatie Code</h1>
     <p>Heb je een activatie code? Geef deze hier in:</p>
-    <form class="form-inline" action="get-premium" method="get">
+    <form class="form-inline" action="/users/get-premium" method="get">
       <input id="code" class="form-control" type="text" name="code">
       <button type="submit" class="submit-code">Activeer</button>
     </form>

@@ -1,13 +1,10 @@
-var include   = require('include')
-  , chai      = require('chai')
-  , sinonChai = require('sinon-chai')
+var include        = require('include')
+  , chai           = require('chai')
   , chaiAsPromised = require('chai-as-promised')
-  , expect    = chai.expect
-  , sinon     = require('sinon')
-  , reqres    = require('reqres')
-  , Q         = require('q')
-  , Immutable = require('immutable')
-chai.use(sinonChai);
+  , expect         = chai.expect
+  , Q              = require('q')
+  , Immutable      = require('immutable')
+  , Factory        = require('../factories/factory')
 chai.use(chaiAsPromised);
 
 var test_db = require("../util/test_db")
@@ -99,6 +96,12 @@ describe('User', function() {
         expect(user.admin).to.be.false;
       })
     })
+
+    it('defaults to be notified by email', function() {
+      return User.create(userFixture.toJS()).then((user) => {
+        expect(user.receive_emails).to.be.true;
+      })
+    });
   }); // End of describe 'creation'
 
   describe('verification', function() {
@@ -106,8 +109,8 @@ describe('User', function() {
 
       context("when token is not expired", function() {
         var USER;
-        beforeEach(function(done) {
-          return User.create(userFixture.toJS()).then(function(user) {
+        beforeEach(done => {
+          return Factory('user').then(user => {
             return User.verify(user.local_data.confirmation_token).then(function(user) {
               USER = user;
               done();
@@ -144,6 +147,13 @@ describe('User', function() {
         return expect(promise).to.be.rejectedWith("No user found with token WRONG");
       });
     }); // End of context 'with an invalid token'
+
+    context('with no token', () => {
+      it('returns a rejected promise', () => {
+        return expect(User.verify()).to.eventually
+          .be.rejectedWith('Geen token gegeven.')
+      });
+    }); // End of context 'with no token'
   }); // End of describe 'verification'
 
   describe('facebook_creation', function() {
@@ -261,4 +271,24 @@ describe('User', function() {
     }); // End of context 'When user is already verified'
 
   }); // End of describe 'regenerate_verification_token'
+
+  describe('.notifiable', () => {
+
+    beforeEach(() => {
+      return Q.all([
+        Factory('user', { email: 'user1@example.com', receive_emails: true }),
+        Factory('user', { email: 'user2@example.com', receive_emails: false }),
+        Factory('user', { email: 'user3@example.com', receive_emails: true }),
+      ])
+    });
+
+    it('returns an array of all users that want to receive email notifications', function() {
+      return User.notifiable().then((users) => {
+        expect(users.length).to.eql(2)
+        expect(users.map((u) => u.email)).to.eql(
+          ['user1@example.com', 'user3@example.com']
+        )
+      })
+    });
+  }); // End of describe '.notifiable'
 }); // End of describe 'User'

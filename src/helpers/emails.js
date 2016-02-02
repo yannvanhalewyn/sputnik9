@@ -7,14 +7,15 @@
     , config = require('../../config/config')
 
   function verificationUrl(token) {
-    return `https://${config.host}/verify?token=${token}`;
+    return `https://${config.host}/users/verify?token=${token}`;
   }
+
+  var unsubscribe_url = (user) => `https://${config.host}/users/unsubscribe?u=${user._id}`
 
   function emailFromTemplate(path_to_template, context, email_opts) {
     return hbs.render(path_to_template, context, {cached: true})
-    .then(function(html) {
+    .then(html => {
       email_opts.html = html;
-      email_opts.from = "Sputnik9 <noreply@sputnik9.nl>"
       return email_opts;
     });
   }
@@ -27,18 +28,36 @@
           verify_url: verificationUrl(user.local_data.confirmation_token)
         }, {
           to: user.email,
-          subject: "Please activate your account.",
+          subject: 'Sputnik 9 Premium - Bevestig je e-mail adres!'
         }
       );
     },
 
     sendUnlockCode(email, code) {
       return emailFromTemplate(
-        "views/emails/send_unlock_code.hbs", {
-          code: code
+        "views/emails/send_unlock_code.hbs", { code },
+        { to: email, subject: 'Sputnik 9 Premium activatiecode' }
+      )
+    },
+
+    new_content(user, content) {
+      return emailFromTemplate(
+        `views/emails/notifications/${content}.hbs`, {
+          name: user.first_name,
+          unsubscribe_url: unsubscribe_url(user)
         }, {
-          to: email,
-          subject: "Je hebt een gratis Sputnik9 premium account gekregen!"
+          to: user.email,
+          subject: 'Er is nieuwe Sputnik 9 content!'
+        }
+      )
+    },
+
+    payment_confirmed(user) {
+      return emailFromTemplate(
+        'views/emails/payment_confirmation.hbs', { name: user.first_name },
+        {
+          to: user.email,
+          subject: 'Betaling ontvangen'
         }
       )
     }
