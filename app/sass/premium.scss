@@ -116,7 +116,7 @@ $section-spacing: 120px;
   .title { color: $yelloww; }
   .body {
     margin-top: 10px;
-    padding: 0px;
+    padding: 0;
   }
   .bodytext {
     text-align: justify;
@@ -145,7 +145,7 @@ $section-spacing: 120px;
   .title { color: $yelloww;}
   .body {
     margin-top: 10px;
-    padding: 0px;
+    padding: 0;
   }
   .thumb {
     max-width: 100px;
@@ -173,7 +173,7 @@ $section-spacing: 120px;
   .title { color:$yelloww;}
   .body {
     margin-top: 10px;
-    padding: 0px;
+    padding: 0;
   }
 }
 
@@ -186,24 +186,22 @@ $section-spacing: 120px;
   .title { color: $yelloww; }
   .body {
     margin-top: 10px;
-    padding: 0px;
+    padding: 0;
     color: #dddddd;
     font-size: 0.8em;
   }
-
-
-  span {
-    color: $yelloww;
-  }
+  span { color: $yelloww; }
 }
+
 @include tablet {
-  .blog .body, 
-  .artists .body, 
+  .blog .body,
+  .artists .body,
   .lyrics .body,
   .contributors .body {
     padding: 0 40px;
   }
-  }
+}
+
 @include laptop {
   .main {
     margin-left: $audio-player-width;
