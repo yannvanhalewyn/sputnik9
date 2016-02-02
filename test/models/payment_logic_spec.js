@@ -13,6 +13,7 @@ var paymentLogic = include('/src/models/payment_logic')
   , Payment = include('/src/models/payment')
   , User = include('/src/models/user')
   , userFixture = Immutable.fromJS(require('../fixtures/user'))
+  , notify = include('src/lib/notify')
 
 var db = require('../util/test_db');
 db.connect();
@@ -67,8 +68,12 @@ describe('paymentLogic', function() {
 
     context("when open payment goes to paid", function() {
       beforeEach(function() {
+        sinon.stub(notify, 'payment_confirmation')
         return setupResync("open")
       });
+
+      afterEach(() => notify.payment_confirmation.restore())
+
 
       it("persists the updated changes", function() {
         return paymentLogic.resync("abcde").then(function() {
@@ -83,6 +88,16 @@ describe('paymentLogic', function() {
         return paymentLogic.resync("abcde").then(function() {
           return User.findOne({}).then(function(user) {
             expect(user.premium).to.be.true;
+          })
+        })
+      });
+
+      it('notifies the user', () => {
+        return paymentLogic.resync('abcde').then(() => {
+          return User.findOne({}).then(user => {
+            expect(notify.payment_confirmation).to.have.been.called
+            var params = notify.payment_confirmation.firstCall.args[0]
+            expect(params._id).to.eql(user._id)
           })
         })
       });
@@ -104,13 +119,24 @@ describe('paymentLogic', function() {
 
     context("when paid payment gets cancelled", function() {
       beforeEach(function() {
+        sinon.stub(notify, 'payment_confirmation')
         return setupResync("open", "cancelled")
       });
+
+      afterEach(() => notify.payment_confirmation.restore());
 
       it("stores the user as not premium", function() {
         return paymentLogic.resync("abcde").then(function(payment) {
           return User.findOne({}).then(function(user) {
             expect(user.premium).to.eql(false)
+          })
+        })
+      });
+
+      it('doesnt send an email to the user', () => {
+        return paymentLogic.resync('abcde').then(() => {
+          return User.findOne({}).then(user => {
+            expect(notify.payment_confirmation).not.to.have.been.called
           })
         })
       });

@@ -6,6 +6,7 @@
     , Payment = require('./payment')
     , User = require('./user')
     , Logger = require('../lib/logger')
+    , notify = require('../lib/notify')
 
   function paymentOptions(user_id, host) {
     return {
@@ -59,6 +60,7 @@
           return User.findOne({payments: payment_db._id})
           .then(function(user) {
             var premium = isPaid(payment)
+            if (premium) notify.payment_confirmation(user);
             if (user.premium != premium) {
               user.premium = premium;
               return user.save();
