@@ -70,12 +70,12 @@
   }
   li:before {
     content: "• ";
-    color: $yelloww; /* or whatever color you prefer */
+    color: $yelloww;
   }
 }
 
 @include tablet {
-    .about {
-      width:60%;
-    }
+  .about {
+    width:60%;
   }
+}
