@@ -17,16 +17,12 @@ before(db.connect)
 afterEach(db.teardown);
 
 describe('email notifier', () => {
-  beforeEach(() => {
-    sinon.stub(mailer, 'send')
-  });
 
-  afterEach(() => {
-    mailer.send.restore()
-  });
+  beforeEach(() => { sinon.stub(mailer, 'send') });
+  afterEach(() => mailer.send.restore());
 
   describe('payment_confirmation', () => {
-    context('when the user has not yet received a payment', () => {
+    context('when the user has not yet received an email', () => {
       var user;
 
       beforeEach(() => {
@@ -50,5 +46,25 @@ describe('email notifier', () => {
         })
       });
     }); // End of context 'when the user has not yet received a payment'
+
+    context('when the user had already received an email', () => {
+      beforeEach(() => {
+        return Factory('user').then(u => {
+          return SentEmail.create(
+            {user_id: u._id, descriptor: 'payment_confirmation'}
+          ).then(() => { return notify.payment_confirmation(u) })
+        })
+      });
+
+      it('doesnt send another email', () => {
+        return mailer.send.should.not.have.been.called
+      });
+
+      it('doesnt create another SentEmail', () => {
+        return SentEmail.find().then(res => {
+          res.length.should.eql(1)
+        })
+      });
+    }); // End of context 'when the user had already received an email'
   }); // End of describe 'payment_confirmed'
 }); // End of describe 'email notifier'
