@@ -1,7 +1,7 @@
+@import "modules/component";
 @import "modules/variables";
 @import "modules/span";
 @import "modules/button";
-@import "modules/component";
 @import "modules/content";
 @import "modules/queries";
 @import "partials/general";
@@ -43,6 +43,7 @@
 }
 
 .intro-section { @include scroll-section; padding-top: 0px; }
+#login, #signup { margin: 0; }
 
 
 .about {
