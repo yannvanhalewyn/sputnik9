@@ -3,6 +3,7 @@
 @import "modules/button";
 @import "modules/component";
 @import "modules/content";
+@import "modules/queries";
 @import "partials/general";
 @import "partials/homepage";
 @import "partials/flash";
@@ -51,7 +52,7 @@
   text-align: justify;
   margin-bottom: 70px;
   span{color:$yelloww;}
-  
+
   p {font-size: 1em;}
   h3 {
     text-align: center;
@@ -64,8 +65,8 @@
     margin:0;
     text-align: left;
     }
-  li { 
-    padding-left: 1em; 
+  li {
+    padding-left: 1em;
   }
   li:before {
     content: "• ";
