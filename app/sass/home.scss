@@ -12,31 +12,6 @@
 
 .titel { margin-top: 90px; }
 
-.submit {
-  background-color: $yelloww;
-  padding: 10px 20px 10px 20px;
-  font-weight: bolder;
-  font-size: 20pt;
-  color: #111;
-}
-
-.account {
-  margin-top: 50px;
-  text-align: center;
-}
-
-.text {
-  text-align:left;
-  font-size: 18px;
-  text-shadow: 2px 2px 2px $black;
-}
-
-.yelloww {
-  background-color: $yelloww;
-  color: $black;
-  text-shadow: none;
-}
-
 @mixin scroll-section {
   padding-top: 80px;
   text-align: center;
