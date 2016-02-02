@@ -46,7 +46,7 @@
 
 
 .about {
-  width:60%;
+  width:100%;
   margin: 0 auto;
   margin-top: 40px;
   text-align: justify;
@@ -73,3 +73,9 @@
     color: $yelloww; /* or whatever color you prefer */
   }
 }
+
+@include tablet {
+    .about {
+      width:60%;
+    }
+  }
