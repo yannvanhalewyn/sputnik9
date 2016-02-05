@@ -55,7 +55,7 @@ export default class AudioPlayer extends React.Component {
   }
 
   _playPrev() {
-    this._swapSong(this.state.currentSong.id - 1);
+    this._swapSong(Math.max(this.state.currentSong.id - 1, 0));
   }
 
   _playNext() {
