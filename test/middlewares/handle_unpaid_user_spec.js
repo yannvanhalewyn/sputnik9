@@ -1,20 +1,10 @@
 // TODO not secure at all, needs work after user.verifyPayments is implemented
-var include = require('include')
-  , chai      = require('chai')
-  , sinonChai = require('sinon-chai')
-  , expect    = chai.expect
-  , reqres = require('reqres')
-  , sinon = require('sinon')
-  , Q = require('q')
-chai.use(sinonChai);
-
+require('../spec_helper')
 var handleUnpaid = include("/src/middlewares/handle_unpaid_user")
-  , db = require('../util/test_db')
-  , User = include('/src/models/user')
-  , userFixture = require('../fixtures/user')
-  , Payment = include('/src/models/payment')
-before(db.connect);
-afterEach(db.teardown);
+  , reqres       = require('reqres')
+  , User         = include('/src/models/user')
+  , userFixture  = require('../fixtures/user')
+  , Payment      = include('/src/models/payment')
 
 describe('handle_unpaid_user middleware', function() {
 

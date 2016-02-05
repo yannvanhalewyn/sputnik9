@@ -1,12 +1,6 @@
-var include = require('include')
-  , chai = require('chai')
-  , sinonChai = require('sinon-chai')
-  , sinon = require('sinon')
-  , expect = chai.expect
+require('../spec_helper')
+var requireVerifiedEmail = include('/src/middlewares/require_verified_email')
   , reqres = require('reqres')
-chai.use(sinonChai);
-
-var requireVerifiedEmail = include('/src/middlewares/require_verified_email');
 
 describe('require verified email middleware', function() {
   var req, res, next;

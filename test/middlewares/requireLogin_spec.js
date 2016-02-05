@@ -1,13 +1,6 @@
-var include   = require('include')
-  , chai      = require('chai')
-  , sinonChai = require('sinon-chai')
-  , expect    = chai.expect
-  , sinon     = require('sinon')
-  , reqres    = require('reqres')
-  , Q         = require('q')
-chai.use(sinonChai);
-
-var requireLogin = include('src/middlewares/requireLogin');
+require('../spec_helper')
+var reqres = require('reqres')
+  , requireLogin = include('src/middlewares/requireLogin');
 
 describe('requireLogin', function() {
 
