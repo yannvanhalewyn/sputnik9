@@ -5,20 +5,14 @@
   var cloudinary = require('cloudinary');
 
   var cl_transformations = {
-    lightbox_full: { width: 1000, crop: 'scale' },
+    lightbox_full: { width: 1000, crop: 'scale', secure: true },
     lightbox_thumb_tag: {
       width: 400, height: 400, crop: 'thumb',
-      gravity: 'center', class: 'img-responsive'
+      gravity: 'center', class: 'img-responsive', secure: true
     }
   }
 
   var helpers = {
-    ifvalue: function(value) {
-      if (value) {
-        return "value=" + value
-      }
-    },
-
     active_view: (a, b) => a == b ? 'active' : '',
     checkmark: (val) => val ? '&#10003;' : '',
 
