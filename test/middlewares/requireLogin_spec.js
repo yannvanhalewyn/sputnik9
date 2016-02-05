@@ -1,6 +1,5 @@
 require('../spec_helper')
-var reqres = require('reqres')
-  , requireLogin = include('src/middlewares/requireLogin');
+var requireLogin = include('src/middlewares/requireLogin');
 
 describe('requireLogin', function() {
 

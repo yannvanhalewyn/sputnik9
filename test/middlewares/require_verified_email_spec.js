@@ -1,6 +1,5 @@
 require('../spec_helper')
 var requireVerifiedEmail = include('/src/middlewares/require_verified_email')
-  , reqres = require('reqres')
 
 describe('require verified email middleware', function() {
   var req, res, next;

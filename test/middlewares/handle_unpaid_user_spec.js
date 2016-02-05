@@ -1,7 +1,6 @@
 // TODO not secure at all, needs work after user.verifyPayments is implemented
 require('../spec_helper')
 var handleUnpaid = include("/src/middlewares/handle_unpaid_user")
-  , reqres       = require('reqres')
   , User         = include('/src/models/user')
   , userFixture  = require('../fixtures/user')
   , Payment      = include('/src/models/payment')

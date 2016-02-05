@@ -1,6 +1,5 @@
 require('../spec_helper')
-var reqres = require('reqres')
-  , paywall = include('/src/middlewares/paywall')
+var paywall = include('/src/middlewares/paywall')
 
 describe('require_paid middleware', function() {
 

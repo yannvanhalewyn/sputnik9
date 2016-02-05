@@ -16,6 +16,9 @@ global.bcrypt    = require('bcrypt')
 global.include   = require('include')
 global.sinon     = require('sinon')
 global._         = require('lodash')
+global.reqres    = require('reqres')
+
+// Setup chai
 chai.should()
 chai.use(sinonChai)
 chai.use(chaiAsPromised)

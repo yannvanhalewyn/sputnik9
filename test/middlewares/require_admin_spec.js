@@ -1,5 +1,4 @@
-var reqres    = require('reqres')
-  , requireAdmin = include('src/middlewares/require_admin')
+var requireAdmin = include('src/middlewares/require_admin')
 
 describe('requireLogin', function() {
 

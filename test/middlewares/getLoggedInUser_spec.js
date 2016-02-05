@@ -2,7 +2,6 @@ require('../spec_helper')
 var User = include("src/models/user")
   , userFixture = require("../fixtures/user")
   , getLoggedInUser = include('src/middlewares/getLoggedInUser')
-  , reqres = require('reqres')
 
 describe('getLoggedInUser', function() {
 
