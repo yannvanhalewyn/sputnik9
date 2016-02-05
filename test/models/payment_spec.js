@@ -1,24 +1,9 @@
-var include = require('include')
-  , chai      = require('chai')
-  , sinon = require('sinon')
-  , sinonChai = require('sinon-chai')
-  , chaiAsPromised = require('chai-as-promised')
-  , expect    = chai.expect
-  , Q = require('q')
-  , Immutable = require('immutable')
-chai.use(sinonChai);
-chai.use(chaiAsPromised);
-
+require('../spec_helper')
 var Payment = include('/src/models/payment')
-  , db = require('../util/test_db')
   , paymentGateway = include('/src/models/payment_gateway')
   , paymentFixtures = Immutable.fromJS(require('../fixtures/payments'))
 
-db.connect();
-afterEach(db.teardown);
-
 describe('Payment model', function() {
-
 
   describe('syncWithMollie', function() {
 

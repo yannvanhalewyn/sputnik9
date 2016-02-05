@@ -1,19 +1,7 @@
-var include        = require('include')
-  , chai           = require('chai')
-  , chaiAsPromised = require('chai-as-promised')
-  , expect         = chai.expect
-  , Q              = require('q')
-  , Immutable      = require('immutable')
-  , Factory        = require('../factories/factory')
-chai.use(chaiAsPromised);
-
-var test_db = require("../util/test_db")
-  , User = include('/src/models/user')
-  , userFixture = Immutable.fromJS(require('../fixtures/user'))
+require('../spec_helper');
+var User          = include('/src/models/user')
+  , userFixture   = Immutable.fromJS(require('../fixtures/user'))
   , userFixtureFB = Immutable.fromJS(require('../fixtures/user_fb'));
-
-before(test_db.connect);
-afterEach(test_db.teardown);
 
 describe('User', function() {
 

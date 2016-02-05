@@ -1,8 +1,4 @@
-var include   = require('include')
-  , chai      = require('chai')
-  , expect    = chai.expect
-  , reqres = require('reqres')
-
+require('../spec_helper')
 var login = include("src/helpers/login_user")
 
 describe('login_user helper', function() {
