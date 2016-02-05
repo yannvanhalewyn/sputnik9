@@ -99,6 +99,7 @@ export default class AudioPlayer extends React.Component {
     this.howl = new Howl({
       urls: [song.url],
       volume: this.state.volume / 100,
+      buffer: true,
       onload: () => {
         this.setState({
           duration: this.howl._duration,
