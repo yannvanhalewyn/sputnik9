@@ -55,11 +55,11 @@ export default class AudioPlayer extends React.Component {
   }
 
   _playPrev() {
-    this._swapSong(this.state.currentSong.id - 1);
+    this._swapSong(Math.max(this.state.currentSong.id - 1, 0));
   }
 
   _playNext() {
-    this._swapSong(this.state.currentSong.id + 1);
+    this._swapSong((this.state.currentSong.id + 1) % this.props.songs.length);
   }
 
   _onSongClick(songId) {
@@ -99,6 +99,7 @@ export default class AudioPlayer extends React.Component {
     this.howl = new Howl({
       urls: [song.url],
       volume: this.state.volume / 100,
+      buffer: true,
       onload: () => {
         this.setState({
           duration: this.howl._duration,
