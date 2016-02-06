@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/css/home.css" />
+
+<div class="content-style-form user_preferences">
+  <!-- Update email preferences -->
+  <form class="user_preferences" method="POST">
+    <h3>Email Voorkeuren</h3>
+    <p class="notify_group">
+      <label class="notify_text" for="receive_emails">Houd mij op de hoogte van nieuwe content</label>
+      <input id="receive_emails" type="checkbox" name="receive_emails" checked={{user.receive_emails}} />
+    </p>
+    <input type="submit" value="Opslaan">
+  </form>
+
+  <form class="user_preferences" method="POST">
+    <h3>Verander je wachtwoord</h3>
+    <p class="notify_group">
+      <label for="old_password">Oud wachtwoord</label>
+      <input id="old_password" type="password" name="old_password" />
+    </p>
+    <p class="notify_group">
+      <label for="password">Nieuw wachtwoord</label>
+      <input id="password" type="password" name="password" />
+    </p>
+    <p class="notify_group">
+      <label for="password_confirmation">Nieuw wachtwoord (bevestiging)</label>
+      <input id="password_confirmation" type="password" />
+    </p>
+
+    <input type="submit" value="Opslaan">
+
+  </form>
+</div>

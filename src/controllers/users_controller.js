@@ -16,8 +16,22 @@
   var users_controller = {
 
     middlewares: {
+      show: [requireLogin],
+      update: [requireLogin],
       resend_verification: [requireLogin],
       use_unlock_code: [requireLogin]
+    },
+
+    show(req, res) {
+      res.render('user_preferences')
+    },
+
+    update(req, res) {
+      if (req.body.password) {
+        req.user.resetPassword(req.body.password).then(u => {
+          res.send('ok')
+        }, err => res.send(err))
+      }
     },
 
     create: function(req, res) {
