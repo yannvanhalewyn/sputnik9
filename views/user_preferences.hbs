@@ -6,7 +6,8 @@
     <h3>Email Voorkeuren</h3>
     <p class="notify_group">
       <label class="notify_text" for="receive_emails">Houd mij op de hoogte van nieuwe content</label>
-      <input id="receive_emails" type="checkbox" name="receive_emails" checked={{user.receive_emails}} />
+      <input id="receive_emails" type="checkbox" name="receive_emails"
+             {{#if user.receive_emails}}checked{{/if}} />
     </p>
     <input type="submit" value="Opslaan">
   </form>

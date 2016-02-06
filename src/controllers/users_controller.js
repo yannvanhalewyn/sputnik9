@@ -23,14 +23,30 @@
     },
 
     show(req, res) {
-      res.render('user_preferences')
+      res.render('user_preferences', { user: req.user })
     },
 
-    update(req, res) {
+    update(req, res, next) {
       if (req.body.password) {
-        req.user.resetPassword(req.body.password).then(u => {
-          res.send('ok')
-        }, err => res.send(err))
+        bcrypt.compare(req.body.old_password, req.user.local_data.password_digest)
+        .then(valid => {
+          if (!valid) {
+            req.session.flash = { type: 'error', message: 'Oud wachtwoord ongeldig.' }
+            return res.redirect('/users/me')
+          }
+          req.user.resetPassword(req.body.password).then(u => {
+            req.session.flash = { type: 'success', message: 'Je wachtwoord is aangepast' }
+            return res.redirect('/users/me')
+          })
+        }, next)
+      }
+
+      else {
+        req.user.update({"$set": { receive_emails: Boolean(req.body.receive_emails) }})
+        .then(u => {
+          req.session.flash = { type: 'success', message: 'Je email voorkeuren zijn gewijzigd' }
+          return res.redirect('/users/me')
+        }, next)
       }
     },
 
