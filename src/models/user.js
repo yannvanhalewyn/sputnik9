@@ -90,6 +90,8 @@ userSchema.methods = {
   resetPassword(new_password) {
     return user_crypto.hashPassword(new_password).then(hash => {
       this.local_data.password_digest = hash
+      this.local_data.password_reset_token = null
+      this.local_data.password_reset_expiration = null
       return this.save()
     })
   }

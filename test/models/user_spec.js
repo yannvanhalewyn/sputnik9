@@ -258,16 +258,23 @@ describe('User', function() {
   }); // End of describe 'regenerate_verification_token'
 
   describe('#resetPassword', () => {
-    var digest;
+    var digest, user;
     beforeEach(() => {
-      return Factory('user').then(u => u.resetPassword('new_password')).then(u => {
+      return Factory('user', 'with_password_reset_token')
+      .then(u => u.resetPassword('new_password')).then(u => {
         digest = u.local_data.password_digest
+        user = u;
       })
     });
 
     it('rehashes the password to a bcrypt verifiable hash', () => {
       digest.should.not.be.undefined
       digest.should.satisfy(hash => bcrypt.compareSync('new_password', hash))
+    });
+
+    it('removes the password reset token and expiration', () => {
+      expect(user.local_data.password_reset_token).to.be.null
+      expect(user.local_data.password_reset_expiration).to.be.null
     });
   }); // End of describe '#resetPassword'
 
