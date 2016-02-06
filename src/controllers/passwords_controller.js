@@ -15,7 +15,7 @@ module.exports = {
 
   // POST /users/forgot
   forgot(req, res, next) {
-    User.findOne({email: req.body.email}).then(user => {
+    User.findOne({email: req.body.email, provider: 'local'}).then(user => {
       // No user found
       if (!user) {
         req.session.flash = {
