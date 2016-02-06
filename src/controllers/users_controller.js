@@ -31,21 +31,21 @@
         password: req.body.password
       }).then(
 
-      // Successfull user creation!
-      function(user) {
-        login(user, req);
-        emails.emailConfirmation(user).then(mailer.send).catch(Logger.error)
-        res.redirect('/premium')
-      },
+        // Successfull user creation!
+        user => {
+          login(user, req);
+          emails.emailConfirmation(user).then(mailer.send).catch(Logger.error)
+          res.redirect('/premium')
+        },
 
-      // Erroneous user creation.
-      function(err) {
-        req.session.flash = {
-          type: "error",
-          message: formatValidationErrors(err)
+        // Erroneous user creation.
+        err => {
+          req.session.flash = {
+            type: "error",
+            message: formatValidationErrors(err)
+          }
+          res.redirect("/");
         }
-        res.redirect("/");
-      }
       );
     },
 
