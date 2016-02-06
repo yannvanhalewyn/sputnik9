@@ -7,7 +7,7 @@
   color: red;
 }
 
-#submit_signup[disabled] {
+input[type=submit][disabled] {
   background: darken(grey, 35);
   color: grey;
 }
