@@ -23,7 +23,15 @@ module.exports = {
   // POST /users/forgot
   forgot(req, res, next) {
     User.findOne({email: req.body.email}).then(user => {
-      if (!user) return next(`Geen gebruiker gevonden met email ${req.body.email}`)
+      // No user found
+      if (!user) {
+        req.session.flash = {
+          type: 'error',
+          message: `Geen gebruiker gevonden met email ${req.body.email}`
+        }
+        return res.redirect('/users/forgot')
+      }
+      // User found
       return password.setResetToken(user).then(user => {
         return emails.password_reset(user).then(mailer.send).then(() => {
           req.session.flash = { type: 'success', message: 'Wachtwoord reset email is verstuurd!' }
