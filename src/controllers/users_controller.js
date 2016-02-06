@@ -22,36 +22,31 @@
 
     create: function(req, res) {
 
-      bcrypt.hash(req.body.password, 10).then(function(hash) {
+      User.create({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        receive_emails: Boolean(req.body.receive_emails),
+        provider: 'local',
+        password: req.body.password
+      }).then(
 
-        User.create({
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
-          email: req.body.email,
-          receive_emails: Boolean(req.body.receive_emails),
-          provider: 'local',
-          local_data: {
-            password_digest: hash
-          }
-        }).then(
+      // Successfull user creation!
+      function(user) {
+        login(user, req);
+        emails.emailConfirmation(user).then(mailer.send).catch(Logger.error)
+        res.redirect('/premium')
+      },
 
-          // Successfull user creation!
-          function(user) {
-            login(user, req);
-            emails.emailConfirmation(user).then(mailer.send).catch(Logger.error)
-            res.redirect('/premium')
-          },
-
-          // Erroneous user creation.
-          function(err) {
-            req.session.flash = {
-              type: "error",
-              message: formatValidationErrors(err)
-            }
-            res.redirect("/");
-          }
-        );
-      });
+      // Erroneous user creation.
+      function(err) {
+        req.session.flash = {
+          type: "error",
+          message: formatValidationErrors(err)
+        }
+        res.redirect("/");
+      }
+      );
     },
 
     verify: function(req, res, next) {
