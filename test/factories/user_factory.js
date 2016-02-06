@@ -22,5 +22,14 @@ module.exports = {
         password_reset_expiration: Date.now() + 24 * 3600 * 1000
       }
     }, userFixture))
-  }
+  },
+
+  with_expired_password_reset_token() {
+    return User.create(_.merge({
+      local_data: {
+        password_reset_token: '123',
+        password_reset_expiration: Date.now() - 24 * 3600 * 1000
+      }
+    }, userFixture))
+  },
 }

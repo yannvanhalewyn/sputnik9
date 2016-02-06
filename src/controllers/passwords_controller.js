@@ -4,6 +4,7 @@ var User = require('../models/user')
   , password = require('../lib/password')
   , emails = require('../helpers/emails')
   , mailer = require('../lib/mailer')
+  , getUserByPasswordResetToken = require('../middlewares/get_user_by_password_reset_token')
 
 var getUserByResetToken = (token) => {
   return User.findOne({
@@ -13,6 +14,11 @@ var getUserByResetToken = (token) => {
 }
 
 module.exports = {
+
+  middlewares: {
+    show_reset_password: [ getUserByPasswordResetToken ],
+    reset_password: [ getUserByPasswordResetToken ]
+  },
 
   // POST /users/forgot
   forgot(req, res, next) {
@@ -29,32 +35,17 @@ module.exports = {
 
   // GET /users/reset/:token
   show_reset_password(req, res, next) {
-    getUserByResetToken(req.params.token).then(user => {
-      if (!user) {
-        req.session.flash = ({ type: 'error', message: 'Deze wachtwoord reset pagina bestaat niet of is expired' })
-        return res.redirect('/')
-      }
-      res.render('password_reset')
-    }, next)
+    res.render('password_reset')
   },
 
   // POST /users/reset/:token
   reset_password(req, res, next) {
-    getUserByResetToken(req.params.token).then(user => {
-      if (!user) {
-        req.session.flash = ({
-          type: 'error',
-          message: 'Deze wachtwoord reset pagina bestaat niet of is expired'
-        })
-        return res.redirect('/')
-      }
-      user.resetPassword(req.body.password).then(u => {
-        req.session.flash = ({
-          type: 'success',
-          message: 'Je wacthwoord is gereset. Je kan nu inloggen met je nieuwe wachtwoord'
-        })
-        res.redirect('/')
+    req.user.resetPassword(req.body.password).then(u => {
+      req.session.flash = ({
+        type: 'success',
+        message: 'Je wacthwoord is gereset. Je kan nu inloggen met je nieuwe wachtwoord'
       })
-    }, next)
+      res.redirect('/')
+    })
   }
 }
