@@ -47,6 +47,8 @@ var userSchema = mongoose.Schema({
     verified: Boolean,
     confirmation_token: String,
     token_expiration: Date,
+    password_reset_token: String,
+    password_reset_expiration: Date,
     password_digest: String
   }
 });
