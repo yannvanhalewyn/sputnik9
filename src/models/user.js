@@ -68,6 +68,13 @@ userSchema.methods = {
       this.local_data.token_expiration = token.expires;
       return this.save();
     })
+  },
+
+  resetPassword(new_password) {
+    return user_crypto.hashPassword(new_password).then(hash => {
+      this.local_data.password_digest = hash
+      return this.save()
+    })
   }
 }
 

@@ -255,8 +255,21 @@ describe('User', function() {
         })
       });
     }); // End of context 'When user is already verified'
-
   }); // End of describe 'regenerate_verification_token'
+
+  describe('#resetPassword', () => {
+    var digest;
+    beforeEach(() => {
+      return Factory('user').then(u => u.resetPassword('new_password')).then(u => {
+        digest = u.local_data.password_digest
+      })
+    });
+
+    it('rehashes the password to a bcrypt verifiable hash', () => {
+      digest.should.not.be.undefined
+      digest.should.satisfy(hash => bcrypt.compareSync('new_password', hash))
+    });
+  }); // End of describe '#resetPassword'
 
   describe('.notifiable', () => {
 
