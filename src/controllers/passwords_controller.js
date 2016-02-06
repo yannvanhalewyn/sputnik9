@@ -21,8 +21,17 @@ module.exports = {
   },
 
   // GET /users/reset/:token
-  show_reset_password(req, res) {
-
+  show_reset_password(req, res, next) {
+    User.findOne({
+      "local_data.password_reset_token": req.params.token,
+      "local_data.password_reset_expiration": { $gt: Date.now() }
+    }).then(user => {
+      if (!user) {
+        req.session.flash = ({ type: 'error', message: 'Deze wachtwoord reset pagina bestaat niet of is expired' })
+        return res.redirect('/')
+      }
+      res.render('password_reset')
+    }, next)
   },
 
   // POST /users/reset/:token
