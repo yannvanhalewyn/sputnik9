@@ -231,6 +231,7 @@ describe('User', function() {
           expect(user.local_data.confirmation_token).not.to.eql(prev_token)
           expect(user.local_data.token_expiration).not.to.eql(prev_expiration)
           var tomorrow = Date.now() + 1000 * 3600 * 24;
+          expect(user.local_data.confirmation_token).to.match(/^[0-9a-f]{48}$/)
           expect(user.local_data.token_expiration.getTime())
             .to.be.within(tomorrow - 1000, tomorrow + 1000)
         })
@@ -239,22 +240,19 @@ describe('User', function() {
 
     context("When user is already verified", function() {
       it("Throws a NotApplicable exception", function() {
-        return User.create(userFixture.toJS()).then((user) => {
-          user.local_data = {verified: true, confirmation_token: null};
-          var promise = user.resetConfirmationToken()
-          return expect(promise).to.be
-            .rejectedWith("Confirmation Tokens are not applicable for this user.")
+        return Factory('user', { local_data: { verified: true }}).then(user => {
+          return user.resetConfirmationToken().should.be
+            .rejectedWith('Deze gebruiker heeft geen bevestiging nodig.')
         });
       });
     }); // End of context 'When user is already verified'
 
-    context("When user is not authenticated locally", function() {
-      it("throws a NotApplicable exception", function() {
-        return User.create(userFixtureFB.toJS()).then((user) => {
-          var promise = user.resetConfirmationToken();
-          return expect(promise).to.be
-            .rejectedWith("Confirmation Tokens are not applicable for this user.")
-        });
+    context('When user is not authenticated locally', () => {
+      it('throws a NotApplicable exception', () => {
+        return Factory('user', { provider: 'facebook' }).then(user => {
+          return user.resetConfirmationToken().should.be
+            .rejectedWith('Deze gebruiker heeft geen bevestiging nodig.')
+        })
       });
     }); // End of context 'When user is already verified'
 

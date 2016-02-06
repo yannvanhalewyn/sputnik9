@@ -60,15 +60,11 @@ var crypto        = require('crypto')
       },
 
       resetConfirmationToken() {
-        if (this.provider != 'local' || this.local_data.verified) {
-          // Return a promise that will reject
-          var defered = Q.defer();
-          defered.reject("Confirmation Tokens are not applicable for this user.");
-          return defered.promise;
-        }
+        if (this.provider != 'local' || this.local_data.verified)
+          return Q.reject('Deze gebruiker heeft geen bevestiging nodig.')
 
-        return generateConfirmationTokenAndExpiration().then((token) => {
-          this.local_data.confirmation_token = token.token;
+        return user_crypto.expiringToken().then(token => {
+          this.local_data.confirmation_token = token.data;
           this.local_data.token_expiration = token.expires;
           return this.save();
         })
