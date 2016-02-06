@@ -7,7 +7,7 @@
   color: red;
 }
 
-#submit_signup[disabled] {
+input[type=submit][disabled] {
   background: darken(grey, 35);
   color: grey;
 }
@@ -35,4 +35,10 @@
     font-size: 1.2em;
     display: inline-block;
   }
+}
+
+.request_password_reset,
+.password_reset {
+  max-width: 600px;
+  margin: 0 auto;
 }

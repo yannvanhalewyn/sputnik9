@@ -47,16 +47,29 @@ var userSchema = mongoose.Schema({
     verified: Boolean,
     confirmation_token: String,
     token_expiration: Date,
+    password_reset_token: String,
+    password_reset_expiration: Date,
     password_digest: String
   }
 });
 
 userSchema.methods = {
-  addPayment: function(payment) {
+  /**
+   * Adds a payment reference to the user's payments array
+   *
+   * @param {Object} payment The payment to be referenced
+   * @returns {Promise} A promise for the updated persisted user
+   */
+  addPayment(payment) {
     this.payments.push(payment._id)
     return this.save();
   },
 
+  /**
+   * Resets the user's email verification confirmation token
+   *
+   * @returns {Promise} The promise for the updated and persisted user object
+   */
   resetConfirmationToken() {
     if (this.provider != 'local' || this.local_data.verified)
       return Q.reject('Deze gebruiker heeft geen bevestiging nodig.')
@@ -65,6 +78,21 @@ userSchema.methods = {
       this.local_data.confirmation_token = token.data;
       this.local_data.token_expiration = token.expires;
       return this.save();
+    })
+  },
+
+  /**
+   * Hashes the new_password and stores it as the user's password_digest
+   *
+   * @param {String} new_password The new password to be hashed and stored
+   * @returns {Promise} A promise for the updated and persisted user object
+   */
+  resetPassword(new_password) {
+    return user_crypto.hashPassword(new_password).then(hash => {
+      this.local_data.password_digest = hash
+      this.local_data.password_reset_token = null
+      this.local_data.password_reset_expiration = null
+      return this.save()
     })
   }
 }
