@@ -60,6 +60,18 @@
           subject: 'Betaling ontvangen'
         }
       )
+    },
+
+    password_reset(user) {
+      return emailFromTemplate(
+        'views/emails/password_reset.hbs', {
+          name: user.first_name,
+          token: user.local_data.password_reset_token
+        }, {
+          to: user.email,
+          subject: 'Je wachtwoord herzetten'
+        }
+      )
     }
   }
 
