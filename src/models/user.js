@@ -2,7 +2,6 @@
 
 var Q           = require('q')
   , mongoose    = require('mongoose')
-  , bcrypt      = require('../helpers/bcrypt-promisified')
   , user_crypto = require('../lib/user_crypto')
 
   /*
@@ -96,7 +95,7 @@ var Q           = require('q')
      */
     User.create = params => {
       if (params.provider == 'local') {
-        return Q.all([bcrypt.hash(params.password, 10), user_crypto.expiringToken()])
+        return Q.all([user_crypto.hashPassword(params.password), user_crypto.expiringToken()])
         .spread((hash, token) => {
           if (!params.local_data) params.local_data = {}
           params.local_data.confirmation_token = token.data,
