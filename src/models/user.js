@@ -1,10 +1,9 @@
 "use strict";
 
-var crypto        = require('crypto')
-    , Q           = require('q')
-    , mongoose    = require('mongoose')
-    , bcrypt      = require('../helpers/bcrypt-promisified')
-    , user_crypto = require('../lib/user_crypto')
+var Q           = require('q')
+  , mongoose    = require('mongoose')
+  , bcrypt      = require('../helpers/bcrypt-promisified')
+  , user_crypto = require('../lib/user_crypto')
 
   /*
    * ======
@@ -95,16 +94,15 @@ var crypto        = require('crypto')
      * @param {Object} params The params for the new user.
      * @return {Promise} A promise for the new persisted user object.
      */
-    User.create = function(params) {
+    User.create = params => {
       if (params.provider == 'local') {
-        return bcrypt.hash(params.password, 10).then(hash => {
-          return user_crypto.expiringToken().then(token => {
-            if (!params.local_data) params.local_data = {}
-            params.local_data.confirmation_token = token.data
-            params.local_data.token_expiration = token.expires
-            params.local_data.password_digest = hash
-            return new User(params).save()
-          })
+        return Q.all([bcrypt.hash(params.password, 10), user_crypto.expiringToken()])
+        .spread((hash, token) => {
+          if (!params.local_data) params.local_data = {}
+          params.local_data.confirmation_token = token.data,
+          params.local_data.token_expiration = token.expires,
+          params.local_data.password_digest = hash
+          return new User(params).save()
         })
       }
       else return new User(params).save();
