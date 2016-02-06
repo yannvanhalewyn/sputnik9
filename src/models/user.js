@@ -1,9 +1,10 @@
 "use strict";
 
-var crypto = require('crypto')
-    , Q = require('q')
-    , mongoose = require('mongoose')
-    , bcrypt = require('../helpers/bcrypt-promisified')
+var crypto        = require('crypto')
+    , Q           = require('q')
+    , mongoose    = require('mongoose')
+    , bcrypt      = require('../helpers/bcrypt-promisified')
+    , user_crypto = require('../lib/user_crypto')
 
   /*
    * ======
@@ -91,22 +92,6 @@ var crypto = require('crypto')
      * =========
      */
 
-    // Generate a confirmation token and expiration date
-    function generateConfirmationTokenAndExpiration() {
-
-      var defered = Q.defer();
-
-      crypto.randomBytes(TOKEN_LENGTH / 2, function(err, buf) {
-        if (err) return defered.reject(err);
-        defered.resolve({
-          token: buf.toString('hex'),
-          expires: Date.now() + EXPIRATION_TIME
-        });
-      });
-
-      return defered.promise;
-    }
-
     /**
      * Creates a new user. Depending on the params.provider value, a confirmation
      * token and expiration is generated for the user's email address
@@ -117,9 +102,9 @@ var crypto = require('crypto')
     User.create = function(params) {
       if (params.provider == 'local') {
         return bcrypt.hash(params.password, 10).then(hash => {
-          return generateConfirmationTokenAndExpiration().then(token => {
+          return user_crypto.expiringToken().then(token => {
             if (!params.local_data) params.local_data = {}
-            params.local_data.confirmation_token = token.token
+            params.local_data.confirmation_token = token.data
             params.local_data.token_expiration = token.expires
             params.local_data.password_digest = hash
             return new User(params).save()
