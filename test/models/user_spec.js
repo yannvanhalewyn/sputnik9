@@ -43,17 +43,17 @@ describe('User', function() {
     });
 
     it("stores the password digest in the local_data object", function() {
-      return User.create(userFixture.toJS()).then(function(user) {
-        expect(user.local_data.password_digest).not.to.be.undefined;
-        expect(user.local_data.password_digest).eq(userFixture.toJS().local_data.password_digest)
+      return User.create(userFixture.toJS()).then(user => {
+        user.local_data.password_digest.should.not.to.be.undefined;
+        user.local_data.password_digest.should.satisfy(hash => {
+          return bcrypt.compareSync(userFixture.get('password'), hash)
+        })
       })
     });
 
     it.skip("checks for a unique email address", function() {
       var promise = User.create(userFixture.toJS())
-      .then(function(user) {
-        return User.create(userFixture.toJS());
-      })
+        .then(() => User.create(userFixture.toJS()))
       return expect(promise).to.be.rejected;
     });
 
@@ -231,6 +231,7 @@ describe('User', function() {
           expect(user.local_data.confirmation_token).not.to.eql(prev_token)
           expect(user.local_data.token_expiration).not.to.eql(prev_expiration)
           var tomorrow = Date.now() + 1000 * 3600 * 24;
+          expect(user.local_data.confirmation_token).to.match(/^[0-9a-f]{48}$/)
           expect(user.local_data.token_expiration.getTime())
             .to.be.within(tomorrow - 1000, tomorrow + 1000)
         })
@@ -239,22 +240,19 @@ describe('User', function() {
 
     context("When user is already verified", function() {
       it("Throws a NotApplicable exception", function() {
-        return User.create(userFixture.toJS()).then((user) => {
-          user.local_data = {verified: true, confirmation_token: null};
-          var promise = user.resetConfirmationToken()
-          return expect(promise).to.be
-            .rejectedWith("Confirmation Tokens are not applicable for this user.")
+        return Factory('user', { local_data: { verified: true }}).then(user => {
+          return user.resetConfirmationToken().should.be
+            .rejectedWith('Deze gebruiker heeft geen bevestiging nodig.')
         });
       });
     }); // End of context 'When user is already verified'
 
-    context("When user is not authenticated locally", function() {
-      it("throws a NotApplicable exception", function() {
-        return User.create(userFixtureFB.toJS()).then((user) => {
-          var promise = user.resetConfirmationToken();
-          return expect(promise).to.be
-            .rejectedWith("Confirmation Tokens are not applicable for this user.")
-        });
+    context('When user is not authenticated locally', () => {
+      it('throws a NotApplicable exception', () => {
+        return Factory('user', { provider: 'facebook' }).then(user => {
+          return user.resetConfirmationToken().should.be
+            .rejectedWith('Deze gebruiker heeft geen bevestiging nodig.')
+        })
       });
     }); // End of context 'When user is already verified'
 
@@ -273,9 +271,8 @@ describe('User', function() {
     it('returns an array of all users that want to receive email notifications', function() {
       return User.notifiable().then((users) => {
         expect(users.length).to.eql(2)
-        expect(users.map((u) => u.email)).to.eql(
-          ['user1@example.com', 'user3@example.com']
-        )
+        users.map(u => u.email).should.include('user1@example.com')
+        users.map(u => u.email).should.include('user3@example.com')
       })
     });
   }); // End of describe '.notifiable'
