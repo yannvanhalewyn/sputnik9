@@ -1,4 +1,5 @@
 var controller = require('../controllers/users_controller')
+  , pswd_controller = require('../controllers/passwords_controller')
   , router = require('express').Router();
 
 router.get('/verify', controller.verify);
@@ -11,5 +12,10 @@ router.get('/get-premium',
 router.get('/unsubscribe', controller.unsubscribe)
 router.post('/', controller.create);
 
+// Password resets
+router.get('/forgot', (req, res) => res.render('forgotten_password'))
+router.post('/forgot', pswd_controller.forgot)
+router.get('/reset/:token', pswd_controller.show_reset_password)
+router.post('/reset/:token', pswd_controller.reset_password)
 
 module.exports = router;
