@@ -6,13 +6,6 @@ var User = require('../models/user')
   , mailer = require('../lib/mailer')
   , getUserByPasswordResetToken = require('../middlewares/get_user_by_password_reset_token')
 
-var getUserByResetToken = (token) => {
-  return User.findOne({
-    "local_data.password_reset_token": token,
-    "local_data.password_reset_expiration": { $gt: Date.now() }
-  })
-}
-
 module.exports = {
 
   middlewares: {
