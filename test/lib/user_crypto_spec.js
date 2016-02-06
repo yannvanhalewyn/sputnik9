@@ -15,4 +15,13 @@ describe('user crypto', () => {
       token.expires.should.be.closeTo(Date.now() + 24 * 3600 * 1000, 1000)
     });
   }); // End of describe '.expiringToken'
+
+  describe('.hashPassword', () => {
+    it('returns a bcrypt hash that is verifiable', function() {
+      return userCrypto.hashPassword('password').then(hash => {
+        hash.should.not.be.undefined
+        hash.should.satisfy(hash => bcrypt.compareSync('password', hash))
+      })
+    });
+  })
 }); // End of describe 'user crypto'

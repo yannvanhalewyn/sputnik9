@@ -1,5 +1,6 @@
 var crypto = require('crypto')
-  , Q = require('q')
+  , bcrypt = require('../helpers/bcrypt-promisified')
+  , Q      = require('q')
 
 const TOKEN_LENGTH = 48
 const EXPIRATION_TIME = 24 * 3600 * 1000
@@ -17,5 +18,15 @@ module.exports = {
       data: buf.toString('hex'),
       expires: Date.now() + EXPIRATION_TIME
     }))
+  },
+
+  /**
+   * Hashes a password into a verifiable bcrypt hash
+   *
+   * @param {String} password The password to be hashed
+   * @returns {Promise} The promise for the hash (String)
+   */
+  hashPassword(password) {
+    return bcrypt.hash(password, 10)
   }
 }
