@@ -79,11 +79,10 @@
       );
     },
 
-    verify: function(req, res, next) {
-      User.verify(req.query.token).then(
-        function(user) {
+    verify(req, res, next) {
+      User.verify(req.query.token).then(user => {
           login(user, req);
-          req.session.flash = {type: "success", message: "Verification successful!"}
+          req.session.flash = {type: 'success', message: 'Verificatie successvol!'}
           res.redirect("/premium")
         },
         next
