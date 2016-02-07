@@ -105,9 +105,6 @@ userSchema.methods = {
  */
 var User = mongoose.model('User', userSchema);
 
-var TOKEN_LENGTH = 48;
-var EXPIRATION_TIME = 24 * 3600 * 1000;
-
 /*
  * =========
  * Functions
@@ -161,21 +158,20 @@ User.findOrCreateByFacebookId = function(fbid, data) {
  * @return {Promise} A promise for the user. Will reject the promise if no
  * user was found with said token.
  */
-User.verify = function(token) {
+User.verify = token => {
   if (!token) return Q.reject('Geen token gegeven.')
-    return User.find({"local_data.confirmation_token": token}).then(function(found) {
+  return User.findOne({
+    "local_data.confirmation_token": token,
+    "local_data.token_expiration": { "$gt": Date.now() }
+  }).then(user => {
 
-      if (found.length == 0) throw `No user found with token ${token}`
+    if (!user) throw `Geen gebruiker gevonden met token ${token}`
 
-      var user = found[0];
-      if (user.local_data.token_expiration.getTime() < Date.now())
-        throw "This token has been expired."
-
-      user.local_data.verified = true;
-      user.local_data.confirmation_token = null;
-      user.local_data.token_expiration = null;
-      return user.save();
-    })
+    user.local_data.verified = true;
+    user.local_data.confirmation_token = null;
+    user.local_data.token_expiration = null;
+    return user.save();
+  })
 }
 
 User.notifiable = () => User.find({receive_emails: true})
