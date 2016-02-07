@@ -55,17 +55,13 @@ var UnlockCode = mongoose.model('UnlockCode', unlockCodeSchema)
  * stored for later reference only.
  * @return {Promise} A promise for the created unlock code object
  */
-UnlockCode.create = (optionalRecipient) => {
-
-  var defered = Q.defer();
-
-  crypto.randomBytes(CODE_LENGTH / 2, (err, buff) => {
-    if (err) return defered.reject(err);
-    return new UnlockCode({code: buff.toString('hex'), sent_to: optionalRecipient})
-      .save().then(defered.resolve, defered.reject)
+UnlockCode.create = optionalRecipient => {
+  return Q.nfcall(crypto.randomBytes, CODE_LENGTH / 2).then(buff => {
+    return new UnlockCode({
+      code: buff.toString('hex'),
+      sent_to: optionalRecipient
+    }).save()
   })
-
-  return defered.promise;
 }
 
 module.exports = UnlockCode
