@@ -2,6 +2,8 @@ var controller = require('../controllers/users_controller')
   , pswd_controller = require('../controllers/passwords_controller')
   , router = require('express').Router();
 
+router.get('/me', controller.middlewares.show, controller.show)
+router.post('/me', controller.middlewares.update, controller.update)
 router.get('/verify', controller.verify);
 router.get('/resend_verification',
            controller.middlewares.resend_verification,

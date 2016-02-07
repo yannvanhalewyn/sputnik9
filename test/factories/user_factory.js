@@ -2,6 +2,8 @@ var User = require('../../src/models/user')
   , userFixture = require('../fixtures/user')
   , _ = require('lodash')
 
+const ONE_DAY = 24 * 3600 * 1000
+
 module.exports = {
   default(params) {
     return User.create(_.merge({}, userFixture, params))
@@ -19,7 +21,7 @@ module.exports = {
     return User.create(_.merge({
       local_data: {
         password_reset_token: '123',
-        password_reset_expiration: Date.now() + 24 * 3600 * 1000
+        password_reset_expiration: Date.now() + ONE_DAY
       }
     }, userFixture))
   },
@@ -28,7 +30,7 @@ module.exports = {
     return User.create(_.merge({
       local_data: {
         password_reset_token: '123',
-        password_reset_expiration: Date.now() - 24 * 3600 * 1000
+        password_reset_expiration: Date.now() - ONE_DAY
       }
     }, userFixture))
   },

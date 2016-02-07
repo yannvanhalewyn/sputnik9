@@ -116,23 +116,25 @@ describe('User', function() {
         });
       }); // End of context 'when token is not expired'
 
-      context("when token is expired", function() {
-        it("returns a rejected promise", function() {
-          return User.create(userFixture.toJS()).then(function(user) {
+      context("when token is expired", () => {
+        it("returns a rejected promise", () => {
+          return Factory('user').then(user => {
             user.local_data.token_expiration = Date.now() - 2000;
-            return user.save().then(function(response) {
+            return user.save().then(user => {
               var promise = User.verify(user.local_data.confirmation_token);
-              return expect(promise).to.be.rejectedWith("This token has been expired.");
+              return expect(promise).to.be.rejectedWith(
+                `Geen gebruiker gevonden met token ${user.local_data.confirmation_token}`
+              );
             })
           });
         });
       }); // End of context 'when token is expired'
     }); // End of context 'with a valid authentication token'
 
-    context("with an invalid token", function() {
-      it("returns a rejected promise", function() {
+    context("with an invalid token", () => {
+      it("returns a rejected promise", () => {
         var promise = User.verify("WRONG");
-        return expect(promise).to.be.rejectedWith("No user found with token WRONG");
+        return expect(promise).to.be.rejectedWith('Geen gebruiker gevonden met token WRONG');
       });
     }); // End of context 'with an invalid token'
 

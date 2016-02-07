@@ -38,7 +38,12 @@ input[type=submit][disabled] {
 }
 
 .request_password_reset,
-.password_reset {
+.password_reset,
+.user_preferences {
   max-width: 600px;
   margin: 0 auto;
+}
+
+.user_preferences {
+  margin-bottom: 80px;
 }

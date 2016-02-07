@@ -16,8 +16,38 @@
   var users_controller = {
 
     middlewares: {
+      show: [requireLogin],
+      update: [requireLogin],
       resend_verification: [requireLogin],
       use_unlock_code: [requireLogin]
+    },
+
+    show(req, res) {
+      res.render('user_preferences', { user: req.user })
+    },
+
+    update(req, res, next) {
+      if (req.body.password) {
+        bcrypt.compare(req.body.old_password, req.user.local_data.password_digest)
+        .then(valid => {
+          if (!valid) {
+            req.session.flash = { type: 'error', message: 'Oud wachtwoord ongeldig.' }
+            return res.redirect('/users/me')
+          }
+          req.user.resetPassword(req.body.password).then(u => {
+            req.session.flash = { type: 'success', message: 'Je wachtwoord is aangepast' }
+            return res.redirect('/users/me')
+          })
+        }, next)
+      }
+
+      else {
+        req.user.update({"$set": { receive_emails: Boolean(req.body.receive_emails) }})
+        .then(u => {
+          req.session.flash = { type: 'success', message: 'Je email voorkeuren zijn gewijzigd' }
+          return res.redirect('/users/me')
+        }, next)
+      }
     },
 
     create: function(req, res) {
@@ -49,11 +79,10 @@
       );
     },
 
-    verify: function(req, res, next) {
-      User.verify(req.query.token).then(
-        function(user) {
+    verify(req, res, next) {
+      User.verify(req.query.token).then(user => {
           login(user, req);
-          req.session.flash = {type: "success", message: "Verification successful!"}
+          req.session.flash = {type: 'success', message: 'Verificatie successvol!'}
           res.redirect("/premium")
         },
         next

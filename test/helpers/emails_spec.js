@@ -124,7 +124,7 @@ describe('emails', function() {
       });
 
       it('tells the user he can reset his password', () => {
-        expect(output.html).to.include('wachtwoord reset')
+        expect(output.html).to.include('nieuw wachtwoord instellen')
       });
 
       it('links to the the his password reset form', () => {

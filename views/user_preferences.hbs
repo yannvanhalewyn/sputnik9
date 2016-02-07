@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="/css/home.css" />
+
+<div class="content-style-form user_preferences">
+  <!-- Update email preferences -->
+  <form class="user_preferences" method="POST">
+    <h3>Email Voorkeuren</h3>
+    <p class="notify_group">
+      <label class="notify_text" for="receive_emails">Houd mij op de hoogte van nieuwe content</label>
+      <input id="receive_emails" type="checkbox" name="receive_emails"
+             {{#if user.receive_emails}}checked{{/if}} />
+    </p>
+    <input type="submit" value="Opslaan">
+  </form>
+
+  <form class="user_preferences" method="POST">
+    <h3>Verander je wachtwoord</h3>
+    <p class="notify_group">
+      <label for="old_password">Oud wachtwoord</label>
+      <input id="old_password" type="password" name="old_password" />
+    </p>
+    <p class="notify_group">
+      <label for="password">Nieuw wachtwoord</label>
+      <span class="nomatch_message" id="length_error">Wachtwoord is te kort</span>
+      <input id="password" type="password" name="password" />
+    </p>
+    <p class="notify_group">
+      <label for="password_confirmation">Nieuw wachtwoord (bevestiging)</label>
+      <span class="nomatch_message" id="match_error">Wachtwoorden komen niet overeen</span>
+      <input id="password_confirmation" type="password" />
+    </p>
+
+    <input id='reset_password' type="submit" value="Opslaan" disabled>
+
+  </form>
+</div>
+
+<!-- Validations -->
+<script type="text/javascript" charset="utf-8">
+var input = {
+  pswd: $('#password'),
+  pswd_conf: $('#password_confirmation')
+}
+var nomatch = {
+  match: $('#match_error'),
+  length: $('#length_error')
+}
+var submit_btn = $('input[type=submit]#reset_password');
+
+var checkMatchingPasswords = function() { return input.pswd.val() == input.pswd_conf.val(); }
+var checkLength = function(elem) { return elem.val().length >= 6; }
+
+var validations = {
+  match: false,
+  length: false,
+}
+
+function validateMatch() {
+  var match = checkMatchingPasswords();
+  validations.match = match;
+  nomatch.match.toggle(!match);
+  validateForm();
+}
+
+function validateLength() {
+  var match = checkLength(input.pswd)
+  validations.length = match;
+  nomatch.length.toggle(!match);
+  validateForm();
+}
+
+function validateForm() {
+  var valid = true;
+  for (i in validations) {
+    if (validations[i] == false) {
+      valid = false;
+      break;
+    }
+  }
+  submit_btn.prop('disabled', !valid);
+}
+
+input.pswd.on('blur', function() {
+  input.pswd.on('keyup', validateLength);
+  input.pswd.off('blur');
+  validateLength();
+})
+
+input.pswd_conf.on('keyup', function() {
+  if (input.pswd.val().length == input.pswd_conf.val().length) {
+    input.pswd.on('keyup', validateMatch)
+    input.pswd_conf.off('keyup')
+    input.pswd_conf.on('keyup', validateMatch)
+    validateMatch()
+  }
+})
+
+</script>
