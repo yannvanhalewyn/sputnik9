@@ -17,7 +17,10 @@
   var Routes = function(app) {
 
     // Home Page
-    app.get('/', (req, res) => res.render('home', { homepage: true, user: req.user }) )
+    app.get('/', (req, res) => {
+      if (req.user && req.user.premium) return res.redirect('/premium')
+      res.render('home', { homepage: true, user: req.user })
+    });
 
     // Logging in user (new user session)
     app.post('/login', user_sessions_controller.create);
