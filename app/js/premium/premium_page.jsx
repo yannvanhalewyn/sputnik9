@@ -10,6 +10,7 @@ export default class PremiumPage extends React.Component {
       <Entry
         title={entry.title}
         videos={entry.videos}
+        performers={entry.performers}
       />
     </div>
   }
