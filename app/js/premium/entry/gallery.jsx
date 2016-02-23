@@ -1,10 +1,17 @@
 import React from 'react'
+import { CloudinaryImage, cl_url } from '../util/cloudinary.jsx'
 
 class VisibleImage extends React.Component {
   render() {
     return <div className="thumb col-xs-6 col-md-3">
-      <a href={`https://res.cloudinary.com/sputnik9/image/upload/c_scale,w_1000/v1/${this.props.id}`} data-toggle="lightbox" data-width="1000" data-gallery="sputnik9" data-type="image">
-        <img src={`https://res.cloudinary.com/sputnik9/image/upload/c_thumb,g_center,h_400,w_400/v1/${this.props.id}`} className="img-responsive" height="400" width="400" />
+      <a
+        href={cl_url(this.props.id, { width: 1000 })}
+        data-toggle="lightbox"
+        data-width="1000"
+        data-gallery="sputnik9"
+        data-type="image"
+      >
+        <CloudinaryImage id={this.props.id} width={400} height={400}/>
       </a>
     </div>
   }
@@ -16,7 +23,7 @@ class HiddenImage extends React.Component {
        data-width="1000"
        data-toggle="lightbox"
        data-gallery="sputnik9"
-       data-remote={`https://res.cloudinary.com/sputnik9/image/upload/c_scale,w_1000/v1/${this.props.id}`}
+       data-remote={cl_url(this.props.id, { width: 1000 })}
        data-type='image'>
     </div>
   }
