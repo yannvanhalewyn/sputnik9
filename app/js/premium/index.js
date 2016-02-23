@@ -1,11 +1,12 @@
 import { render } from 'react-dom';
 import PremiumPage from './premium_page.jsx';
 import Songs from './audioplayer/songs';
+import entries from './entries';
 import * as resize from './resize';
 import './video_swapper'
 
 render(
-  <PremiumPage songs={Songs}/>,
+  <PremiumPage songs={Songs} entries={entries} />,
   document.getElementById('premium_page')
 )
 
