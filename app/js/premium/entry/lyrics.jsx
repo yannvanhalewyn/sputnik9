@@ -13,17 +13,17 @@ export default class Lyrics extends React.Component {
     </div>
   }
 
-  _renderColumn(column) {
+  _renderColumn(column, i) {
     var paragraphs = column.split('\n\n')
-    return <div className="col-md-6">
+    return <div key={i} className="col-md-6">
       {paragraphs.map(this._renderParagraph)}
     </div>
   }
 
-  _renderParagraph(paragraph) {
+  _renderParagraph(paragraph, i) {
     var sentences = paragraph.split('\n')
-    return <span>
-      {sentences.map(s => <span>{s}<br/></span>)}
+    return <span key={i}>
+      {sentences.map((s, i) => <span key={i}>{s}<br/></span>)}
       <br/>
     </span>
   }
