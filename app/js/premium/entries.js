@@ -27,6 +27,8 @@ export default [
     ],
     blog: {
       text: `Tijdens de sessie van 5 en 6 januari hebben we, zoals je misschien al opgevallen was, twee erg verschillende songs geschreven. Dit is naar mijn idee meteen een tof voorbeeld van hoe onvoorspelbaar het resultaat van de sessies is. Mede daarom schep ik ook geen verwachtingen van de sessies, maar laat ik de boel de boel en zorg dat iedereen zich op z’n gemak voelt en zijn ding kan doen.\n Voor de eerste sessie heb ik Marlon, Leon en Alex gekozen omdat zij qua muziekstijl enigszins overlap hebben met elkaar, maar met de muziek waar ze voornamelijk actief in zijn juist erg ver uit elkaar liggen. Alle drie hebben ook ervaring in het schrijven van muziek, wat in een project als Sputnik 9 van groot belang is. De beide nummers die geschreven zijn in deze sessie zijn dan ook tot stand gekomen uit ideeën van alle muzikanten die mee hebben gedaan aan deze sessie.`
-    }
+    },
+    lyrics: `Where were your manners\n when you said I should be dead and gone?\n Would it be strange if I refused to pick up the phone?\n Leave me alone\n Leave me\n\n We had a thing\n had a fling\n now it's over and\n no need to reminisce\n why don't you find another man?\n Go find another man\n Go find another\n\n Your sorry is useless\n Look at all my bruises\n Stop it now / stop it now / stop it now\n Walk along\n\n I can't believe you tried to go out and sabotage\n The healing process of my sad, sad, broken heart\n You tore it apart\n You tore me up\n\n\nWe had a blast\n while it lasted\n but it didn't, so\n I'm done dancing\n you're no longer in control\n You're not untouchable\n You're not\n\n Damn your amends\n this is where it ends\n This is it / this is it / this was it\n This was the lie\n\n You hit me in the face\n You don't know what grace is\n I'll get by / you'll get by / we'll get by\n Bye, bye, bye\n Bye bye`
+
   }
 ]
