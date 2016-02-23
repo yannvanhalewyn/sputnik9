@@ -8,6 +8,22 @@
 
 $section-spacing: 120px;
 
+
+//MENU
+.nav {
+  a {
+    padding: 15px 8px !important;
+    margin: 0px !important;
+  
+}
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+
 .main {
   padding: 0 15px;
   display: inline-block;
