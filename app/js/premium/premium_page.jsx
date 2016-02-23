@@ -14,6 +14,7 @@ export default class PremiumPage extends React.Component {
         blog={entry.blog}
         lyrics={entry.lyrics}
         photos={entry.photos}
+        contributors={entry.contributors}
       />
     </div>
   }

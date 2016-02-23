@@ -53,6 +53,20 @@ export default [
         'entry_1_hidden/SPUTNIK1019_r9oog9',
         'entry_1_hidden/SPUTNIK1020_wqzajv'
       ]
-    }
+    },
+    contributors: [
+      {
+        title: 'Engineers',
+        body: `Michiel Claessen (opname)\nSipke Woudstra (opname)\nLars Spijkervet (mix)\nDaan Kandelaars (master)\n`
+      },
+      {
+        title: 'Video',
+        body: `Wouter van Uden: ­ Get By\nLars Spijkervet: ­ O E A`
+      },
+      {
+        title: 'Studio',
+        body: `Galloway Recording Studio\nNijmegen`
+      }
+    ]
   }
 ]
