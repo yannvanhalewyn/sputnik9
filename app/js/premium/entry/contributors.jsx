@@ -2,10 +2,9 @@ import React from 'react'
 
 class Contribution extends React.Component {
   render() {
-    console.log(this.props);
     return <div className="col-md-4">
       <p><span className="contribution-name">{this.props.title}:</span><br/><br/>
-        {this.props.body.split('\n').map(s => <span>{s}<br/></span>)}
+        {this.props.body.split('\n').map((s, i) => <span key={i}>{s}<br/></span>)}
       </p>
     </div>
   }
