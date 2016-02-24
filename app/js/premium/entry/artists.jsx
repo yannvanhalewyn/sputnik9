@@ -1,10 +1,11 @@
 import React from 'react'
+import { cl_thumb } from '../util/cloudinary.jsx'
 
 class Artist extends React.Component {
   render() {
     return <div className="col-md-4">
       <div className="name">
-        <img src={`//res.cloudinary.com/sputnik9/image/upload/v1454416668/${this.props.thumb}`} className="thumb" />
+        <img src={cl_thumb(this.props.thumb)} className="thumb" />
       <h4>{this.props.name}</h4>
       </div>
       <div className="about">
