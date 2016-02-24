@@ -17,7 +17,7 @@ export default class AudioPlayer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='audio-player'>
         <Tracklist
           songs={this.props.songs}
           currentSong={this.state.currentSong}

@@ -2,12 +2,6 @@
 .audio-player { display: none; }
 
 @include laptop {
-  // The spinner when loading
-  .loading-audio-player {
-    margin-left: $audio-player-width / 4;
-    width: $audio-player-width / 2;
-  }
-
   // Audio Player
   .audio-player {
     display: block;
