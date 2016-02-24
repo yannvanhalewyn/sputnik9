@@ -18,19 +18,34 @@ $section-spacing: 120px;
 }
 
 
-.main-heading {
-  text-align: center;
+.entries-header {
   margin-bottom: 40px;
+
+  li {
+    display: inline-block;
+    margin-right: 10px;
+  }
 
   .bolts-left,
   .bolts-right {
-    position: relative;
-    bottom: 8px;
+    display: none;
   }
+
   .title {
-    color: $yelloww;
+    color: $muted;
     font-size: 1.5em;
     display: inline-block;
+    &:hover { color: $yelloww; }
+  }
+
+  .active {
+    .title { color: $yelloww; }
+    .bolts-left,
+    .bolts-right {
+      display: inline;
+      position: relative;
+      bottom: 8px;
+    }
   }
 }
 
@@ -219,11 +234,8 @@ $section-spacing: 120px;
     margin-bottom: 100px;
   }
 
-  .main-heading {
-    text-align: left;
-    .title {
-      font-size: 1.8em;
-    }
+  .entries-header {
+    .title { display: inline-block; font-size: 1.8em; }
   }
 
   .footer {
