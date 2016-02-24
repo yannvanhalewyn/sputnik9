@@ -11,7 +11,12 @@ class VisibleImage extends React.Component {
         data-gallery="sputnik9"
         data-type="image"
       >
-        <CloudinaryImage id={this.props.id} width={400} height={400}/>
+        <CloudinaryImage
+          className='img-responsive'
+          id={this.props.id}
+          width={400}
+          height={400}
+        />
       </a>
     </div>
   }

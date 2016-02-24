@@ -9,7 +9,7 @@ export class CloudinaryImage extends React.Component {
     let height = this.props.height || 400
     return <img
       src={cl_thumb(this.props.id, { width, height })}
-      className="img-responsive"
+      className={this.props.className}
       height={width}
       width={height}
     />
