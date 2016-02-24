@@ -72,6 +72,76 @@ export default [
   },
   {
     id: 1,
-    title: 'Entry Two'
+    title: "Entry Two",
+    videos: [
+      { title: 'Beautiful Lie', url: 'https://player.vimeo.com/video/156077047' },
+      { title: "It Wasn't My Plan", url: 'https://player.vimeo.com/video/156077328' }
+    ],
+    performers: [
+      { name: 'Seb Dokman',
+        instrument: 'vocals / guitar',
+        thumb_id: 'entry_2/SPUTNIK2023',
+        about: 'De 23­jarige Seb Dokman, zanger en gitarist van de door heel de wereld spelende grunge­rockband ‘Paceshifters’, uit Wijhe (Overijssel) schrijft niet alleen maar grunge en alternatieve muziek, hij heeft ook een “rustigere” kant die geïnspireerd is door artiesten als Ryan Adams, Steve Earl en Neil Young. Nadat Seb in 2012 afstudeerde van de Herman Brood Academie in Utrecht, heeft hij zijn volledige leven op zijn band gericht waardoor ze in vijf jaar drie albums uitbrachten en op festivals als Pinkpop, de Zwarte Cross en SXSW hebben gespeeld.' },
+      {
+        name: 'Igor Sekulovic',
+        instrument: 'guitar',
+        thumb_id: 'entry_2/SPUTNIK2017',
+        about: 'Oprichter, gitarist, zanger en creatief leider van Projekt Rakija, Igor Sekulovic, is in 1995 op 10­jarige leeftijd gevlucht uit zijn geboorteland Bosnië en heeft de rest van zijn jeugd in Nederland doorgebracht. Op 14­jarige leeftijd begon Igor met zijn muzikale carriere als gitarist en speelde voornamelijk rock muziek. Op latere leeftijd kwam Igor weer in contact met zijn roots toen hij balkan muziek (her)ontdekte, wat uiteindelijk heeft geleid tot zijn uit de hand gelopen ‘Projekt Rakija’ waarmee Igor al op verschillende festivals zoals Lowlands en Sziget heeft gespeeld en door heel europa getourd heeft.'
+      },
+      {
+        name: 'Peter Peskens',
+        instrument: 'bass',
+        thumb_id: 'entry_2/SPUTNIK2016',
+        about: 'Peter Peskens komt uit Heythuysen (Limburg) is 9 jaar geleden begonnen met bassen en is zijn muzikale carriere begonnen in de punkmuziek. Peter heeft veel ervaring opgedaan op de Herman Brood academie, in bands als Mongue, en het conservatorium van Amsterdam, wat hem uiteindelijk op het podiumj bij Ellen ten Damme, Orgelvreten, Armand en Jan Akkerman op het podium heeft gebracht! Ondertussen is Peter met zowel The Mysterons als Jungle By Night bezig aan een nieuw album.'
+      },
+      { name: 'Lars Spijkervet', instrument: 'drums / backup vocals', thumb_id: 'artist_thumbs/larsthumb.jpg' }
+    ],
+    blog: {
+      text: `Voor Entry 2 heb ik 3 jongens met zeer verschillende achtergronden bij elkaar gezet. Iedereen is dan wel begonnen in de rock/punk muziek, alleen Seb is daarin echt door gegaan en heeft met zijn band Paceshifters over de hele wereld gespeeld. Igor zit met zijn eigen ‘Projekt Rakija’ in de balkan georiënteerde muziek en speelt Peter met Jungle By Night een mix tussen afrobeat, ethio­jazz en funk.\nDe eerste dag hebben we een song gemaakt die voornamelijk rock als basis heeft, in de verses hebben we echter een wat dub/hip­hop sfeer neer kunnen zetten door de drums en gitaar. De tweede song is veel meer richting de elektronische muziek, wat voornamelijk komt doordat Igor op de tweede dag zijn synthesizer meegenomen had waardoor Peter zijn baslijn door een effect genaamd de ‘Micro synth’ heeft gespeeld.  Door Seb’s achtergrond in de grunge heeft het toch zo’n vibe gekregen, wat het nummer niet misstaat.`
+    },
+    lyrics: `* Beautiful Lie:\n\nI can see it in front of me\nSomehow can’t reach it, I’m nobody\nA cold breeze enters my room\nThese thoughts are messing up my mind\n\nDon’t know if its true..\n\nA beautiful lie\nThis delusion is mine\n\nSomething obvious about this, but still I can’t reach it\nIt’s making me loose my self­control, cut me loose\n\nDon’t know if its true..\n\nA beautiful lie\nThis delusion is mine\n\nYou’re not here, you’re not here\n\nA beautiful lie\nThis delusion is mine\n\n\n* It Wasn’t My Plan\n\nBeen listening to your stories\nbeen doing it for months\nIt was all the way for me\ntoo blind to see\n\nYou dragged me all along\ninto your science of right and wrong\nIt was all the way for me\ntoo blind to see\n\nYou got me higher, you got me higher\nyou got me good\n\nIt wasn’t my plan\n\nYou couldn’t get along\nyou keep telling me I\n\nIt wasn’t my plan`,
+    photos: {
+      shown: [
+        'entry_1/SPUTNIK1003_ik0ort',
+        'entry_1/SPUTNIK1006_dcpkvh',
+        'entry_1/SPUTNIK1013_fwa6mz',
+        'entry_1/SPUTNIK1017_qb2x1s'
+      ],
+      hidden: [
+        'entry_1_hidden/SPUTNIK1002_oioxlz',
+        'entry_1_hidden/SPUTNIK1004_mz57zx',
+        'entry_1_hidden/SPUTNIK1005_msloc2',
+        'entry_1_hidden/SPUTNIK1007_hvonf4',
+        'entry_1_hidden/SPUTNIK1008_az2igj',
+        'entry_1_hidden/SPUTNIK1009_v2jg5k',
+        'entry_1_hidden/SPUTNIK1010_pavb55',
+        'entry_1_hidden/SPUTNIK1011_jhl5no',
+        'entry_1_hidden/SPUTNIK1012_xvwyod',
+        'entry_1_hidden/SPUTNIK1014_rntgwi',
+        'entry_1_hidden/SPUTNIK1015_z9z3wk',
+        'entry_1_hidden/SPUTNIK1016_qy8lnf',
+        'entry_1_hidden/SPUTNIK1018_zss6jr',
+        'entry_1_hidden/SPUTNIK1019_r9oog9',
+        'entry_1_hidden/SPUTNIK1020_wqzajv'
+      ]
+    },
+    contributors: [
+      {
+        title: 'Muzikanten',
+        body: `Seb Dokman (vocals / guitar)\nIgor Sekulovic (guitar)\nPeter Peskens (bass)\nLars Spijkervet (drums / backup vocals)\n`
+      },
+      {
+        title: 'Engineers',
+        body: `Sebastiaan van Bijlevelt (opname)\nLars Spijkervet (opname en mix)\nDaan Kandelaars (master)`
+      },
+      {
+        title: 'Video',
+        body: 'Wouter van Uden ­ Beautiful Lie\nLars Spijkervet ­ It Wasn’t My Plan'
+      },
+      {
+        title: 'Studio',
+        body: `Galloway Recording Studio\nNijmegen`
+      }
+    ]
   }
 ]

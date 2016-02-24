@@ -14,8 +14,8 @@ class Entry extends React.Component {
       <Videos videos={this.props.entry.videos} />
       <Performers performers={this.props.entry.performers} />
       <Blog title={this.props.entry.title} text={this.props.entry.blog.text} />
-      <Artists title={this.props.entry.title} artists={this.props.entry.performers} />
       <Gallery photos={this.props.entry.photos} />
+      <Artists title={this.props.entry.title} artists={this.props.entry.performers} />
       <Lyrics lyrics={this.props.entry.lyrics} />
       <Contributors contributors={this.props.entry.contributors} />
     </div>
