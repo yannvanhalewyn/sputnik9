@@ -80,18 +80,18 @@ export default [
     performers: [
       { name: 'Seb Dokman',
         instrument: 'vocals / guitar',
-        thumb_id: 'entry_2/SPUTNIK2023',
+        thumb_id: 'entry_2_hidden/SPUTNIK2023',
         about: 'De 23­jarige Seb Dokman, zanger en gitarist van de door heel de wereld spelende grunge­rockband ‘Paceshifters’, uit Wijhe (Overijssel) schrijft niet alleen maar grunge en alternatieve muziek, hij heeft ook een “rustigere” kant die geïnspireerd is door artiesten als Ryan Adams, Steve Earl en Neil Young. Nadat Seb in 2012 afstudeerde van de Herman Brood Academie in Utrecht, heeft hij zijn volledige leven op zijn band gericht waardoor ze in vijf jaar drie albums uitbrachten en op festivals als Pinkpop, de Zwarte Cross en SXSW hebben gespeeld.' },
       {
         name: 'Igor Sekulovic',
         instrument: 'guitar',
-        thumb_id: 'entry_2/SPUTNIK2017',
+        thumb_id: 'entry_2_hidden/SPUTNIK2017',
         about: 'Oprichter, gitarist, zanger en creatief leider van Projekt Rakija, Igor Sekulovic, is in 1995 op 10­jarige leeftijd gevlucht uit zijn geboorteland Bosnië en heeft de rest van zijn jeugd in Nederland doorgebracht. Op 14­jarige leeftijd begon Igor met zijn muzikale carriere als gitarist en speelde voornamelijk rock muziek. Op latere leeftijd kwam Igor weer in contact met zijn roots toen hij balkan muziek (her)ontdekte, wat uiteindelijk heeft geleid tot zijn uit de hand gelopen ‘Projekt Rakija’ waarmee Igor al op verschillende festivals zoals Lowlands en Sziget heeft gespeeld en door heel europa getourd heeft.'
       },
       {
         name: 'Peter Peskens',
         instrument: 'bass',
-        thumb_id: 'entry_2/SPUTNIK2016',
+        thumb_id: 'entry_2_hidden/SPUTNIK2016',
         about: 'Peter Peskens komt uit Heythuysen (Limburg) is 9 jaar geleden begonnen met bassen en is zijn muzikale carriere begonnen in de punkmuziek. Peter heeft veel ervaring opgedaan op de Herman Brood academie, in bands als Mongue, en het conservatorium van Amsterdam, wat hem uiteindelijk op het podiumj bij Ellen ten Damme, Orgelvreten, Armand en Jan Akkerman op het podium heeft gebracht! Ondertussen is Peter met zowel The Mysterons als Jungle By Night bezig aan een nieuw album.'
       },
       { name: 'Lars Spijkervet', instrument: 'drums / backup vocals', thumb_id: 'artist_thumbs/larsthumb.jpg' }
