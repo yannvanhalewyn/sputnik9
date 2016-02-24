@@ -1,5 +1,6 @@
 export default [
   {
+    id: 0,
     title: "Entry One",
     videos: [
       { title: 'Get By', url: 'https://player.vimeo.com/video/153681118' },
@@ -68,5 +69,9 @@ export default [
         body: `Galloway Recording Studio\nNijmegen`
       }
     ]
+  },
+  {
+    id: 1,
+    title: 'Entry Two'
   }
 ]
