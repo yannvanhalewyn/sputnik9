@@ -1,17 +1,15 @@
 import React from 'react';
 
 var cl_url = (id, opts) => {
-  let w = opts.width || 400
-  let h = opts.height || w
   let transform = []
   if (opts.crop) transform.push(`c_${opts.crop}`)
   if (opts.gravity) transform.push(`g_${opts.gravity}`)
-  transform.push(`w_${w}`)
-  transform.push(`h_${h}`)
+  if (opts.height) transform.push(`h_${opts.height}`)
+  if (opts.width) transform.push(`w_${opts.width}`)
   return `//res.cloudinary.com/sputnik9/image/upload/${transform.join(',')}/v1/${id}`
 }
 
-export const cl_thumb = id => cl_url(id, {width: 400, crop: 'thumb', gravity: 'center'})
+export const cl_thumb = id => cl_url(id, {width: 400, height: 400, crop: 'thumb', gravity: 'center'})
 export const cl_full = id => cl_url(id, {width: 1000})
 
 export class CloudinaryImage extends React.Component {
