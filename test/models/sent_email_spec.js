@@ -1,10 +1,5 @@
-var include = require('include');
-require('chai').should();
+require('../spec_helper')
 var SentEmail = include('src/models/sent_email');
-var db = require('../util/test_db');
-
-before(db.connect)
-afterEach(db.teardown)
 
 describe('email_notification', () => {
   context('initialisation', () => {

@@ -1,11 +1,4 @@
-var include = require('include')
-  , chai = require('chai')
-  , expect = chai.expect
-  , sinon = require('sinon')
-  , sinonChai = require('sinon-chai')
-  , reqres = require('reqres')
-chai.use(sinonChai)
-
+require('../spec_helper')
 var paywall = include('/src/middlewares/paywall')
 
 describe('require_paid middleware', function() {

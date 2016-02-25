@@ -1,20 +1,7 @@
-var include        = require('include')
-  , chai           = require('chai')
-  , chaiAsPromised = require('chai-as-promised')
-  , sinonChai      = require('sinon-chai')
-  , Q              = require('q')
-  , Factory        = require('../factories/factory')
-  , sinon          = require('sinon')
-  , mailer         = include('src/lib/mailer')
-  , db             = require('../util/test_db')
+require('../spec_helper')
+var mailer         = include('src/lib/mailer')
   , notify         = include('src/lib/notify')
   , SentEmail = include('src/models/sent_email')
-chai.should()
-chai.use(chaiAsPromised);
-chai.use(sinonChai);
-
-before(db.connect)
-afterEach(db.teardown);
 
 describe('email notifier', () => {
 

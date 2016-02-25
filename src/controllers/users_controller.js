@@ -16,49 +16,73 @@
   var users_controller = {
 
     middlewares: {
+      show: [requireLogin],
+      update: [requireLogin],
       resend_verification: [requireLogin],
       use_unlock_code: [requireLogin]
     },
 
-    create: function(req, res) {
-
-      bcrypt.hash(req.body.password, 10).then(function(hash) {
-
-        User.create({
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
-          email: req.body.email,
-          receive_emails: Boolean(req.body.receive_emails),
-          provider: 'local',
-          local_data: {
-            password_digest: hash
-          }
-        }).then(
-
-          // Successfull user creation!
-          function(user) {
-            login(user, req);
-            emails.emailConfirmation(user).then(mailer.send).catch(Logger.error)
-            res.redirect('/premium')
-          },
-
-          // Erroneous user creation.
-          function(err) {
-            req.session.flash = {
-              type: "error",
-              message: formatValidationErrors(err)
-            }
-            res.redirect("/");
-          }
-        );
-      });
+    show(req, res) {
+      res.render('user_preferences', { user: req.user })
     },
 
-    verify: function(req, res, next) {
-      User.verify(req.query.token).then(
-        function(user) {
+    update(req, res, next) {
+      if (req.body.password) {
+        bcrypt.compare(req.body.old_password, req.user.local_data.password_digest)
+        .then(valid => {
+          if (!valid) {
+            req.session.flash = { type: 'error', message: 'Oud wachtwoord ongeldig.' }
+            return res.redirect('/users/me')
+          }
+          req.user.resetPassword(req.body.password).then(u => {
+            req.session.flash = { type: 'success', message: 'Je wachtwoord is aangepast' }
+            return res.redirect('/users/me')
+          })
+        }, next)
+      }
+
+      else {
+        req.user.update({"$set": { receive_emails: Boolean(req.body.receive_emails) }})
+        .then(u => {
+          req.session.flash = { type: 'success', message: 'Je email voorkeuren zijn gewijzigd' }
+          return res.redirect('/users/me')
+        }, next)
+      }
+    },
+
+    create: function(req, res) {
+
+      User.create({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        receive_emails: Boolean(req.body.receive_emails),
+        provider: 'local',
+        password: req.body.password
+      }).then(
+
+        // Successfull user creation!
+        user => {
           login(user, req);
-          req.session.flash = {type: "success", message: "Verification successful!"}
+          emails.emailConfirmation(user).then(mailer.send).catch(Logger.error)
+          res.redirect('/premium')
+        },
+
+        // Erroneous user creation.
+        err => {
+          req.session.flash = {
+            type: "error",
+            message: formatValidationErrors(err)
+          }
+          res.redirect("/");
+        }
+      );
+    },
+
+    verify(req, res, next) {
+      User.verify(req.query.token).then(user => {
+          login(user, req);
+          req.session.flash = {type: 'success', message: 'Verificatie successvol!'}
           res.redirect("/premium")
         },
         next

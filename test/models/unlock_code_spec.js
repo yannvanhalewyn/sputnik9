@@ -1,15 +1,6 @@
-var include        = require('include')
-  , chai           = require('chai')
-  , chaiAsPromised = require('chai-as-promised')
-chai.use(chaiAsPromised)
-  , expect         = chai.expect
-  , UnlockCode     = include('src/models/unlock_code')
-  , User           = include('src/models/user')
-  , Factory        = require('../factories/factory')
-  , db             = require('../util/test_db')
-
-before(db.connect)
-afterEach(db.teardown)
+require('../spec_helper')
+var UnlockCode = include('src/models/unlock_code')
+  , User       = include('src/models/user')
 
 describe('UnlockCode', function() {
 

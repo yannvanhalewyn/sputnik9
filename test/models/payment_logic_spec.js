@@ -1,12 +1,4 @@
-var include   = require('include')
-  , chai      = require('chai')
-  , sinon     = require('sinon')
-  , sinonChai = require('sinon-chai')
-  , expect    = chai.expect
-  , Q         = require('q')
-  , Immutable = require('immutable')
-chai.use(sinonChai);
-
+require('../spec_helper')
 var paymentLogic = include('/src/models/payment_logic')
   , paymentGateway = include('/src/models/payment_gateway')
   , paymentFixture = Immutable.fromJS(require('../fixtures/payments'))
@@ -14,10 +6,6 @@ var paymentLogic = include('/src/models/payment_logic')
   , User = include('/src/models/user')
   , userFixture = Immutable.fromJS(require('../fixtures/user'))
   , notify = include('src/lib/notify')
-
-var db = require('../util/test_db');
-db.connect();
-afterEach(db.teardown);
 
 describe('paymentLogic', function() {
 

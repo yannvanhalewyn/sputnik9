@@ -1,19 +1,7 @@
-var include        = require('include')
-  , chai           = require('chai')
-  , chaiAsPromised = require('chai-as-promised')
-  , expect         = chai.expect
-  , Q              = require('q')
-  , Immutable      = require('immutable')
-  , Factory        = require('../factories/factory')
-chai.use(chaiAsPromised);
-
-var test_db = require("../util/test_db")
-  , User = include('/src/models/user')
-  , userFixture = Immutable.fromJS(require('../fixtures/user'))
+require('../spec_helper');
+var User          = include('/src/models/user')
+  , userFixture   = Immutable.fromJS(require('../fixtures/user'))
   , userFixtureFB = Immutable.fromJS(require('../fixtures/user_fb'));
-
-before(test_db.connect);
-afterEach(test_db.teardown);
 
 describe('User', function() {
 
@@ -55,17 +43,17 @@ describe('User', function() {
     });
 
     it("stores the password digest in the local_data object", function() {
-      return User.create(userFixture.toJS()).then(function(user) {
-        expect(user.local_data.password_digest).not.to.be.undefined;
-        expect(user.local_data.password_digest).eq(userFixture.toJS().local_data.password_digest)
+      return User.create(userFixture.toJS()).then(user => {
+        user.local_data.password_digest.should.not.to.be.undefined;
+        user.local_data.password_digest.should.satisfy(hash => {
+          return bcrypt.compareSync(userFixture.get('password'), hash)
+        })
       })
     });
 
     it.skip("checks for a unique email address", function() {
       var promise = User.create(userFixture.toJS())
-      .then(function(user) {
-        return User.create(userFixture.toJS());
-      })
+        .then(() => User.create(userFixture.toJS()))
       return expect(promise).to.be.rejected;
     });
 
@@ -128,23 +116,25 @@ describe('User', function() {
         });
       }); // End of context 'when token is not expired'
 
-      context("when token is expired", function() {
-        it("returns a rejected promise", function() {
-          return User.create(userFixture.toJS()).then(function(user) {
+      context("when token is expired", () => {
+        it("returns a rejected promise", () => {
+          return Factory('user').then(user => {
             user.local_data.token_expiration = Date.now() - 2000;
-            return user.save().then(function(response) {
+            return user.save().then(user => {
               var promise = User.verify(user.local_data.confirmation_token);
-              return expect(promise).to.be.rejectedWith("This token has been expired.");
+              return expect(promise).to.be.rejectedWith(
+                `Geen gebruiker gevonden met token ${user.local_data.confirmation_token}`
+              );
             })
           });
         });
       }); // End of context 'when token is expired'
     }); // End of context 'with a valid authentication token'
 
-    context("with an invalid token", function() {
-      it("returns a rejected promise", function() {
+    context("with an invalid token", () => {
+      it("returns a rejected promise", () => {
         var promise = User.verify("WRONG");
-        return expect(promise).to.be.rejectedWith("No user found with token WRONG");
+        return expect(promise).to.be.rejectedWith('Geen gebruiker gevonden met token WRONG');
       });
     }); // End of context 'with an invalid token'
 
@@ -243,6 +233,7 @@ describe('User', function() {
           expect(user.local_data.confirmation_token).not.to.eql(prev_token)
           expect(user.local_data.token_expiration).not.to.eql(prev_expiration)
           var tomorrow = Date.now() + 1000 * 3600 * 24;
+          expect(user.local_data.confirmation_token).to.match(/^[0-9a-f]{48}$/)
           expect(user.local_data.token_expiration.getTime())
             .to.be.within(tomorrow - 1000, tomorrow + 1000)
         })
@@ -251,26 +242,43 @@ describe('User', function() {
 
     context("When user is already verified", function() {
       it("Throws a NotApplicable exception", function() {
-        return User.create(userFixture.toJS()).then((user) => {
-          user.local_data = {verified: true, confirmation_token: null};
-          var promise = user.resetConfirmationToken()
-          return expect(promise).to.be
-            .rejectedWith("Confirmation Tokens are not applicable for this user.")
+        return Factory('user', { local_data: { verified: true }}).then(user => {
+          return user.resetConfirmationToken().should.be
+            .rejectedWith('Deze gebruiker heeft geen bevestiging nodig.')
         });
       });
     }); // End of context 'When user is already verified'
 
-    context("When user is not authenticated locally", function() {
-      it("throws a NotApplicable exception", function() {
-        return User.create(userFixtureFB.toJS()).then((user) => {
-          var promise = user.resetConfirmationToken();
-          return expect(promise).to.be
-            .rejectedWith("Confirmation Tokens are not applicable for this user.")
-        });
+    context('When user is not authenticated locally', () => {
+      it('throws a NotApplicable exception', () => {
+        return Factory('user', { provider: 'facebook' }).then(user => {
+          return user.resetConfirmationToken().should.be
+            .rejectedWith('Deze gebruiker heeft geen bevestiging nodig.')
+        })
       });
     }); // End of context 'When user is already verified'
-
   }); // End of describe 'regenerate_verification_token'
+
+  describe('#resetPassword', () => {
+    var digest, user;
+    beforeEach(() => {
+      return Factory('user', 'with_password_reset_token')
+      .then(u => u.resetPassword('new_password')).then(u => {
+        digest = u.local_data.password_digest
+        user = u;
+      })
+    });
+
+    it('rehashes the password to a bcrypt verifiable hash', () => {
+      digest.should.not.be.undefined
+      digest.should.satisfy(hash => bcrypt.compareSync('new_password', hash))
+    });
+
+    it('removes the password reset token and expiration', () => {
+      expect(user.local_data.password_reset_token).to.be.null
+      expect(user.local_data.password_reset_expiration).to.be.null
+    });
+  }); // End of describe '#resetPassword'
 
   describe('.notifiable', () => {
 
@@ -285,9 +293,8 @@ describe('User', function() {
     it('returns an array of all users that want to receive email notifications', function() {
       return User.notifiable().then((users) => {
         expect(users.length).to.eql(2)
-        expect(users.map((u) => u.email)).to.eql(
-          ['user1@example.com', 'user3@example.com']
-        )
+        users.map(u => u.email).should.include('user1@example.com')
+        users.map(u => u.email).should.include('user3@example.com')
       })
     });
   }); // End of describe '.notifiable'

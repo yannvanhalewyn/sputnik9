@@ -1,19 +1,7 @@
-var include   = require('include')
-  , chai      = require('chai')
-  , sinonChai = require('sinon-chai')
-  , expect    = chai.expect
-  , sinon     = require('sinon')
-  , reqres    = require('reqres')
-  , Q         = require('q')
-chai.use(sinonChai);
-
+require('../spec_helper')
 var User = include("src/models/user")
   , userFixture = require("../fixtures/user")
-  , db = require("../util/test_db")
-before(db.connect)
-afterEach(db.teardown)
-
-var getLoggedInUser = include('src/middlewares/getLoggedInUser');
+  , getLoggedInUser = include('src/middlewares/getLoggedInUser')
 
 describe('getLoggedInUser', function() {
 

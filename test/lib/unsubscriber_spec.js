@@ -1,16 +1,6 @@
-var include        = require('include')
-  , chai           = require('chai')
-  , chaiAsPromised = require('chai-as-promised')
-  , expect         = chai.expect
-  , Factory        = require('../factories/factory')
-  , unsubscribe    = include('src/lib/unsubscribe')
+require('../spec_helper')
+var unsubscribe    = include('src/lib/unsubscribe')
   , User           = include('src/models/user')
-chai.use(chaiAsPromised)
-
-var db = require('../util/test_db');
-
-before(db.connect)
-afterEach(db.teardown)
 
 describe('unsubscriber', function() {
   context('when the user id exists', function() {

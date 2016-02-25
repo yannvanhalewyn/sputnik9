@@ -1,38 +1,18 @@
-var chai = require('chai')
-  , chaiAsPromised = require('chai-as-promised')
-  , expect = chai.expect
-  , include = require('include')
-  , verify = include('/src/helpers/verify_user_password')
+require('../spec_helper')
+var verify = include('/src/helpers/verify_user_password')
   , User = include('/src/models/user')
   , userFixture = require('../fixtures/user')
-  , bcrypt = require('bcrypt')
-chai.use(chaiAsPromised);
-
-// Setup test_db
-var db = require('../util/test_db')
-db.connect();
-afterEach(db.teardown)
 
 describe('verify user password helper', function() {
 
   context("when a user exists", function() {
 
     var USER;
-
-    beforeEach(function(done) {
-      bcrypt.hash("password123", 10, function(err, hash) {
-        userFixture.local_data.password_digest = hash;
-        User.create(userFixture).then(function(user) {
-          USER = user;
-          done();
-        }).catch(done);
-      });
-    });
+    beforeEach(() => Factory('user').then(u => USER = u));
 
     context("when verify receives the correct password", function() {
-      it("resolves to true and the user object", function(done) {
-        return verify("j.d@gmail.com", "password123")
-        .then(function(user) {
+      it("resolves to true and the user object", done => {
+        return verify("j.d@gmail.com", "password").then(user => {
           expect(user._id).to.eql(USER._id)
           done();
         }, done);

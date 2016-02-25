@@ -1,10 +1,7 @@
-var include = require('include')
-  , chai    = require('chai')
-  , expect  = chai.expect
-  , _       = require('lodash')
+require('../spec_helper')
 
-var emails = include('/src/helpers/emails');
-var userFixture = include('/test/fixtures/user')
+var emails = include('/src/helpers/emails')
+  , userFixture = include('/test/fixtures/user')
 
 describe('emails', function() {
   describe('confirmation email', function() {
@@ -107,4 +104,32 @@ describe('emails', function() {
     }); // End of describe 'contents'
   }); // End of describe 'payment_confirmed'
 
+  describe('password_reset', () => {
+    var output
+
+    beforeEach(() => {
+      return Factory('user', { local_data: { password_reset_token: '123' }}).then(user => {
+        return emails.password_reset(user).then(email => output = email)
+      })
+    });
+
+    it('returns an object with the correct values', () => {
+      expect(output.to).to.eql('j.d@gmail.com');
+      expect(output.subject).to.eql('Je wachtwoord herzetten');
+    });
+
+    describe('contents', () => {
+      it("greets the user by it's first name", () => {
+        expect(output.html).to.include('Hoi, John!')
+      });
+
+      it('tells the user he can reset his password', () => {
+        expect(output.html).to.include('nieuw wachtwoord instellen')
+      });
+
+      it('links to the the his password reset form', () => {
+        expect(output.html).to.include('https://www.sputnik9.nl/users/reset/123')
+      });
+    }); // End of describe 'contents'
+  }); // End of describe 'password_reset'
 }); // End of describe 'emails'

@@ -86,11 +86,13 @@ input.pswd.on('blur', function() {
   validatePasswordLength();
 })
 
-input.pswd_conf.on('focus', function() {
-  input.pswd.on('keyup', validateMatchingPasswords);
-  input.pswd_conf.on('keyup', validateMatchingPasswords);
-  input.pswd_conf.off('blur');
-  validateMatchingPasswords();
+input.pswd_conf.on('keyup', function() {
+  if (input.pswd.val().length == input.pswd_conf.val().length) {
+    input.pswd.on('keyup', validateMatchingPasswords);
+    input.pswd_conf.off('keyup')
+    input.pswd_conf.on('keyup', validateMatchingPasswords);
+    validateMatchingPasswords();
+  }
 });
 
 input.first_name.on('blur', function() {
