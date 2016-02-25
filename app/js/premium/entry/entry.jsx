@@ -24,6 +24,6 @@ class Entry extends React.Component {
 
 export default class EntryHandler extends React.Component {
   render() {
-    return <Entry entry={entries[this.props.params.entryId]} />
+    return <Entry entry={entries[this.props.params.entryId] || entries[0]} />
   }
 }
