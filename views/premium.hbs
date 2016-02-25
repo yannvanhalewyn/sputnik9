@@ -7,6 +7,7 @@
 <link href="//rawgithub.com/ashleydw/lightbox/master/dist/ekko-lightbox.css" rel="stylesheet">
 <link href="//rawgithub.com/ashleydw/lightbox/gh-pages/css/dark.css" rel="stylesheet">
 
+
 <!-- Audio Player -->
 <div id="react-audio-player" class='audio-player'>
   <img src='/img/spinner.svg' class='loading-audio-player' alt=""/>
@@ -18,13 +19,30 @@
 
   <!-- Title -->
   <div class="main-heading">
-    <img class="bolts-left" src="/img/scroll-bolts-left.png" alt="">
-    <h1 class="title">Entry One</h1>
-    <img class="bolts-right" src="/img/scroll-bolts-right.png" alt="">
-  </div>
-
-  <div class="videotitle">
-    <h3 class="title">Video's:</h3>
+    <div class="active-entry">
+      <img class="bolts-left" src="/img/scroll-bolts-left.png" alt="">
+      <h1 class="title">Entry One</h1>
+      <img class="bolts-right" src="/img/scroll-bolts-right.png" alt="">
+    </div>
+    <div class="entry-list">  
+            <div class="dropdown">
+              <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Other Entries
+              <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li class="enabled"><a href="#">Entry One</a></li>
+                <li class="enabled"><a href="#">Entry Two</a></li>
+                <li class="disabled"><a href="#">Entry Three</a></li>
+                <li class="disabled"><a href="#">Entry Four</a></li>
+                <li class="disabled"><a href="#">Entry Five</a></li>
+                <li class="disabled"><a href="#">Entry Six</a></li>
+                <li class="disabled"><a href="#">Entry Seven</a></li>
+                <li class="disabled"><a href="#">Entry Eight</a></li>
+                <li class="disabled"><a href="#">Entry Nine</a></li>
+              </ul>
+            </div>          
+    </div>
   </div>
 
   <!-- Video -->

@@ -19,16 +19,47 @@ $section-spacing: 120px;
   margin-bottom: 40px;
 
   .bolts-left,
-  .bolts-right {
+  .bolts-right,
+   {
     position: relative;
     bottom: 8px;
   }
-  .title {
+  .active-entry {
+    .title, {
     color: $yelloww;
     font-size: 1.5em;
     display: inline-block;
+    }
   }
+  .entry-list {
+    .title, {
+    color: #9d9d9d;
+    font-size: 1.2em;
+    display: inline-block;
+    }
+    .dropdown {
+      display: inline-block;
+    }
+    .dropdown-menu {
+      border: none;
+      background-color: #9d9d9d;
+      text-align: center;
+      left: 50%;
+      right: auto;
+      text-align: center;
+      transform: translate(-50%, 0);
+      .enabled > a:hover {
+      background-color: $yelloww;
+      background-image: none;
+      }
+    }
+    
+
+  }
+  
+  
 }
+
 
 // Video
 .videotitle {
@@ -52,6 +83,7 @@ $section-spacing: 120px;
 }
 
 .video-wrap {
+  margin-top: 100px;
   margin-bottom: 30px;
   text-align: center;
   .titleholder {
@@ -206,6 +238,7 @@ $section-spacing: 120px;
   .contributors .body {
     padding: 0 40px;
   }
+
 }
 
 @include laptop {
@@ -224,5 +257,8 @@ $section-spacing: 120px;
 
   .footer {
     padding-left: 150px;
+  }
+  .entry-list{
+    margin-left:44px;
   }
 }
