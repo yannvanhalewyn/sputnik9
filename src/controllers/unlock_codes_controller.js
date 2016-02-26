@@ -17,6 +17,7 @@ module.exports = {
         emails.sendUnlockCode(req.body.email, uc.code)
           .then(mailer.send).catch(Logger.error)
       }
+      req.session.flash = { type: 'success', message: 'Je unlock-code is aangemaakt!' }
       res.redirect('/admin')
     })
   }
