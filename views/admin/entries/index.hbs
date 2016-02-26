@@ -7,7 +7,7 @@
   <tbody>
     {{#each entries}}
       <tr>
-        <td>1</td>
+        <td>{{inc @index}}</td>
         <td><a href="/admin/entries/{{this._id}}">{{this.title}}</a></td>
       </tr>
     {{/each}}
