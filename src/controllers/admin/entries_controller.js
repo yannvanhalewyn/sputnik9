@@ -11,15 +11,18 @@ var AdminEntriesController = {
   },
 
   index: (req, res) => {
-    res.send('index')
+    Entry.find({}, {title: true}).then(entries => {
+      res.render('admin/entries/index', {layout: 'admin', entries})
+    })
   },
 
   edit: (req, res) => {
-    res.send('edit')
+    res.render('admin/entries/edit', {layout: 'admin'})
   },
 
   update: (req, res) => {
-    res.send('update')
+    req.session.flash = { type: 'success', message: 'Entry is aangepast!' }
+    res.redirect('/admin/entries')
   }
 }
 
