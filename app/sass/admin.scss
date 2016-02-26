@@ -43,3 +43,12 @@ form {
   font-size: 16px;
   td, th { padding: 12px !important; }
 }
+
+.entry-form {
+  .vimeo-url {
+    width: 80%;
+    display: inline-block;
+  }
+
+  buton.delete { width: 20%; }
+}

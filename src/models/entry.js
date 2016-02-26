@@ -16,13 +16,10 @@ var entrySchema = mongoose.Schema({
   blog: String,
   lyrics: String,
   photos: {
-    shown: [String],
-    hidden: [String]
+    shown: String,
+    hidden: String
   },
-  contributors: [{
-    title: String,
-    body: String
-  }]
+  contributors: String
 })
 
 var Entry = mongoose.model('Entry', entrySchema)
