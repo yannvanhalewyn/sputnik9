@@ -52,3 +52,10 @@ form {
 
   buton.delete { width: 20%; }
 }
+
+.md-cheat-sheet {
+  tr {
+    border-bottom: 1px solid rgba(grey, 0.3);
+  }
+  td { padding: 10px }
+}
