@@ -12,6 +12,7 @@ export default class EntryForm extends React.Component {
       <TextInput label='Titel' name='title' val={entry.title}/>
       <TextArea label='Blog' name='blog' val={entry.blog} rows={7} />
       <TextArea label='Lyrics' name='lyrics' val={entry.lyrics} rows={14} />
+      <TextArea label='Contributors' name='contributors' val={entry.contributors} rows='12' />
       <Videos videos={entry.videos}/>
       <Performers performers={entry.performers} />
       <Photos photos={entry.photos} />

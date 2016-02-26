@@ -19,10 +19,7 @@ var entrySchema = mongoose.Schema({
     shown: String,
     hidden: String
   },
-  contributors: [{
-    title: String,
-    body: String
-  }]
+  contributors: String
 })
 
 var Entry = mongoose.model('Entry', entrySchema)
