@@ -4,7 +4,8 @@ var webpack = require('webpack')
 var base = {
   entry: {
     premium: './app/js/premium/index.js',
-    admin: './app/js/admin/index.jsx'
+    admin: './app/js/admin/index.jsx',
+    entry_form: './app/js/admin/entry_form/index.js'
   },
   output: {
     path: './public/js',
