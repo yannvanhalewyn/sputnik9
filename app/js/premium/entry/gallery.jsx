@@ -32,8 +32,8 @@ class HiddenImage extends React.Component {
 export default class Gallery extends React.Component {
   render() {
     return <div className='gallery'>
-      {this.props.photos.shown.map(this._renderVisibleImage)}
-      {this.props.photos.hidden.map(this._renderHiddenImage)}
+      {this.props.photos.shown.trim().split('\r\n').map(this._renderVisibleImage)}
+      {this.props.photos.hidden.trim().split('\r\n').map(this._renderHiddenImage)}
     </div>
   }
 
