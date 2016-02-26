@@ -43,10 +43,23 @@ export default class Performers extends React.Component {
   }
 
   _renderPerformer(performer, i) {
-    return <Performer idx={i} key={performer._id} {...performer}/>
+    return <Performer
+      idx={i}
+      key={performer._id}
+      onDelete={this._removePerformer.bind(this, i)}
+      {...performer}
+    />
   }
 
-  _addPerformer() {
+  _addPerformer(e) {
+    e.preventDefault()
+    this.setState({performers: [...this.state.performers, {_id: Date.now() }]})
+  }
 
+  _removePerformer(idx, e) {
+    e.preventDefault()
+    let performers = this.state.performers.slice()
+    performers.splice(idx, 1)
+    this.setState({performers})
   }
 }
