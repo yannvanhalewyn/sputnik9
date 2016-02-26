@@ -1,0 +1,22 @@
+<h2>Edit "{{entry.title}}"</h2>
+
+<div id='react-admin-form'>
+  <form class="entry-form" method="post">
+    <fieldset class="form-group">
+      <label for="title">Titel</label>
+      <input class='form-control' value="{{entry.title}}" id="title" type="text" name="title">
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="blog">Blog</label>
+      <textarea class='form-control' id="blog" name="blog" rows=7>{{entry.blog}}</textarea>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="lyrics">Lyrics</label>
+      <textarea class='form-control' id="lyrics" name="lyrics" rows=14>{{entry.lyrics}}</textarea>
+    </fieldset>
+
+    <input type="submit" value="Opslaan" class='btn btn-success'>
+  </form>
+</div>

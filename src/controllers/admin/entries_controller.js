@@ -13,7 +13,8 @@ var AdminEntriesController = {
   middlewares: {
     index: [requireAdmin],
     edit: [requireAdmin, findEntry, redirect('/admin/entries')],
-    update: [requireAdmin, findEntry, redirect('/admin/entries')]
+    update: [requireAdmin, findEntry, redirect('/admin/entries')],
+    create: [requireAdmin]
   },
 
   index: (req, res) => {
@@ -27,8 +28,14 @@ var AdminEntriesController = {
   },
 
   update: (req, res) => {
-    req.session.flash = { type: 'success', message: 'Entry is aangepast!' }
-    res.redirect('/admin/entries')
+    req.entry.update(req.body).then(() => {
+      req.session.flash = { type: 'success', message: 'Entry is aangepast!' }
+      res.redirect(req.entry._id)
+    })
+  },
+
+  create: (req, res) => {
+    res.send('create')
   }
 }
 
