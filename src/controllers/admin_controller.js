@@ -3,7 +3,6 @@
   "use strict";
 
   var requireAdmin = require('../middlewares/require_admin')
-    , UnlockCode = require('../models/unlock_code')
     , User = require('../models/user')
     , report = require('../lib/report')
 
@@ -13,11 +12,7 @@
       users: [requireAdmin]
     },
 
-    index: (req, res) => {
-      UnlockCode.find().populate('activated_by').then(codes => {
-        res.render('admin/home', {layout: 'admin', codes: JSON.stringify(codes)})
-      })
-    },
+    index: (req, res) => res.redirect('/admin/entries'),
 
     users: (req, res) => {
       User.find().then(users => {
