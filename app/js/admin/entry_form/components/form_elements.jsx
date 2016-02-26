@@ -30,6 +30,7 @@ export class TextArea extends React.Component {
         rows={this.props.rows}
         defaultValue={this.props.val}
       />
+      {this.props.children}
     </FieldSet>
   }
 }

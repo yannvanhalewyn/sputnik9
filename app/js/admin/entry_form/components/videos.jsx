@@ -35,10 +35,9 @@ export default class Videos extends React.Component {
 
   render() {
     return <div>
-      <h3>Video's</h3>
+      <h3>Video's <button onClick={this._addVideo.bind(this)} className="btn btn-success">+</button></h3>
       <small className='text-muted'>Urls zijn de urls voor de iframe, en dus niet de iFrame zelf</small>
       {this.state.videos.map(this._renderVideo.bind(this))}
-      <button onClick={this._addVideo.bind(this)} className="btn btn-success">Voeg video toe</button>
     </div>
   }
 
@@ -52,7 +51,6 @@ export default class Videos extends React.Component {
 
   _addVideo(e) {
     e.preventDefault()
-    let newVideos = [...this.state.videos, {title: '', url: ''}]
     this.setState({videos: [...this.state.videos, {_id: Date.now() }]})
   }
 
