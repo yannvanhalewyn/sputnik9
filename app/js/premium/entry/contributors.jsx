@@ -1,26 +1,36 @@
 import React from 'react'
+import * as Markdown from '../util/markdown'
 
-class Contribution extends React.Component {
+class Column extends React.Component {
   render() {
-    return <div className="col-md-4">
-      <p><span className="contribution-name">{this.props.title}:</span><br/><br/>
-        {this.props.body.split('\n').map((s, i) => <span key={i}>{s}<br/></span>)}
-      </p>
-    </div>
+    return <p>
+      {this.props.statements.map(this._renderStatement)}
+    </p>
+  }
+
+  _renderStatement(statement, i) {
+    switch(statement.type) {
+      case 'header':
+        return <span className="contribution-name">{statement.value}<br/></span>
+      default:
+        return <span>{statement.value}<br/></span>
+    }
   }
 }
 
 export default class Contributors extends React.Component {
   render() {
+    let tree = Markdown.parse(this.props.contributors)
+    let grid = `col-md-${12/tree.length}`
     return <div className="contributors">
       <h3 className="title">Contributors</h3>
       <div className="body row">
-        {this.props.contributors.map(this._renderContribution)}
+        {tree.map((column, i) => {
+          return <div className={grid}>
+            <Column key={i} statements={column} />
+          </div>
+        })}
       </div>
     </div>
-  }
-
-  _renderContribution(contribution, i) {
-    return <Contribution key={i} title={contribution.title} body={contribution.body} />
   }
 }

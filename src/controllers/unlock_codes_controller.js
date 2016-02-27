@@ -8,16 +8,24 @@ var isValidEmail = (email) => /^.+@.+\..+$/.test(email)
 
 module.exports = {
   middlewares: {
-    post: [requireAdmin]
+    index: [requireAdmin],
+    create: [requireAdmin]
   },
 
-  post(req, res) {
+  index: (req, res) => {
+    UnlockCode.find().populate('activated_by').then(codes => {
+      res.render('admin/home', {layout: 'admin', codes: JSON.stringify(codes)})
+    })
+  },
+
+  create(req, res) {
     UnlockCode.create(req.body.email).then(uc => {
       if (isValidEmail(req.body.email)) {
         emails.sendUnlockCode(req.body.email, uc.code)
           .then(mailer.send).catch(Logger.error)
       }
-      res.redirect('/admin')
+      req.session.flash = { type: 'success', message: 'Je unlock-code is aangemaakt!' }
+      res.redirect('/admin/unlock_codes')
     })
   }
 }

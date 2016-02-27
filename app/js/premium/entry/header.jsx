@@ -20,7 +20,7 @@ export default class Header extends React.Component {
     </ul>
   }
 
-  _renderEntryLink(entry) {
-    return <EntryTab id={entry.id} title={entry.title} />
+  _renderEntryLink(entry, i) {
+    return <EntryTab id={i} title={entry.title} />
   }
 }

@@ -1,4 +1,5 @@
 var express = require('express')
+  , Entry = require('../models/entry')
   , requireLogin = require('../middlewares/requireLogin')
   , requireVerifiedEmail = require('../middlewares/require_verified_email')
   , paywall = require('../middlewares/paywall')
@@ -9,7 +10,11 @@ var VideosController = {
     index: [requireLogin, requireVerifiedEmail, paywall, handleUnpaidUser]
   },
 
-  index: (req, res) => res.render('premium')
+  index: (req, res) => {
+    Entry.find({}, {}, {sort: {_id: 1}}).then(entries => res.render('premium', {
+      entries: JSON.stringify(entries)
+    }))
+  }
 }
 
 module.exports = VideosController;

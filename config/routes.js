@@ -50,7 +50,7 @@
     app.use('/admin', admin_router)
 
     // Unlock Codes
-    app.post('/unlock_codes', uc_controller.middlewares.post, uc_controller.post)
+    app.post('/unlock_codes', uc_controller.middlewares.create, uc_controller.create)
   }
 
   module.exports = Routes;

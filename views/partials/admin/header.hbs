@@ -16,11 +16,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li class="{{#active_view @exphbs.view 'admin/entries/index'}}{{/active_view}}">
+          <a href="/admin/entries">Entries</a>
+        </li>
         <li class="{{#active_view @exphbs.view 'admin/home'}}{{/active_view}}">
-            <a href="/admin">Unlock Codes</a>
-          </li>
+          <a href="/admin/unlock_codes">Unlock Codes</a>
+        </li>
         <li class="{{#active_view @exphbs.view 'admin/users'}}{{/active_view}}">
-            <a href="/admin/users">Users</a>
+          <a href="/admin/users">Users</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

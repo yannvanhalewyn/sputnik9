@@ -1,0 +1,15 @@
+<h2>Entries <a class='btn btn-success' href="/admin/entries/new">Nieuwe entry!</a></h2>
+<table class='table'>
+  <thead class='thead-inverse'>
+    <th>#</th>
+    <th>Titel</th>
+  </thead>
+  <tbody>
+    {{#each entries}}
+      <tr>
+        <td>{{inc @index}}</td>
+        <td><a href="/admin/entries/{{this._id}}">{{this.title}}</a></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
