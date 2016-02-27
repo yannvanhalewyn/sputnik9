@@ -17,10 +17,7 @@ var VideosController = {
       Entry.find({}, {}, {sort: {_id: 1}}),
       Song.find({}, {}, {sort: {_id: 1}})
     ]).spread((entries, songs) => {
-      res.render('premium', {
-        entries: JSON.stringify(entries),
-        songs: JSON.stringify(songs)
-      })
+      res.render('premium', { entries, songs })
     }).catch(next)
   }
 }
