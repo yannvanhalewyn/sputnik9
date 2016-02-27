@@ -5,19 +5,23 @@ var express = require('express')
   , requireVerifiedEmail = require('../middlewares/require_verified_email')
   , paywall = require('../middlewares/paywall')
   , handleUnpaidUser = require('../middlewares/handle_unpaid_user')
+  , Q = require('q')
 
 var VideosController = {
   middlewares: {
     index: [requireLogin, requireVerifiedEmail, paywall, handleUnpaidUser]
   },
 
-  index: (req, res) => {
-    Entry.find({}, {}, {sort: {_id: 1}}).then(entries => {
-      Song.find({}, {}, {sort: {_id: 1}}).then(songs => res.render('premium', {
+  index: (req, res, next) => {
+    Q.all([
+      Entry.find({}, {}, {sort: {_id: 1}}),
+      Song.find({}, {}, {sort: {_id: 1}})
+    ]).spread((entries, songs) => {
+      res.render('premium', {
         entries: JSON.stringify(entries),
         songs: JSON.stringify(songs)
-      }))
-    })
+      })
+    }).catch(next)
   }
 }
 
