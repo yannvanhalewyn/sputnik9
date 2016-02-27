@@ -6,7 +6,15 @@ var entry = {}
 try {
   entry = JSON.parse(document.getElementById('entry-data').text)
 } catch(err) {
-  console.error('Could not parse entry data')
+  // Use a NullEntry
+  var entry = {
+    videos: [],
+    performers: [],
+    photos: {
+      shown: [],
+      hidden: []
+    }
+  }
 }
 
 $(document).ready(() => {

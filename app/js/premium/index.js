@@ -5,10 +5,11 @@ import Entry from './entry/entry.jsx';
 import * as resize from './resize';
 
 $(document).ready(() => {
+  let lastEntry = require('./entries').length - 1
   render(
     <Router>
       <Route path="/" component={PremiumPage} >
-        <IndexRedirect to="/entries/1" />
+        <IndexRedirect to={`/entries/${lastEntry}`} />
         <Route path="/entries/:entryId" component={Entry} />
       </Route>
       <Redirect from="*" to="/" />

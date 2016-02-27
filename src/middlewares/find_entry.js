@@ -5,5 +5,5 @@ module.exports = (req, res, next) => {
     if (!e) return next(`Could not find entry ${req.params.entry_id}`)
     req.entry = e
     next();
-  })
+  }, err => next(`${req.params.entry_id} is not a valid entry ID`))
 }

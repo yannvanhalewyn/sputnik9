@@ -40,4 +40,16 @@ describe('find_entry middleware', () => {
       expect(next).to.have.been.calledWith(`Could not find entry ${nullId}`)
     });
   }); // End of context 'when entry does not exist'
+
+  context('when entry-id is invalid', () => {
+    var invalidId = 'invalid'
+    beforeEach(() => {
+      req.params.entry_id = invalidId
+      return findEntry(req, res, next)
+    })
+
+    it('calls next with an error', () => {
+      expect(next).to.have.been.calledWith(`${invalidId} is not a valid entry ID`)
+    });
+  }); // End of context 'when entry does not exist'
 }); // End of describe 'find_entry middleware'
