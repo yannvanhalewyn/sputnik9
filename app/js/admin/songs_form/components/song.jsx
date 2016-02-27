@@ -27,7 +27,13 @@ export default class Song extends React.Component {
         name={artists_name}
         val={this.props.artists}
       />
+      <button onClick={this._deleteClicked.bind(this)} className='btn btn-danger'>&times;</button>
       <hr />
     </div>
+  }
+
+  _deleteClicked(e) {
+    e.preventDefault()
+    this.props.onDelete(this.props.idx)
   }
 }
