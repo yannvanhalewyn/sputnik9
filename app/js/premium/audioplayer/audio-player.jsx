@@ -55,11 +55,11 @@ export default class AudioPlayer extends React.Component {
   }
 
   _playPrev() {
-    this._swapSong(Math.max(this.state.currentSong.id - 1, 0));
+    this._swapSong(Math.max(this._currentSongIdx() - 1, 0));
   }
 
   _playNext() {
-    this._swapSong((this.state.currentSong.id + 1) % this.props.songs.length);
+    this._swapSong((this._currentSongIdx() + 1) % this.props.songs.length);
   }
 
   _onSongClick(songId) {
@@ -106,9 +106,7 @@ export default class AudioPlayer extends React.Component {
           loading: false
         })
       },
-      onend: () => {
-        this._playNext()
-      }
+      onend: () => this._playNext()
     }).play()
     this.setState({
       playing: true,
@@ -121,4 +119,6 @@ export default class AudioPlayer extends React.Component {
       })
     }, 1000)
   }
+
+  _currentSongIdx() { return this.props.songs.indexOf(this.state.currentSong) }
 }

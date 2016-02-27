@@ -17,6 +17,6 @@ export default class Song extends React.Component {
   }
 
   _onClick() {
-    this.props.onClick(this.props.id);
+    this.props.onClick(this.props.idx);
   }
 }
