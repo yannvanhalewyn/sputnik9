@@ -1,5 +1,5 @@
 import React from 'react'
-import { FieldSet, TextArea, TextInput } from './form_elements.jsx'
+import { FieldSet, TextArea, TextInput } from '../../util/form_elements.jsx'
 
 export default class Photos extends React.Component {
   render() {
