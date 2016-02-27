@@ -11,7 +11,7 @@ var VideosController = {
   },
 
   index: (req, res) => {
-    Entry.find().then(entries => res.render('premium', {
+    Entry.find({}, {}, {sort: {_id: 1}}).then(entries => res.render('premium', {
       entries: JSON.stringify(entries)
     }))
   }

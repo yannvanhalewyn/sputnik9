@@ -19,7 +19,7 @@ var AdminEntriesController = {
   },
 
   index: (req, res) => {
-    Entry.find({}, {title: true}).then(entries => {
+    Entry.find({}, {title: true}, {sort: {_id: 1}}).then(entries => {
       res.render('admin/entries/index', {layout: 'admin', entries})
     })
   },
@@ -40,7 +40,16 @@ var AdminEntriesController = {
   },
 
   create: (req, res) => {
-    res.send('create')
+    new Entry(req.body).save().then(entry => {
+      req.session.flash = { type: 'success', message: 'Entry werd aangemaakt!' }
+      return res.redirect('/admin/entries')
+    }, err => {
+      req.session.flash = {
+        type: 'danger',
+        message: `Er ging iets fout met het aanmaken van de entry: ${err}`
+      }
+      return res.redirect('/admin/entries/new')
+    })
   }
 }
 
