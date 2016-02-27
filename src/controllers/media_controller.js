@@ -1,5 +1,6 @@
 var express = require('express')
   , Entry = require('../models/entry')
+  , Song = require('../models/song')
   , requireLogin = require('../middlewares/requireLogin')
   , requireVerifiedEmail = require('../middlewares/require_verified_email')
   , paywall = require('../middlewares/paywall')
@@ -11,9 +12,12 @@ var VideosController = {
   },
 
   index: (req, res) => {
-    Entry.find({}, {}, {sort: {_id: 1}}).then(entries => res.render('premium', {
-      entries: JSON.stringify(entries)
-    }))
+    Entry.find({}, {}, {sort: {_id: 1}}).then(entries => {
+      Song.find({}, {}, {sort: {_id: 1}}).then(songs => res.render('premium', {
+        entries: JSON.stringify(entries),
+        songs: JSON.stringify(songs)
+      }))
+    })
   }
 }
 
