@@ -8,7 +8,7 @@ import MarkupCheatSheet from './markup_cheat_sheet.jsx'
 export default class EntryForm extends React.Component {
   render() {
     let entry = this.props.entry
-    return <form className='entry-form' method='post'>
+    return <form className='entry-form' method='post' action={entry._id ? '' : '/admin/entries'}>
       <h3>General</h3>
       <TextInput label='Titel' name='title' val={entry.title}/>
       <TextArea label='Blog' name='blog' val={entry.blog} rows={7} />

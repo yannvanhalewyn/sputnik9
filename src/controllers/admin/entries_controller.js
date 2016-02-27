@@ -12,6 +12,7 @@ var redirect = (url) => (err, req, res, next) => {
 var AdminEntriesController = {
   middlewares: {
     index: [requireAdmin],
+    new: [requireAdmin],
     edit: [requireAdmin, findEntry, redirect('/admin/entries')],
     update: [requireAdmin, findEntry, redirect('/admin/entries')],
     create: [requireAdmin]
@@ -25,6 +26,10 @@ var AdminEntriesController = {
 
   edit: (req, res) => {
     res.render('admin/entries/edit', {layout: 'admin', entry: req.entry})
+  },
+
+  new(req, res) {
+    res.render('admin/entries/new', {layout: 'admin'})
   },
 
   update: (req, res) => {
