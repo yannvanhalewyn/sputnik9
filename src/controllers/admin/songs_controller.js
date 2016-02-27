@@ -16,9 +16,12 @@ var AdminEntriesController = {
   },
 
   update: (req, res) => {
-    req.entry.update(req.body).then(() => {
-      req.session.flash = { type: 'success', message: 'Entry is aangepast!' }
-      res.redirect(req.entry._id)
+    Song.remove({}).then(() => Song.collection.insert(req.body.songs)).then(() => {
+      req.session.flash = { type: 'success', message: 'Songs zijn opgeslagen!' }
+      res.redirect('/admin/songs')
+    }, err => {
+      req.session.flash = { type: 'danger', message: `Er is iets fout gegaan: ${err}` }
+      res.redirect('/admin/songs')
     })
   }
 }
