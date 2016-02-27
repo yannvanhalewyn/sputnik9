@@ -15,7 +15,8 @@ var AdminEntriesController = {
     new: [requireAdmin],
     edit: [requireAdmin, findEntry, redirect('/admin/entries')],
     update: [requireAdmin, findEntry, redirect('/admin/entries')],
-    create: [requireAdmin]
+    create: [requireAdmin],
+    preview: [requireAdmin]
   },
 
   index: (req, res) => {
@@ -50,6 +51,10 @@ var AdminEntriesController = {
       }
       return res.redirect('/admin/entries/new')
     })
+  },
+
+  preview: (req, res) => {
+    res.render('premium', {entries: JSON.stringify([req.body])})
   }
 }
 

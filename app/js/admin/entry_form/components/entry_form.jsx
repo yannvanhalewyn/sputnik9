@@ -22,6 +22,17 @@ export default class EntryForm extends React.Component {
       <Performers performers={entry.performers} />
       <Photos photos={entry.photos} />
       <input type="submit" value="Opslaan" className='btn btn-success' />
+      <button className='btn btn-warning' onClick={this._previewClicked}>Preview deze entry!</button>
     </form>
+  }
+
+  _previewClicked(e) {
+    e.preventDefault();
+    $.post('/admin/entries/preview', $('form').serialize(), (res) => {
+      let win = window.open('about:blank');
+      if (!win) return alert('Please enable pup-ups buddy!')
+      win.document.write(res);
+      win.document.close();
+    })
   }
 }
