@@ -5,7 +5,8 @@ var base = {
   entry: {
     premium: './app/js/premium/index.js',
     admin: './app/js/admin/index.jsx',
-    entry_form: './app/js/admin/entry_form/index.js'
+    entry_form: './app/js/admin/entry_form/index.js',
+    songs_form: './app/js/admin/songs_form/index.js'
   },
   output: {
     path: './public/js',
