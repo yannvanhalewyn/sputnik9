@@ -1,5 +1,5 @@
 import React from 'react'
-import { FieldSet, TextArea, TextInput } from '../../util/form_elements.jsx'
+import Song from './song.jsx'
 
 class SongsForm extends React.Component {
   render() {
@@ -9,8 +9,8 @@ class SongsForm extends React.Component {
     </form>
   }
 
-  _renderSong(song) {
-    return <div key={song._id}>{song.title}</div>
+  _renderSong(song, i) {
+    return <Song idx={i} key={song._id} {...song}/>
   }
 }
 
