@@ -2,11 +2,21 @@
 
 var requireAdmin = require('../../middlewares/require_admin')
   , Song = require('../../models/song')
+  , findSong = require('../../middlewares/find_song')
+
+var redirect = (url) => (err, req, res, next) => {
+  req.session.flash = { type: 'danger', message: err }
+  res.redirect(url)
+}
 
 var AdminEntriesController = {
   middlewares: {
     index: [requireAdmin],
-    update: [requireAdmin],
+    new: [requireAdmin],
+    edit: [requireAdmin, findSong, redirect('/admin/songs')],
+    update: [requireAdmin, findSong, redirect('/admin/songs')],
+    create: [requireAdmin],
+    delete: [requireAdmin, findSong, redirect('/admin/songs')]
   },
 
   index: (req, res) => {
@@ -15,15 +25,17 @@ var AdminEntriesController = {
     })
   },
 
+  edit: (req, res) => res.send(`edit ${req.params.song_id}`),
+
+  new: (req, res) => res.send('new'),
+
   update: (req, res) => {
-    Song.remove({}).then(() => Song.collection.insert(req.body.songs)).then(() => {
-      req.session.flash = { type: 'success', message: 'Songs zijn opgeslagen!' }
-      res.redirect('/admin/songs')
-    }, err => {
-      req.session.flash = { type: 'danger', message: `Er is iets fout gegaan: ${err}` }
-      res.redirect('/admin/songs')
-    })
-  }
+    res.send(`update ${req.params.song_id}`)
+  },
+
+  create: (req, res) => res.send('update'),
+
+  delete: (req, res) => res.send('delete')
 }
 
 module.exports = AdminEntriesController;

@@ -1,6 +1,15 @@
-<div id="react-songs-form">
-  <img src="/img/spinner.svg" alt="spinner">
-</div>
-
-<script type="application/json" id='songs-data'>{{{json songs}}}</script>
-<script src="/js/songs_form.bundle.js"></script>
+<h2>Songs <a class='btn btn-success' href="/admin/entries/new">Nieuwe song!</a></h2>
+<table class='table'>
+  <thead class='thead-inverse'>
+    <th>#</th>
+    <th>Titel</th>
+  </thead>
+  <tbody>
+    {{#each songs}}
+      <tr>
+        <td>{{inc @index}}</td>
+        <td><a href="/admin/songs/{{this._id}}">{{this.title}}</a></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
