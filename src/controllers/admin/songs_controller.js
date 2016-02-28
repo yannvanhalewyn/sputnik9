@@ -29,7 +29,7 @@ var AdminEntriesController = {
     res.render('admin/songs/edit', { layout: 'admin', song: req.song })
   },
 
-  new: (req, res) => res.send('new'),
+  new: (req, res) => res.render('admin/songs/new', { layout: 'admin' }),
 
   update: (req, res) => {
     req.song.update(req.body).then(() => {
