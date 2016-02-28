@@ -15,7 +15,7 @@ var VideosController = {
   index: (req, res, next) => {
     Q.all([
       Entry.find({}, {}, {sort: {_id: 1}}),
-      Song.find({}, {}, {sort: {_id: 1}})
+      Song.find({}, {}, {sort: {_id: -1}})
     ]).spread((entries, songs) => {
       res.render('premium', { entries, songs })
     }).catch(next)
