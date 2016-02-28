@@ -1,0 +1,14 @@
+#!/bin/sh
+
+import() {
+  seed=db/seeds/$1.json
+  if [[ -f $seed ]]; then
+    mongoimport --db sputnik9 --collection $1 $seed
+  else
+    echo Could not find file $seed
+  fi
+}
+
+import entries
+import users
+import songs
