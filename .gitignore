@@ -14,3 +14,4 @@ foo.js
 ips.txt
 tmp/*
 !tmp/.keep
+scripts/seed.js

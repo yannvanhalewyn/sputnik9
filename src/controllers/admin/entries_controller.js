@@ -54,7 +54,7 @@ var AdminEntriesController = {
   },
 
   preview: (req, res) => {
-    res.render('premium', {entries: JSON.stringify([req.body])})
+    res.render('premium', {entries: [req.body]})
   }
 }
 

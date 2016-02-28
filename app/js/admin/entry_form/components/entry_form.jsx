@@ -1,5 +1,5 @@
 import React from 'react'
-import { FieldSet, TextArea, TextInput } from './form_elements.jsx'
+import { FieldSet, TextArea, TextInput } from '../../util/form_elements.jsx'
 import Videos from './videos.jsx'
 import Performers from './performers.jsx'
 import Photos from './photos.jsx'
