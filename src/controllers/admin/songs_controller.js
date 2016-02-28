@@ -51,7 +51,15 @@ var AdminEntriesController = {
     })
   },
 
-  delete: (req, res) => res.send('delete')
+  delete: (req, res) => {
+    req.song.remove().then(() => {
+      req.session.flash = { type: 'success', message: 'Song is verwijderd!' }
+      res.redirect('/admin/songs')
+    }, err => {
+      req.session.flash = { type: 'danger', message: `Song kon niet worden verwijderd: ${err}` }
+      res.redirect('/admin/songs')
+    })
+  }
 }
 
 module.exports = AdminEntriesController;
