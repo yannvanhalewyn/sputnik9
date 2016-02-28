@@ -1,0 +1,9 @@
+#!/bin/sh
+
+import() {
+  mongoimport --db sputnik9 --collection $1 db/seeds/$1.json
+}
+
+import entries
+import users
+import songs

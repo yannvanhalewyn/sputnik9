@@ -1,0 +1,1 @@
+{"_id":{"$oid":"56d24e170f282b6b0a7b4e2e"},"first_name":"Admin","last_name":"User","email":"admin@example.com","provider":"local","local_data":{"confirmation_token":null,"token_expiration":null,"password_digest":"$2a$10$Xom4cvPDgCgqLze0bK9l5O3nKU3r.0pwRLrPl.bivS7sPz6sAXGui","verified":true},"admin":true,"payments":[],"receive_emails":true,"__v":0,"premium":true}
