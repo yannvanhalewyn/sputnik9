@@ -20,7 +20,7 @@ var AdminEntriesController = {
   },
 
   index: (req, res) => {
-    Song.find({}, {}, {sort: {_id: 1}}).then(songs => {
+    Song.find({}, {}, {sort: {_id: -1}}).then(songs => {
       res.render('admin/songs/index', {layout: 'admin', songs})
     })
   },
@@ -41,7 +41,15 @@ var AdminEntriesController = {
     })
   },
 
-  create: (req, res) => res.send('update'),
+  create: (req, res) => {
+    Song.create(req.body).then(song => {
+      req.session.flash = { type: 'success', message: 'Song is toegevoegd!' }
+      res.redirect('/admin/songs')
+    }, err => {
+      req.session.flash = { type: 'danger', message: `Song kon niet worden opgeslagen: ${err}` }
+      res.redirect('/admin/songs/new')
+    })
+  },
 
   delete: (req, res) => res.send('delete')
 }
