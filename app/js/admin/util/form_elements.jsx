@@ -2,7 +2,7 @@ import React from 'react';
 
 export class FieldSet extends React.Component {
   render() {
-    return <fieldset className={`form-group`}>
+    return <fieldset className='form-group'>
       <label htmlFor={this.props.name}>{this.props.label}</label>
       {this.props.children}
     </fieldset>
