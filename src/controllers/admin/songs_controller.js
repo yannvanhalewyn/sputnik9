@@ -25,7 +25,9 @@ var AdminEntriesController = {
     })
   },
 
-  edit: (req, res) => res.send(`edit ${req.params.song_id}`),
+  edit: (req, res) => {
+    res.render('admin/songs/edit', { layout: 'admin', song: req.song })
+  },
 
   new: (req, res) => res.send('new'),
 
