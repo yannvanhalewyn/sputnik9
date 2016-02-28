@@ -14,3 +14,5 @@ foo.js
 ips.txt
 tmp/*
 !tmp/.keep
+db/seeds/entries.json
+db/back

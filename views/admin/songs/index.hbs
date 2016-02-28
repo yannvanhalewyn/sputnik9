@@ -1,0 +1,25 @@
+<h2>Songs <a class='btn btn-success' href="/admin/songs/new">Nieuwe song!</a></h2>
+<table class='table songs-table'>
+  <thead class='thead-inverse'>
+    <th>#</th>
+    <th>Titel</th>
+    <th></th>
+  </thead>
+  <tbody>
+    {{#each songs}}
+      <tr class='song'>
+        <td>{{inc @index}}</td>
+        <td><a href="/admin/songs/{{this._id}}">{{this.title}}</a></td>
+        <td>
+          <form action="/admin/songs/{{this._id}}" method='post' enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="_method" value="DELETE" >
+            <button onclick="return confirm('Weet je zeker dat je deze song wil verwijderen?')"
+                    class="btn btn-danger delete-button">
+              &times; Delete
+            </button>
+          </form>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

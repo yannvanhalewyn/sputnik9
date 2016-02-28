@@ -8,13 +8,13 @@ export default class extends React.Component {
     </ul>
   }
 
-  _renderSong(song) {
+  _renderSong(song, i) {
     return <Song
       title={song.title}
       subtitle={song.artists}
       url={song.url}
-      key={song.id}
-      id={song.id}
+      key={i}
+      idx={i}
       active={this.props.currentSong == song}
       onClick={this.props.onSongClick}
       loading={this.props.loading}
