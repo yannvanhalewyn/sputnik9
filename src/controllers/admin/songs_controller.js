@@ -32,7 +32,13 @@ var AdminEntriesController = {
   new: (req, res) => res.send('new'),
 
   update: (req, res) => {
-    res.send(`update ${req.params.song_id}`)
+    req.song.update(req.body).then(() => {
+      req.session.flash = { type: 'success', message: 'Song is opgeslagen!' }
+      res.redirect(req.params.song_id)
+    }, err => {
+      req.session.flash = { type: 'danger', message: `Song kon niet worden opgeslagen: ${err}` }
+      res.redirect(req.params.song_id)
+    })
   },
 
   create: (req, res) => res.send('update'),
