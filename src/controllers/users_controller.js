@@ -12,6 +12,7 @@
     , UnlockCode             = require('../models/unlock_code')
     , requireLogin           = require('../middlewares/requireLogin')
     , unsubscribe            = require('../lib/unsubscribe')
+    , mailchimp              = require('../lib/mailchimp')
 
   var users_controller = {
 
@@ -65,6 +66,7 @@
         user => {
           login(user, req);
           emails.emailConfirmation(user).then(mailer.send).catch(Logger.error)
+          mailchimp.subscribe(user).then(Logger.info, Logger.error)
           res.redirect('/premium')
         },
 

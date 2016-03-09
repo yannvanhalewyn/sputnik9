@@ -26,16 +26,12 @@ var batch_register = (data) => {
 
 var status = u => u.receive_emails ? 'subscribed' : 'unsubscribed'
 var merge_fields = u => { return { FNAME: u.first_name, LNAME: u.last_name, ID: u._id }}
-var parse_user = u => { return { email: {email: u.email}, status: status(u), merge_fields: merge_fields(u) }}
+var parse_user = u => { return { email: {email: u.email}, status: status(u), merge_vars: merge_fields(u) }}
 
-
-/*
- * DON'T Use this, it will send a confirmation email to every single user
- * Q.all([
- *   getLists().then(lists => lists.data.filter(l => l.name == LIST_NAME)[0]),
- *   User.find()
- * ]).spread((list, users) => {
- *   var batch = users.map(parse_user)
- *   return batch_register({id: list.id, batch})
- * }).then(console.log).catch(console.log)
- */
+Q.all([
+  getLists().then(lists => lists.data.filter(l => l.name == LIST_NAME)[0]),
+  User.find()
+]).spread((list, users) => {
+  var batch = users.map(parse_user)
+  return batch_register({id: list.id, batch, double_optin: false})
+}).then(console.log).catch(console.log)

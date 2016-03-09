@@ -25,7 +25,7 @@ module.exports = {
   },
 
   subscribe(user) {
-    this.getList().then(list => {
+    return this.getList().then(list => {
       var params = {
         id: list.id,
         email: { email: user.email },
@@ -36,3 +36,4 @@ module.exports = {
     })
   }
 }
+

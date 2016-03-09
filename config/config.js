@@ -10,7 +10,9 @@ var config = {
     },
     mollie_api_key: process.env["MOLLIE_API_KEY"],
     cloudinary_api_key: process.env['CLOUDINARY_API_KEY'],
-    cloudinary_api_secret: process.env['CLOUDINARY_API_SECRET']
+    cloudinary_api_secret: process.env['CLOUDINARY_API_SECRET'],
+    mailchimp_api_key: process.env['MAILCHIMP_API_KEY'],
+    mailchimp_list_name: 'Sputnik 9 Notifications'
   },
 
   "development": {
@@ -23,7 +25,9 @@ var config = {
     },
     mollie_api_key: process.env["MOLLIE_TEST_API_KEY"],
     cloudinary_api_key: process.env['CLOUDINARY_API_KEY'],
-    cloudinary_api_secret: process.env['CLOUDINARY_API_SECRET']
+    cloudinary_api_secret: process.env['CLOUDINARY_API_SECRET'],
+    mailchimp_api_key: process.env['MAILCHIMP_API_KEY'],
+    mailchimp_list_name: 'Test List'
   }
 
 }
