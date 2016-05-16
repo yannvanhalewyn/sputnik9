@@ -1,0 +1,44 @@
+// A little vertical caret
+@mixin caretdown($size, $color:white) {
+  border-left: $size solid transparent;
+  border-right: $size solid transparent;
+  border-top: $size solid $color;
+}
+
+// The current entry toggle
+.header__entry-dropdown-toggle {
+  color: $yelloww;
+  font-size: 1.5em;
+  &:after {
+    content: "";
+    @include caretdown(6px, $yelloww);
+    position: relative;
+    left: 7px;
+    top: 18px;
+  }
+}
+
+// The bolts around current entry
+.header__bolt-left,
+.header__bolt-right {
+  position: relative;
+  bottom: 8px;
+}
+
+// The dropdown itself
+.header__entries-dropdown {
+  font-size: 1.4em;
+  width: 100%;
+  a:hover { text-decoration: none; }
+}
+
+// A dropdown element
+.header__entry {
+  color: black;
+  padding: 0 4px;
+  &:hover {
+    background-color: $yelloww !important;
+    color: white !important;
+  }
+  &.active { display: none; }
+}

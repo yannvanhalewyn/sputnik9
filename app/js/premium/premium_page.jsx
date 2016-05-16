@@ -9,7 +9,7 @@ export default class PremiumPage extends React.Component {
     return <div>
       <AudioPlayer songs={songs} />
       <div className="main">
-        <Header entries={entries}></Header>
+        <Header entries={entries} location={this.props.location}></Header>
         {this.props.children}
       </div>
     </div>
