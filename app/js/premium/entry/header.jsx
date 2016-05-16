@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Router } from 'react-router';
+import { Link } from 'react-router';
 
 // My apologies for the hack, out of time
 var current_entry_idx = (pathname) => {
