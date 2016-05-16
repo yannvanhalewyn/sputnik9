@@ -2,6 +2,7 @@
 @import "modules/yellowblock";
 @import "modules/queries";
 @import "partials/general";
+@import "partials/entry-dropdown";
 @import "partials/audio-player";
 @import "partials/flash";
 @import "partials/footer";
@@ -15,38 +16,6 @@ $section-spacing: 120px;
 
 .loading_premium {
   text-align: center;
-}
-
-
-.entries-header {
-  margin-bottom: 40px;
-
-  li {
-    display: inline-block;
-    margin-right: 10px;
-  }
-
-  .bolts-left,
-  .bolts-right {
-    display: none;
-  }
-
-  .title {
-    color: $muted;
-    font-size: 1.5em;
-    display: inline-block;
-    &:hover { color: $yelloww; }
-  }
-
-  .active {
-    .title { color: $yelloww; }
-    .bolts-left,
-    .bolts-right {
-      display: inline;
-      position: relative;
-      bottom: 8px;
-    }
-  }
 }
 
 // Video
