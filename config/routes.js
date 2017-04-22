@@ -20,6 +20,7 @@
     app.get('/', (req, res) => res.redirect('/premium'));
 
     // Logging in user (new user session)
+    app.get('/login', (req, res) => res.render('login', { homepage: true, user: req.user }));
     app.post('/login', user_sessions_controller.create);
     app.get('/logout', user_sessions_controller.destroy);
     app.get('/auth/facebook', user_sessions_controller.new_facebook_session);
