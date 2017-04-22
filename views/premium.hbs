@@ -5,8 +5,7 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-router/1.0.2/ReactRouter.min.js"></script>
 
 <!--lightbox-->
-<link href="//rawgithub.com/ashleydw/lightbox/master/dist/ekko-lightbox.css" rel="stylesheet">
-<link href="//rawgithub.com/ashleydw/lightbox/gh-pages/css/dark.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.css" />
 
 <!-- The app -->
 <div id="premium_page">
@@ -15,7 +14,7 @@
   </div>
 </div>
 
-<script src="/js/vendor/ekko-lightbox.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.js"></script>
 
 <!-- Toggling lightbox -->
 <script type="text/javascript">
@@ -23,9 +22,7 @@ $(document).ready(function ($) {
   // delegate calls to data-toggle="lightbox"
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
     event.preventDefault();
-    return $(this).ekkoLightbox({
-      always_show_close: true
-    });
+    return $(this).ekkoLightbox();
   });
 });
 </script>
