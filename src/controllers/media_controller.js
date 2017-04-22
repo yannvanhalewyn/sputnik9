@@ -9,7 +9,7 @@ var express = require('express')
 
 var VideosController = {
   middlewares: {
-    index: [requireLogin, requireVerifiedEmail, paywall, handleUnpaidUser]
+    index: []
   },
 
   index: (req, res, next) => {
